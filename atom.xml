@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>如果一切重来</title>
+  <subtitle>小小程序员的成长之路</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://xiaoybboy.github.io/"/>
+  <updated>2017-03-17T09:40:10.822Z</updated>
+  <id>https://xiaoybboy.github.io/</id>
+  
+  <author>
+    <name>YB XIAO</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试字符串中是否包含重复字符</title>
+    <link href="https://xiaoybboy.github.io/2017/03/17/%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6/"/>
+    <id>https://xiaoybboy.github.io/2017/03/17/测试字符串中是否包含重复字符/</id>
+    <published>2017-03-17T09:32:25.000Z</published>
+    <updated>2017-03-17T09:40:10.822Z</updated>
+    
+    <content type="html"><![CDATA[<p>##题目描述</p>
+<p>请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。<br>测试样例：<br>“aeiou”<br>返回：True<br>“BarackObama”<br>返回：False</p>
+<p>###思路</p>
+<p>‘’’<br>public class StringRepeat {<br>    // 暴力求解，双层循环，一一比较<br>    public boolean checkDifferent(String iniString) {<br>        for (int i = 0;i&lt;iniString.length();i++) {<br>            for (int j = i+1;j&lt;iniString.length();j++) {<br>                if (iniString.charAt(i) == iniString.charAt(j))<br>                    return false;<br>            }<br>        }<br>        return true;<br>    }<br>}<br>‘’’</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##题目描述&lt;/p&gt;
+&lt;p&gt;请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII
+    
+    </summary>
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的第一篇博客</title>
+    <link href="https://xiaoybboy.github.io/2017/03/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://xiaoybboy.github.io/2017/03/17/我的第一篇博客/</id>
+    <published>2017-03-17T06:19:44.000Z</published>
+    <updated>2017-03-17T06:25:05.226Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="我的第一篇技术博客"><a href="#我的第一篇技术博客" class="headerlink" title="我的第一篇技术博客"></a>我的第一篇技术博客</h2><h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><p>欢迎来到我的博客。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;我的第一篇技术博客&quot;&gt;&lt;a href=&quot;#我的第一篇技术博客&quot; class=&quot;headerlink&quot; title=&quot;我的第一篇技术博客&quot;&gt;&lt;/a&gt;我的第一篇技术博客&lt;/h2&gt;&lt;h3 id=&quot;博客&quot;&gt;&lt;a href=&quot;#博客&quot; class=&quot;headerlink&quot; 
+    
+    </summary>
+    
+      <category term="技术" scheme="https://xiaoybboy.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://xiaoybboy.github.io/2017/03/07/hello-world/"/>
+    <id>https://xiaoybboy.github.io/2017/03/07/hello-world/</id>
+    <published>2017-03-06T16:00:00.000Z</published>
+    <updated>2017-03-17T07:32:47.962Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="test" scheme="https://xiaoybboy.github.io/categories/test/"/>
+    
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
