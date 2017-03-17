@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[测试字符串中是否包含重复字符]]></title>
+      <url>%2F2017%2F03%2F17%2F%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%2F</url>
+      <content type="text"><![CDATA[#题目描述请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。测试样例：“aeiou”返回：True“BarackObama”返回：False ##思路‘’’public class StringRepeat { // 暴力求解，双层循环，一一比较 public boolean checkDifferent(String iniString) { for (int i = 0;i&lt;iniString.length();i++) { for (int j = i+1;j&lt;iniString.length();j++) { if (iniString.charAt(i) == iniString.charAt(j)) return false; } } return true; }}‘’’]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[我的第一篇博客]]></title>
       <url>%2F2017%2F03%2F17%2F%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%2F</url>
       <content type="text"><![CDATA[我的第一篇技术博客博客欢迎来到我的博客。]]></content>
