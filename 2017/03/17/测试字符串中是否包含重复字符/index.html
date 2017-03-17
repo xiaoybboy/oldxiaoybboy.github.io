@@ -90,24 +90,18 @@
 
 
 <meta name="description" content="##题目描述
-请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。测试样例：“aeiou”返回：True“BarackObama”返回：False
-###思路
-‘’’pu">
+请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。测试样例：“aeiou”返回：True“BarackObama”返回：False">
 <meta property="og:type" content="article">
 <meta property="og:title" content="测试字符串中是否包含重复字符">
 <meta property="og:url" content="https://xiaoybboy.github.io/2017/03/17/测试字符串中是否包含重复字符/index.html">
 <meta property="og:site_name" content="如果一切重来">
 <meta property="og:description" content="##题目描述
-请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。测试样例：“aeiou”返回：True“BarackObama”返回：False
-###思路
-‘’’pu">
-<meta property="og:updated_time" content="2017-03-17T13:06:54.529Z">
+请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。测试样例：“aeiou”返回：True“BarackObama”返回：False">
+<meta property="og:updated_time" content="2017-03-17T13:08:42.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试字符串中是否包含重复字符">
 <meta name="twitter:description" content="##题目描述
-请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。测试样例：“aeiou”返回：True“BarackObama”返回：False
-###思路
-‘’’pu">
+请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。测试样例：“aeiou”返回：True“BarackObama”返回：False">
 
 
 
@@ -430,8 +424,6 @@
       
         <p>##题目描述</p>
 <p>请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。<br>测试样例：<br>“aeiou”<br>返回：True<br>“BarackObama”<br>返回：False</p>
-<p>###思路</p>
-<p>‘’’<br>public class StringRepeat {<br>    // 暴力求解，双层循环，一一比较<br>    public boolean checkDifferent(String iniString) {<br>        for (int i = 0;i&lt;iniString.length();i++) {<br>            for (int j = i+1;j&lt;iniString.length();j++) {<br>                if (iniString.charAt(i) == iniString.charAt(j))<br>                    return false;<br>            }<br>        }<br>        return true;<br>    }<br>}<br>‘’’</p>
 
       
     </div>
