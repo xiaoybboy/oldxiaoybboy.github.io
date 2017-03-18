@@ -44,17 +44,17 @@
     <link href="https://xiaoybboy.github.io/2017/03/18/%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/测试字符串中是否包含重复字符/</id>
     <published>2017-03-18T04:07:14.000Z</published>
-    <updated>2017-03-18T06:53:16.632Z</updated>
+    <updated>2017-03-18T06:53:42.836Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emnp;&emnp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emnp;&emnp;暂时没想到好的思路，只能暴力求解。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;暂时没想到好的思路，只能暴力求解。<br><a id="more"></a></p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringRepeat</span> </span>&#123;  </div><div class="line">    <span class="comment">// 暴力求解，双层循环，一一比较  </span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkDifferent</span><span class="params">(String iniString)</span> </span>&#123;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;iniString.length();i++) &#123;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>;j&lt;iniString.length();j++) &#123;  </div><div class="line">                <span class="keyword">if</span> (iniString.charAt(i) == iniString.charAt(j))  </div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emnp;&amp;emnp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。&lt;/p&gt;
-&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h1&gt;&lt;p&gt;&amp;emnp;&amp;emnp;暂时没想到好的思路，只能暴力求解。&lt;br&gt;
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。&lt;/p&gt;
+&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;暂时没想到好的思路，只能暴力求解。&lt;br&gt;
     
     </summary>
     
