@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-18T04:11:32.773Z</updated>
+  <updated>2017-03-18T04:16:08.134Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,14 +20,14 @@
     <link href="https://xiaoybboy.github.io/2017/03/18/%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/测试字符串中是否包含重复字符/</id>
     <published>2017-03-18T04:07:14.000Z</published>
-    <updated>2017-03-18T04:11:32.773Z</updated>
+    <updated>2017-03-18T04:16:08.134Z</updated>
     
-    <content type="html"><![CDATA[<p>##题目描述<br>请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。<br>    public class StringRepeat {<br>    // 暴力求解，双层循环，一一比较<br>    public boolean checkDifferent(String iniString) {<br>        for (int i = 0;i&lt;iniString.length();i++) {<br>            for (int j = i+1;j&lt;iniString.length();j++) {<br>                if (iniString.charAt(i) == iniString.charAt(j))<br>                    return false;<br>            }<br>        }<br>        return true;<br>    }<br>}  </p>
+    <content type="html"><![CDATA[<p>题目描述<br>请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。<br><a id="more"></a><br>    public class StringRepeat {<br>    // 暴力求解，双层循环，一一比较<br>    public boolean checkDifferent(String iniString) {<br>        for (int i = 0;i&lt;iniString.length();i++) {<br>            for (int j = i+1;j&lt;iniString.length();j++) {<br>                if (iniString.charAt(i) == iniString.charAt(j))<br>                    return false;<br>            }<br>        }<br>        return true;<br>    }  }  </p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;##题目描述&lt;br&gt;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。&lt;br&gt;    public class StringRepeat {&lt;br&gt;    // 暴力求解，双层循环，一一比较&lt;br&gt;    public boolean chec
+      &lt;p&gt;题目描述&lt;br&gt;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。&lt;br&gt;
     
     </summary>
     
