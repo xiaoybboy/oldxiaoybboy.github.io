@@ -5,11 +5,11 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-17T13:15:50.658Z</updated>
+  <updated>2017-03-17T13:18:22.897Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
-    <name>Yb XIAO</name>
+    <name>Yb Xiao</name>
     
   </author>
   
@@ -20,10 +20,9 @@
     <link href="https://xiaoybboy.github.io/2017/03/17/%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/17/测试字符串中是否包含重复字符/</id>
     <published>2017-03-17T09:32:25.000Z</published>
-    <updated>2017-03-17T13:15:50.658Z</updated>
+    <updated>2017-03-17T13:18:22.897Z</updated>
     
-    <content type="html"><![CDATA[<p>#题目描述</p>
-<p>  请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。<br>  给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。<br>  <a id="more"></a></p>
+    <content type="html"><![CDATA[<p>#题目描述<br>  请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。<br>  给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。<br>  <a id="more"></a></p>
 <pre><code>public class StringRepeat {  
 // 暴力求解，双层循环，一一比较  
 public boolean checkDifferent(String iniString) {  
@@ -39,8 +38,7 @@ public boolean checkDifferent(String iniString) {
     
     <summary type="html">
     
-      &lt;p&gt;#题目描述&lt;/p&gt;
-&lt;p&gt;  请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。&lt;br&gt;  给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。&lt;br&gt;
+      &lt;p&gt;#题目描述&lt;br&gt;  请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。&lt;br&gt;  给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。&lt;br&gt;
     
     </summary>
     
