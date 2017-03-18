@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-18T04:16:08.134Z</updated>
+  <updated>2017-03-18T04:18:32.160Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xiaoybboy.github.io/2017/03/18/%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/测试字符串中是否包含重复字符/</id>
     <published>2017-03-18T04:07:14.000Z</published>
-    <updated>2017-03-18T04:16:08.134Z</updated>
+    <updated>2017-03-18T04:18:32.160Z</updated>
     
     <content type="html"><![CDATA[<p>题目描述<br>请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。<br><a id="more"></a><br>    public class StringRepeat {<br>    // 暴力求解，双层循环，一一比较<br>    public boolean checkDifferent(String iniString) {<br>        for (int i = 0;i&lt;iniString.length();i++) {<br>            for (int j = i+1;j&lt;iniString.length();j++) {<br>                if (iniString.charAt(i) == iniString.charAt(j))<br>                    return false;<br>            }<br>        }<br>        return true;<br>    }  }  </p>
 ]]></content>
@@ -34,7 +34,9 @@
       <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法，字符串" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95%EF%BC%8C%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="字符串" scheme="https://xiaoybboy.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
@@ -43,7 +45,7 @@
     <link href="https://xiaoybboy.github.io/2017/03/07/hello-world/"/>
     <id>https://xiaoybboy.github.io/2017/03/07/hello-world/</id>
     <published>2017-03-06T16:00:00.000Z</published>
-    <updated>2017-03-17T07:32:47.962Z</updated>
+    <updated>2017-03-18T04:17:52.867Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -63,8 +65,6 @@
 &lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
-    
-      <category term="test" scheme="https://xiaoybboy.github.io/categories/test/"/>
     
     
       <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
