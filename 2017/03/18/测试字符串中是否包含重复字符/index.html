@@ -95,16 +95,19 @@
 
 
 
-<meta name="description" content="#题目描述&amp;emnp;&amp;amp;emnp请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。">
+<meta name="description" content="#题目描述&amp;emnp;&amp;emnp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。
+#思路&amp;emnp;&amp;emnp;暂时没想到好的思路，只能暴力求解。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="测试字符串中是否包含重复字符">
 <meta property="og:url" content="https://xiaoybboy.github.io/2017/03/18/测试字符串中是否包含重复字符/index.html">
 <meta property="og:site_name" content="如果一切重来">
-<meta property="og:description" content="#题目描述&amp;emnp;&amp;amp;emnp请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。">
-<meta property="og:updated_time" content="2017-03-18T06:51:19.219Z">
+<meta property="og:description" content="#题目描述&amp;emnp;&amp;emnp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。
+#思路&amp;emnp;&amp;emnp;暂时没想到好的思路，只能暴力求解。">
+<meta property="og:updated_time" content="2017-03-18T06:52:06.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试字符串中是否包含重复字符">
-<meta name="twitter:description" content="#题目描述&amp;emnp;&amp;amp;emnp请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。">
+<meta name="twitter:description" content="#题目描述&amp;emnp;&amp;emnp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。
+#思路&amp;emnp;&amp;emnp;暂时没想到好的思路，只能暴力求解。">
 
 
 
@@ -446,7 +449,8 @@
       
 
       
-        <p>#题目描述<br>&emnp;&amp;emnp请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。<br><a id="more"></a></p>
+        <p>#题目描述<br>&emnp;&emnp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。</p>
+<p>#思路<br>&emnp;&emnp;暂时没想到好的思路，只能暴力求解。<br><a id="more"></a></p>
 <p>#代码实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringRepeat</span> </span>&#123;  </div><div class="line">    <span class="comment">// 暴力求解，双层循环，一一比较  </span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkDifferent</span><span class="params">(String iniString)</span> </span>&#123;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;iniString.length();i++) &#123;  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>;j&lt;iniString.length();j++) &#123;  </div><div class="line">                <span class="keyword">if</span> (iniString.charAt(i) == iniString.charAt(j))  </div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div></pre></td></tr></table></figure></p>
 
       
