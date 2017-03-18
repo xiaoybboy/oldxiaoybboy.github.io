@@ -431,7 +431,7 @@
         
           
             <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>‘’’<br>public class Solution {    private ArrayList<arraylist<integer>&gt; listAll = new ArrayList<arraylist<integer>&gt;();    private ArrayList<integer> list = new ArrayList<integer>();    public ArrayList<arraylist<integer>&gt; FindPath(TreeNode root,int target) {        if(root == null) return listAll;        list.add(root.val);        target -= root.val;        if(target == 0 &amp;&amp; root.left == null &amp;&amp; root.right == null)             listAll.add(new ArrayList<integer>(list));        FindPath(root.left, target);        FindPath(root.right, target);        list.remove(list.size()-1);        return listAll;    }}’’’</integer></arraylist<integer></integer></integer></arraylist<integer></arraylist<integer></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p><code>java  public static Picasso with(Context context) {    if (singleton == null) {      synchronized (Picasso.class) {        if (singleton == null) {          singleton = new Builder(context).build();        }      }    }    return singleton;  }</code></p>
 
           
         
