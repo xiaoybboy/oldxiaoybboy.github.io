@@ -429,9 +429,7 @@
 
       
         
-          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;大脑短路了，想明白这个竟然花了半小时。这个题目的核心其实是求解一个字符串的全排列。因为字典序只需要用<br>Collection.sort()方法排序一个ArrayList<String> 或者TreeSet就行了。<br>&emsp;主要说下怎么对一个字符串进行全排列。比如说”abcd”怎么全排序呢?直觉告诉我们先把a放第一位，对”bcd”再进行全排列，就是一个递归。然后把b放在第一位，”acd”进行递归。…具体操作下面结合代码说。<br>&emsp;下面就是对全排列的字符串进行排序操作，按字典序输出即可。</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1>
+          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/18/按字典序输出一个字符串的全排序/#more" rel="contents">
@@ -577,9 +575,7 @@
 
       
         
-          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;使用递归的思想。步骤如下：<br>&emsp;1. 将左子树构造成双链表，并返回链表头节点。<br>&emsp;2. 定位至左子树双链表最后一个节点。<br>&emsp;3. 如果左子树链表不为空的话，将当前root追加到左子树链表。<br>&emsp;4. 将右子树构造成双链表，并返回链表头节点。<br>&emsp;5. 如果右子树链表不为空的话，将该链表追加到root节点之后。<br>&emsp;6. 根据左子树链表是否为空确定返回的节点。</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1>
+          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/18/二叉搜索树与双向链表/#more" rel="contents">
@@ -725,8 +721,7 @@
 
       
         
-          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1>
+          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/18/二叉树中和为某一值的路径/#more" rel="contents">
