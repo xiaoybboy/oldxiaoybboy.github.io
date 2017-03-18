@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-18T06:52:33.946Z</updated>
+  <updated>2017-03-18T07:29:59.343Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>二叉搜索树与双向链表</title>
+    <link href="https://xiaoybboy.github.io/2017/03/18/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/"/>
+    <id>https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/</id>
+    <published>2017-03-18T07:07:36.000Z</published>
+    <updated>2017-03-18T07:29:59.343Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;使用递归的思想。步骤如下：<br>&amp;emsp1. 将左子树构造成双链表，并返回链表头节点。<br>&amp;emsp2. 定位至左子树双链表最后一个节点。<br>&amp;emsp3. 如果左子树链表不为空的话，将当前root追加到左子树链表。<br>&amp;emsp4. 将右子树构造成双链表，并返回链表头节点。<br>&amp;emsp5. 如果右子树链表不为空的话，将该链表追加到root节点之后。<br>&amp;emsp6. 根据左子树链表是否为空确定返回的节点。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</div><div class="line"> * 思路：解题思路：</div><div class="line">	1.将左子树构造成双链表，并返回链表头节点。</div><div class="line">	2.定位至左子树双链表最后一个节点。</div><div class="line">	3.如果左子树链表不为空的话，将当前root追加到左子树链表。</div><div class="line">	4.将右子树构造成双链表，并返回链表头节点。</div><div class="line">	5.如果右子树链表不为空的话，将该链表追加到root节点之后。</div><div class="line">	6.根据左子树链表是否为空确定返回的节点。</div><div class="line">	</div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinaryTreeLinkedList</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> TreeNode <span class="title">Convert</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 如果root的左右子树都为空</span></div><div class="line">		<span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> root;</div><div class="line">		&#125;</div><div class="line">		TreeNode left = Convert(root.left);<span class="comment">// 把root节点的左子树转成链表，返回值为链表的头</span></div><div class="line">		TreeNode p = left;</div><div class="line">		<span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; p.right != <span class="keyword">null</span>) &#123;</div><div class="line">			p = p.right;<span class="comment">// 循环定位到左子树双链表的最后一个节点</span></div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 如果左子树链表不为空的话，将当前root追加到左子树链表</span></div><div class="line">		<span class="keyword">if</span> (left != <span class="keyword">null</span>) &#123;</div><div class="line">			p.right = root;<span class="comment">// 把root连接到左子树形成的双向链表中，双向链表，需要左右都连接</span></div><div class="line">			root.left = p;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 同样的，把根节点的右子树也形成双向链表，返回值为链表头</span></div><div class="line">		TreeNode right = Convert(root.right);</div><div class="line">		<span class="comment">// 把右子树的链表连接到上面的左子树和根节点的链表中</span></div><div class="line">		<span class="keyword">if</span> (right != <span class="keyword">null</span>) &#123;</div><div class="line">			root.right = right;<span class="comment">// 同样把右子树的链表连接上去</span></div><div class="line">			right.left = root;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> left != <span class="keyword">null</span> ? left : root;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>二叉树中和为某一值的路径</title>
