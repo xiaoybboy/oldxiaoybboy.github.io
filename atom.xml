@@ -68,9 +68,9 @@ public boolean checkDifferent(String iniString) {
       <category term="技术" scheme="https://xiaoybboy.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
-    
       <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
     
   </entry>
   
@@ -103,9 +103,9 @@ public boolean checkDifferent(String iniString) {
       <category term="test" scheme="https://xiaoybboy.github.io/categories/test/"/>
     
     
-      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
-    
       <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
     
   </entry>
   
