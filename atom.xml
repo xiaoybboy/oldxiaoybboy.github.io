@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-17T13:18:22.897Z</updated>
+  <updated>2017-03-17T07:32:47.962Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,65 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>测试字符串中是否包含重复字符</title>
-    <link href="https://xiaoybboy.github.io/2017/03/17/%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6/"/>
-    <id>https://xiaoybboy.github.io/2017/03/17/测试字符串中是否包含重复字符/</id>
-    <published>2017-03-17T09:32:25.000Z</published>
-    <updated>2017-03-17T13:18:22.897Z</updated>
-    
-    <content type="html"><![CDATA[<p>#题目描述<br>  请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。<br>  给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。<br>  <a id="more"></a></p>
-<pre><code>public class StringRepeat {  
-// 暴力求解，双层循环，一一比较  
-public boolean checkDifferent(String iniString) {  
-    for (int i = 0;i&lt;iniString.length();i++) {  
-        for (int j = i+1;j&lt;iniString.length();j++) {  
-            if (iniString.charAt(i) == iniString.charAt(j))  
-                return false;  
-        }  
-    }  
-    return true;  
-}  }  
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#题目描述&lt;br&gt;  请实现一个算法，确定一个字符串的所有字符是否全都不同。这里我们要求不允许使用额外的存储结构。&lt;br&gt;  给定一个string iniString，请返回一个bool值,True代表所有字符全都不同，False代表存在相同的字符。保证字符串中的字符为ASCII字符。字符串的长度小于等于3000。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我的第一篇博客</title>
-    <link href="https://xiaoybboy.github.io/2017/03/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://xiaoybboy.github.io/2017/03/17/我的第一篇博客/</id>
-    <published>2017-03-17T06:19:44.000Z</published>
-    <updated>2017-03-17T06:25:05.226Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="我的第一篇技术博客"><a href="#我的第一篇技术博客" class="headerlink" title="我的第一篇技术博客"></a>我的第一篇技术博客</h2><h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h3><p>欢迎来到我的博客。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;我的第一篇技术博客&quot;&gt;&lt;a href=&quot;#我的第一篇技术博客&quot; class=&quot;headerlink&quot; title=&quot;我的第一篇技术博客&quot;&gt;&lt;/a&gt;我的第一篇技术博客&lt;/h2&gt;&lt;h3 id=&quot;博客&quot;&gt;&lt;a href=&quot;#博客&quot; class=&quot;headerlink&quot; 
-    
-    </summary>
-    
-      <category term="技术" scheme="https://xiaoybboy.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
-    
-      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
-    
-  </entry>
   
   <entry>
     <title>Hello World</title>
