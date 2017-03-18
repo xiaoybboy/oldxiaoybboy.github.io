@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-18T09:52:27.958Z</updated>
+  <updated>2017-03-18T10:20:26.556Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xiaoybboy.github.io/2017/03/18/%E6%8C%89%E5%AD%97%E5%85%B8%E5%BA%8F%E8%BE%93%E5%87%BA%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%85%A8%E6%8E%92%E5%BA%8F/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/按字典序输出一个字符串的全排序/</id>
     <published>2017-03-18T08:39:56.000Z</published>
-    <updated>2017-03-18T09:52:27.958Z</updated>
+    <updated>2017-03-18T10:20:26.556Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;大脑短路了，想明白这个竟然花了半小时。这个题目的核心其实是求解一个字符串的全排列。因为字典序只需要用<br>Collection.sort()方法排序一个ArrayList<string> 或者TreeSet就行了。<br>&emsp;主要说下怎么对一个字符串进行全排列。比如说”abcd”怎么全排序呢?直觉告诉我们先把a放第一位，对”bcd”再进行全排列，就是一个递归。然后把b放在第一位，”acd”进行递归。…具体操作下面结合代码说。<br>&emsp;下面就是对全排列的字符串进行排序操作，按字典序输出即可。</string></p>
