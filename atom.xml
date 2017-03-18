@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-18T06:36:56.613Z</updated>
+  <updated>2017-03-18T06:37:56.322Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,15 +20,15 @@
     <link href="https://xiaoybboy.github.io/2017/03/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/二叉树中和为某一值的路径/</id>
     <published>2017-03-18T06:17:10.000Z</published>
-    <updated>2017-03-18T06:36:56.613Z</updated>
+    <updated>2017-03-18T06:37:56.322Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&amp;ensp&amp;ensp输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</p>
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&ensp;&ensp;输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Picasso <span class="title">with</span><span class="params">(Context context)</span> </span>&#123;    </div><div class="line">	<span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;      </div><div class="line">		<span class="keyword">synchronized</span> (Picasso.class) &#123;        </div><div class="line">		<span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;          </div><div class="line">			singleton = <span class="keyword">new</span> Builder(context).build();       </div><div class="line">				 &#125;     </div><div class="line">		     &#125;    </div><div class="line">		&#125;    </div><div class="line">		<span class="keyword">return</span> singleton;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;amp;ensp&amp;amp;ensp输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;ensp;&amp;ensp;输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往
     
     </summary>
     
