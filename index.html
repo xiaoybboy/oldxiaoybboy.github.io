@@ -332,6 +332,151 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/03/18/按字典序输出一个字符串的全排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yb Xiao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="如果一切重来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/18/按字典序输出一个字符串的全排序/" itemprop="url">
+                  按字典序输出一个字符串的全排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T16:39:56+08:00">
+                2017-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/18/按字典序输出一个字符串的全排序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/18/按字典序输出一个字符串的全排序/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/18/按字典序输出一个字符串的全排序/" class="leancloud_visitors" data-flag-title="按字典序输出一个字符串的全排序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;大脑短路了，想明白这个竟然花了半小时。这个题目的核心其实是求解一个字符串的全排列。因为字典序只需要用<br>Collection.sort()方法排序一个ArrayList<string> 或者TreeSet就行了。<br>&emsp;主要说下怎么对一个字符串进行全排列。比如说”abcd”怎么全排序呢?直觉告诉我们先把a放第一位，对”bcd”再进行全排列，就是一个递归。然后把b放在第一位，”acd”进行递归。…具体操作下面结合代码说。<br>&emsp;下面就是对全排列的字符串进行排序操作，按字典序输出即可。</string></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Collections;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串</div><div class="line"> * abc,acb,bac,bca,cab和cba。</div><div class="line"> * </div><div class="line"> * 思路：先求解字符串的全排列，然后对这些全排列进行排序。</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringPermutationSort</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">Permutation</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">		ArrayList&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">// 保存全排列的结果</span></div><div class="line">		<span class="keyword">if</span> (str != <span class="keyword">null</span> &amp;&amp; str.length() &gt; <span class="number">0</span>) &#123;<span class="comment">// 如果str不为空           </span></div><div class="line">			Permutation(str.toCharArray(), <span class="number">0</span>, result);<span class="comment">// 获取字符串的全排列  </span></div><div class="line">		&#125;</div><div class="line">		Collections.sort(result);<span class="comment">// 对全排列的字符串进行排序</span></div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * i 表示起始位置，从i这个位置开始向后寻找下面字符的全排列</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> charArray</div><div class="line">	 * <span class="doctag">@param</span> i</div><div class="line">	 * <span class="doctag">@param</span> result</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Permutation</span><span class="params">(<span class="keyword">char</span>[] charArray, <span class="keyword">int</span> i, ArrayList&lt;String&gt; result)</span> </span>&#123;</div><div class="line">		<span class="comment">// 如果 i 是最后一个字符位置</span></div><div class="line">		<span class="keyword">if</span> (i == charArray.length - <span class="number">1</span>) &#123;</div><div class="line">			result.add(String.valueOf(charArray));<span class="comment">// 找到一个全排序</span></div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= charArray.length - <span class="number">1</span>; j++) &#123;</div><div class="line">				<span class="keyword">if</span> (j != i &amp;&amp; charArray[j] == charArray[i])<span class="comment">// 有重复字符时，跳过</span></div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				swap(charArray, i, j);</div><div class="line">				Permutation(charArray, i + <span class="number">1</span>, result);</div><div class="line">				swap(charArray, i, j);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 交换字符数组s的第i个位置和第j个位置的字符</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">char</span>[] s, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (s[i] == s[j]) &#123;</div><div class="line">			;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">char</span> c = s[i];</div><div class="line">			s[i] = s[j];</div><div class="line">			s[j] = c;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&emsp;回头再看究竟是怎么全排列的吧。就是这个函数 private void Permutation(char[] charArray, int i, ArrayList<string> result) 的递归过程。其中 i 表示起始位置，从i这个位置开始向后寻找下面字符的全排列。当<br>i == charArray.length - 1 时，表示已经到了最后一个字符，那么就找到了一个全排列。下面很好看懂，就是递归向下找，但是为什么要交换两次 charArray i和j 位置的字符呢？<br>&emsp;其实拿”abcd”来说，当我们交换 a和b 的位置（第一次交换），然后用b作为首字符寻找全排列。但是下次我们要交换 a和c 的位置，但是这时候 a和b 已经交换了，所以要把 a和b 换回来，才能保证每次交换的顺序没有乱。</string></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -979,7 +1124,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
