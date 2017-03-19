@@ -1068,7 +1068,7 @@ pre .javascript .function {
 }
 .menu .menu-item a {
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   line-height: inherit;
   border-bottom: 1px solid transparent;
   transition-property: border-color;
@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f4ffa6;
+  background: #f9af5c;
 }
 .links-of-blogroll {
   font-size: 13px;
