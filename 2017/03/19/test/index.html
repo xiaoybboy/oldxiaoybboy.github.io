@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="题目描述&amp;emsp;&amp;emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。">
+<meta name="description" content="Test">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉搜索树与双向链表">
-<meta property="og:url" content="https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="https://xiaoybboy.github.io/2017/03/19/test/index.html">
 <meta property="og:site_name" content="如果一切重来">
-<meta property="og:description" content="题目描述&amp;emsp;&amp;emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。">
-<meta property="og:updated_time" content="2017-03-18T13:29:52.823Z">
+<meta property="og:description" content="Test">
+<meta property="og:updated_time" content="2017-03-19T04:07:28.974Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二叉搜索树与双向链表">
-<meta name="twitter:description" content="题目描述&amp;emsp;&amp;emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="Test">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/"/>
+  <link rel="canonical" href="https://xiaoybboy.github.io/2017/03/19/test/"/>
 
 
 
 
 
-  <title> 二叉搜索树与双向链表 | 如果一切重来 </title>
+  <title> test | 如果一切重来 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -331,7 +331,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/">
+    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/03/19/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yb Xiao">
@@ -352,7 +352,7 @@
             
             
               
-                二叉搜索树与双向链表
+                test
               
             
           </h1>
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T15:07:36+08:00">
-                2017-03-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T12:07:13+08:00">
+                2017-03-19
               </time>
             
 
@@ -386,8 +386,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/18/二叉搜索树与双向链表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/18/二叉搜索树与双向链表/" itemprop="commentCount"></span>
+                <a href="/2017/03/19/test/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/19/test/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -395,7 +395,7 @@
 
           
           
-             <span id="/2017/03/18/二叉搜索树与双向链表/" class="leancloud_visitors" data-flag-title="二叉搜索树与双向链表">
+             <span id="/2017/03/19/test/" class="leancloud_visitors" data-flag-title="test">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -424,9 +424,7 @@
       
 
       
-        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。<br><a id="more"></a></p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;使用递归的思想。步骤如下：<br>&emsp;1. 将左子树构造成双链表，并返回链表头节点。<br>&emsp;2. 定位至左子树双链表最后一个节点。<br>&emsp;3. 如果左子树链表不为空的话，将当前root追加到左子树链表。<br>&emsp;4. 将右子树构造成双链表，并返回链表头节点。<br>&emsp;5. 如果右子树链表不为空的话，将该链表追加到root节点之后。<br>&emsp;6. 根据左子树链表是否为空确定返回的节点。</p>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</div><div class="line"> * 思路：解题思路：</div><div class="line">	1.将左子树构造成双链表，并返回链表头节点。</div><div class="line">	2.定位至左子树双链表最后一个节点。</div><div class="line">	3.如果左子树链表不为空的话，将当前root追加到左子树链表。</div><div class="line">	4.将右子树构造成双链表，并返回链表头节点。</div><div class="line">	5.如果右子树链表不为空的话，将该链表追加到root节点之后。</div><div class="line">	6.根据左子树链表是否为空确定返回的节点。</div><div class="line">	</div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinaryTreeLinkedList</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> TreeNode <span class="title">Convert</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 如果root的左右子树都为空</span></div><div class="line">		<span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> root;</div><div class="line">		&#125;</div><div class="line">		TreeNode left = Convert(root.left);<span class="comment">// 把root节点的左子树转成链表，返回值为链表的头</span></div><div class="line">		TreeNode p = left;</div><div class="line">		<span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; p.right != <span class="keyword">null</span>) &#123;</div><div class="line">			p = p.right;<span class="comment">// 循环定位到左子树双链表的最后一个节点</span></div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 如果左子树链表不为空的话，将当前root追加到左子树链表</span></div><div class="line">		<span class="keyword">if</span> (left != <span class="keyword">null</span>) &#123;</div><div class="line">			p.right = root;<span class="comment">// 把root连接到左子树形成的双向链表中，双向链表，需要左右都连接</span></div><div class="line">			root.left = p;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 同样的，把根节点的右子树也形成双向链表，返回值为链表头</span></div><div class="line">		TreeNode right = Convert(root.right);</div><div class="line">		<span class="comment">// 把右子树的链表连接到上面的左子树和根节点的链表中</span></div><div class="line">		<span class="keyword">if</span> (right != <span class="keyword">null</span>) &#123;</div><div class="line">			root.right = right;<span class="comment">// 同样把右子树的链表连接上去</span></div><div class="line">			right.left = root;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> left != <span class="keyword">null</span> ? left : root;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1>
       
     </div>
 
@@ -453,12 +451,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/算法/" rel="tag"># 算法</a>
-          
-        </div>
-      
 
       
         
@@ -468,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/18/二叉树中和为某一值的路径/" rel="next" title="二叉树中和为某一值的路径">
-                <i class="fa fa-chevron-left"></i> 二叉树中和为某一值的路径
+              <a href="/2017/03/19/hexo提交新文章错误/" rel="next" title="hexo提交新文章错误">
+                <i class="fa fa-chevron-left"></i> hexo提交新文章错误
               </a>
             
           </div>
@@ -477,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/18/按字典序输出一个字符串的全排序/" rel="prev" title="按字典序输出一个字符串的全排序">
-                按字典序输出一个字符串的全排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -495,10 +483,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/18/二叉搜索树与双向链表/"
-     data-title="二叉搜索树与双向链表"
+        <div class="ds-share flat" data-thread-key="2017/03/19/test/"
+     data-title="test"
      data-content=""
-     data-url="https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/">
+     data-url="https://xiaoybboy.github.io/2017/03/19/test/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -527,7 +515,7 @@
     
      <section id="comments">
    <!-- 多说评论框 start -->
-<div id="ds-thread" class="ds-thread" data-thread-key="2017/03/18/二叉搜索树与双向链表/" data-title="二叉搜索树与双向链表" data-url="https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/" }}"></div>
+<div id="ds-thread" class="ds-thread" data-thread-key="2017/03/19/test/" data-title="test" data-url="https://xiaoybboy.github.io/2017/03/19/test/" }}"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -693,7 +681,7 @@ ds.charset = 'UTF-8';
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Test"><span class="nav-number">1.</span> <span class="nav-text">Test</span></a></li></ol></div>
             
 
           </div>
