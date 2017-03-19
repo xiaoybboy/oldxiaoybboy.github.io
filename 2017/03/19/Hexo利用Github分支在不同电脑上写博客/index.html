@@ -105,7 +105,7 @@ Github Page&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的
 Github Page&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的仓库，也就是 “yourus">
 <meta property="og:image" content="http://7xqitw.com1.z0.glb.clouddn.com/blog-resgit_hub_new_branch.png">
 <meta property="og:image" content="http://7xqitw.com1.z0.glb.clouddn.com/blog-resgit_hub_set_default_branch.png">
-<meta property="og:updated_time" content="2017-03-19T05:16:06.054Z">
+<meta property="og:updated_time" content="2017-03-19T05:55:49.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo利用Github分支在不同电脑上写博客">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;原文地址：http://dxjia.cn/2016/01/27/hexo-write-everywhere/&amp;emsp;&amp;emsp;利用github的不同分支来分别保存网站静态文件与hexo源码（md原始文件及主题等），实现在不同电脑上都可以自由写博客。
@@ -438,8 +438,8 @@ Github Page&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的
 <h2 id="配置hexo-deploy参数"><a href="#配置hexo-deploy参数" class="headerlink" title="配置hexo deploy参数"></a>配置hexo deploy参数</h2><p>&emsp;&emsp;为了保证hexo d命令可以正确部署到master分支，在hexo 的配置文件 _config.yml文件中配置参数如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/dxjia/dxjia.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;hexo 3.0之后 deploy type，将github改为了git，这样适用性更广了，如果你发现无法hexo d，使用下面的命令安装git deployer插件后重试即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
 <h2 id="修改推送到hexo分支"><a href="#修改推送到hexo分支" class="headerlink" title="修改推送到hexo分支"></a>修改推送到hexo分支</h2><p>&emsp;&emsp;上一步的deploy参数正确配置后，文章写完使用hexo g -d命令就可以直接部署了，生成的博客静态文件会自动部署到 username.github.io仓库的master分支上，这时候通过浏览器访问<a href="http://username.github.io就可以看到你的博客页面里。" target="_blank" rel="external">http://username.github.io就可以看到你的博客页面里。</a></p>
-<p>&emsp;&emsp;网站页面是保存了，但这时候我们还没有保存我们的hexo原始文件，包括我们的文章md文件，我们千辛万苦修改的主题配置等。。。接下来使用下面的步骤将他们都统统推送到hexo分支上去<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m “change description”</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
-<p>这样就OK了，我们的原始文件就都上去了，换电脑也不怕了。</p>
+<p>&emsp;&emsp;网站页面是保存了，但这时候我们还没有保存我们的hexo原始文件，包括我们的文章md文件，我们千辛万苦修改的主题配置等。。。接下来使用下面的步骤将他们都统统推送到hexo分支上去。其中目录下的.gitignore 表示哪些文件或文件夹不提交，根据自己需要配置。<br>如果没有.git文件，先git init。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m “change description”</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
+<p>如果没关联远程仓库，执行第三步会出错。和远程仓库关联执行：git remote add origin &lt;远程仓库地址&gt;<br>这样就OK了，我们的原始文件就都上去了，换电脑也不怕了。</p>
 <h1 id="日常写博客"><a href="#日常写博客" class="headerlink" title="日常写博客"></a>日常写博客</h1><p>&emsp;&emsp;有时候我们可能会在不同的电脑上写博客，那在不同的电脑上配置 hexo、git、node.js，以及配置git ssh key等都要折腾一下的，这是免不了的，也是比wordpress等其他博客框架麻烦的一点。</p>
 <h2 id="已有环境"><a href="#已有环境" class="headerlink" title="已有环境"></a>已有环境</h2><p>&emsp;&emsp;如果在电脑上已经写过博客，那么可以在已有的工作目录下同步之前写的博客。<br>在你的仓库目录下右键’git bash shell’，起来bash命令行，然后</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull</div></pre></td></tr></table></figure>
