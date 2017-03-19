@@ -2,7 +2,7 @@
 title: hexo提交新文章错误
 date: 2017-03-19 10:33:53
 tags: [hexo]
-categroies: hexo
+categories: hexo
 ---
 # hexo提交新文章出错
 &emsp;&emsp;提交文章的时候报了下面这个错误，

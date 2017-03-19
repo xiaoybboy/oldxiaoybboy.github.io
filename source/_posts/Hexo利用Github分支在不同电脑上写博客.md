@@ -2,7 +2,7 @@
 title: Hexo利用Github分支在不同电脑上写博客
 date: 2017-03-19 12:15:27
 tags: [hexo]
-categroies: hexo
+categories: hexo
 ---
 &emsp;&emsp;原文地址：[http://dxjia.cn/2016/01/27/hexo-write-everywhere/](http://dxjia.cn/2016/01/27/hexo-write-everywhere/ "原文")
 &emsp;&emsp;利用github的不同分支来分别保存网站静态文件与hexo源码（md原始文件及主题等），实现在不同电脑上都可以自由写博客。
