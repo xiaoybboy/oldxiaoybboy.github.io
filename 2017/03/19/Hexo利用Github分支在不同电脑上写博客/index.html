@@ -105,7 +105,7 @@ Github Page&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的
 Github Page&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的仓库，也就是 “yourus">
 <meta property="og:image" content="http://7xqitw.com1.z0.glb.clouddn.com/blog-resgit_hub_new_branch.png">
 <meta property="og:image" content="http://7xqitw.com1.z0.glb.clouddn.com/blog-resgit_hub_set_default_branch.png">
-<meta property="og:updated_time" content="2017-03-19T04:36:03.345Z">
+<meta property="og:updated_time" content="2017-03-19T05:16:06.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo利用Github分支在不同电脑上写博客">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;原文地址：http://dxjia.cn/2016/01/27/hexo-write-everywhere/&amp;emsp;&amp;emsp;利用github的不同分支来分别保存网站静态文件与hexo源码（md原始文件及主题等），实现在不同电脑上都可以自由写博客。
@@ -446,8 +446,7 @@ Github Page&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的
 <p>这样你的状态就更新了，之后就是 hexo命令写文章啦。。。<br>写完hexo g -d部署好后，使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m “change description”</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
 <p>推送到hexo分支上去。</p>
-<h2 id="新的环境"><a href="#新的环境" class="headerlink" title="新的环境"></a>新的环境</h2><p>&emsp;&emsp;到了新的电脑上时，我们需要将项目先下载到本地，然后再进行hexo初始化。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/dxjia/dxjia.github.io.git</div><div class="line">cd dxjia.github.io</div><div class="line">npm install hexo</div><div class="line">npm install</div><div class="line">npm install hexo-deployer-git –save</div></pre></td></tr></table></figure>
+<h2 id="新的环境"><a href="#新的环境" class="headerlink" title="新的环境"></a>新的环境</h2><p>&emsp;&emsp;到了新的电脑上时，我们需要将项目先下载到本地，然后再进行hexo初始化。<br><strong>记住不需要hexo init指令</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/dxjia/dxjia.github.io.git</div><div class="line">cd dxjia.github.io</div><div class="line">npm install hexo</div><div class="line">npm install</div><div class="line">npm install hexo-deployer-git –save</div></pre></td></tr></table></figure></p>
 <p>之后开始写博客，写好部署好之后，别忘记 git add , ….git push origin hexo…推上去。。。</p>
 
       
