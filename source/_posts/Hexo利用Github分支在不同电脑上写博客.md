@@ -34,12 +34,14 @@ npm install hexo-deployer-git --save
 ## 修改推送到hexo分支
 &emsp;&emsp;上一步的deploy参数正确配置后，文章写完使用hexo g -d命令就可以直接部署了，生成的博客静态文件会自动部署到 username.github.io仓库的master分支上，这时候通过浏览器访问http://username.github.io就可以看到你的博客页面里。
 
-&emsp;&emsp;网站页面是保存了，但这时候我们还没有保存我们的hexo原始文件，包括我们的文章md文件，我们千辛万苦修改的主题配置等。。。接下来使用下面的步骤将他们都统统推送到hexo分支上去
+&emsp;&emsp;网站页面是保存了，但这时候我们还没有保存我们的hexo原始文件，包括我们的文章md文件，我们千辛万苦修改的主题配置等。。。接下来使用下面的步骤将他们都统统推送到hexo分支上去。其中目录下的.gitignore 表示哪些文件或文件夹不提交，根据自己需要配置。
+如果没有.git文件，先git init。
 ```
 git add .
 git commit -m “change description”
 git push origin hexo
 ```
+如果没关联远程仓库，执行第三步会出错。和远程仓库关联执行：git remote add origin <远程仓库地址>
 这样就OK了，我们的原始文件就都上去了，换电脑也不怕了。
 
 # 日常写博客
