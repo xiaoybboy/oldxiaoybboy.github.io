@@ -1068,7 +1068,6 @@ pre .javascript .function {
 }
 .menu .menu-item a {
   display: block;
-  font-size: 13px;
   line-height: inherit;
   border-bottom: 1px solid transparent;
   transition-property: border-color;
@@ -2595,7 +2594,7 @@ hr {
   border: none;
   border-radius: 2px;
   transition-property: background;
-  font-size: 15px;
+  font-size: 13px;
 }
 @media (max-width: 767px) {
   .menu .menu-item a {
