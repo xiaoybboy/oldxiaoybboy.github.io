@@ -105,7 +105,7 @@ font:
   headings:
     external: true
     family: Roboto Slab
-    size: 20
+    size: 15
     #family:
 
   # Font settings for posts
