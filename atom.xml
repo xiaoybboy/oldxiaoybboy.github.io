@@ -5,15 +5,36 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-19T06:03:11.266Z</updated>
+  <updated>2017-03-19T07:36:16.778Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
-    <name>Yb Xiao</name>
+    <name>Blithe Shaw</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>连续子数组的最大和</title>
+    <link href="https://xiaoybboy.github.io/2017/03/19/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/"/>
+    <id>https://xiaoybboy.github.io/2017/03/19/连续子数组的最大和/</id>
+    <published>2017-03-19T07:33:33.000Z</published>
+    <updated>2017-03-19T07:36:16.778Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。你会不会被他忽悠住？(子向量的长度至少是1)</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo利用Github分支在不同电脑上写博客</title>
@@ -233,9 +254,9 @@
     </summary>
     
     
-      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
     
   </entry>
   
