@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-20T09:16:50.329Z</updated>
+  <updated>2017-03-20T10:10:34.748Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://xiaoybboy.github.io/2017/03/20/%E7%AC%ACN%E4%B8%AA%E4%B8%91%E6%95%B0/"/>
     <id>https://xiaoybboy.github.io/2017/03/20/第N个丑数/</id>
     <published>2017-03-20T07:18:42.000Z</published>
-    <updated>2017-03-20T09:16:50.329Z</updated>
+    <updated>2017-03-20T10:10:34.748Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note primary"><p>&emsp;&emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上我们<br>把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 </p>
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note primary"><p>&emsp;&emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上<br>我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 </p>
 </div>
 <a id="more"></a>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><div class="note success"><p>&emsp;&emsp;暴力求解思路。首先我们要搞清楚怎么求丑数。ugly[]表示丑数数组。</p>
@@ -41,7 +41,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note primary&quot;&gt;&lt;p&gt;&amp;emsp;&amp;emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上我们&lt;br&gt;把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 &lt;/p&gt;
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note primary&quot;&gt;&lt;p&gt;&amp;emsp;&amp;emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上&lt;br&gt;我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 &lt;/p&gt;
 &lt;/div&gt;
     
     </summary>
@@ -314,9 +314,9 @@
     </summary>
     
     
-      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
     
   </entry>
   
