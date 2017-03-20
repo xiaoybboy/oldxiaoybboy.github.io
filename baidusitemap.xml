@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>https://xiaoybboy.github.io/2017/03/20/%E7%AC%ACN%E4%B8%AA%E4%B8%91%E6%95%B0/</loc>
+    <lastmod>2017-03-20T07:47:19.091Z</lastmod>
+    <data>
+        <display>
+        <title>第N个丑数</title>
+        <pubTime>2017-03-20T07:18:42.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://xiaoybboy.github.io/2017/03/20/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/</loc>
     <lastmod>2017-03-20T07:14:53.974Z</lastmod>
     <data>
@@ -179,9 +196,9 @@
         <title>Hello World</title>
         <pubTime>2017-03-06T16:00:00.000Z</pubTime>
         
-        <tag>github</tag>
-         
         <tag>hexo</tag>
+         
+        <tag>github</tag>
          
          
            

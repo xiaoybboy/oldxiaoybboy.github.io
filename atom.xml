@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-20T07:14:53.974Z</updated>
+  <updated>2017-03-20T07:47:19.091Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第N个丑数</title>
+    <link href="https://xiaoybboy.github.io/2017/03/20/%E7%AC%ACN%E4%B8%AA%E4%B8%91%E6%95%B0/"/>
+    <id>https://xiaoybboy.github.io/2017/03/20/第N个丑数/</id>
+    <published>2017-03-20T07:18:42.000Z</published>
+    <updated>2017-03-20T07:47:19.091Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note primary"><p>题目描述 </p>
+</div>
+&emsp;&emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。
+<div class="note primary"><p>思路 </p>
+</div>
+<p>&emsp;&emsp;暴力求解思路。首先我们要搞清楚怎么求丑数。ugly[]表示丑数数组。</p>
+<ol>
+<li>ugly[0]=1;</li>
+<li>ugly[1]=1*2;</li>
+<li>ugly[3]=1*3;</li>
+<li>ugly[4]=1<em>2</em>2;</li>
+<li>ugly[5]=1*5;</li>
+<li>ugly[6]=1<em>2</em>3;</li>
+<li>…<br>&emsp;&emsp;是不是可以找出规律来，我们需要记录 丑数中因子 2,3,5 出现的次数。<div class="note primary"><p>代码 </p>
+</div>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。</div><div class="line"> * 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetUglyNumber</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">GetUglyNumber_Solution</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (index &lt;= <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[index];</div><div class="line">		result[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> i2 = <span class="number">0</span>, i3 = <span class="number">0</span>, i5 = <span class="number">0</span>;<span class="comment">// i2,i3,i5分别记录丑数的因子中2,3,5的个数</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; index; i++) &#123;</div><div class="line">			result[i] = min(result[i2] * <span class="number">2</span>, min(result[i3] * <span class="number">3</span>, result[i5] * <span class="number">5</span>));</div><div class="line">			<span class="keyword">if</span> (result[i] == result[i2] * <span class="number">2</span>) &#123;</div><div class="line">				i2++;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (result[i] == result[i3] * <span class="number">3</span>) &#123;</div><div class="line">				i3++;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (result[i] == result[i5] * <span class="number">5</span>) &#123;</div><div class="line">				i5++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> result[index - <span class="number">1</span>];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> i &gt; j ? j : i;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary&quot;&gt;&lt;p&gt;题目描述 &lt;/p&gt;
+&lt;/div&gt;
+&amp;emsp;&amp;emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>把数组排成最小的数</title>
@@ -278,9 +318,9 @@
     </summary>
     
     
-      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
     
   </entry>
   
