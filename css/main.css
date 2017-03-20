@@ -2595,7 +2595,7 @@ hr {
   border: none;
   border-radius: 2px;
   transition-property: background;
-  font-size: 15px;
+  font-size: 13px;
 }
 @media (max-width: 767px) {
   .menu .menu-item a {
