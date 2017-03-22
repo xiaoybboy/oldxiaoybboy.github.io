@@ -58,7 +58,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/21/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/21/第一个只出现一次的字符/</id>
     <published>2017-03-21T03:03:34.000Z</published>
-    <updated>2017-03-22T02:59:43.096Z</updated>
+    <updated>2017-03-22T03:02:34.533Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;在一个字符串(1&lt;=字符串长度&lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;暴力求解。</p>
@@ -66,9 +66,11 @@ undefined
     
     <summary type="html">
     
-      算法
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次
     
     </summary>
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
       <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
@@ -80,7 +82,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/20/%E7%AC%ACN%E4%B8%AA%E4%B8%91%E6%95%B0/"/>
     <id>https://xiaoybboy.github.io/2017/03/20/第N个丑数/</id>
     <published>2017-03-20T07:18:42.000Z</published>
-    <updated>2017-03-20T10:10:34.748Z</updated>
+    <updated>2017-03-22T03:02:39.965Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note primary"><p>&emsp;&emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上<br>我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 </p>
 </div>
@@ -106,6 +108,8 @@ undefined
     
     </summary>
     
+      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
     
       <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
@@ -116,7 +120,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/20/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/"/>
     <id>https://xiaoybboy.github.io/2017/03/20/把数组排成最小的数/</id>
     <published>2017-03-20T06:52:50.000Z</published>
-    <updated>2017-03-20T07:14:53.974Z</updated>
+    <updated>2017-03-22T03:02:44.651Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。<br><a id="more"></a></p>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>&emsp;&emsp;不得不说，看了这题的解法，真的佩服！~<br>&emsp;&emsp;先将整型数组转换成String数组，然后将String数组排序，最后将排好序的字符串数组拼接出来。关键就是制定排序规则。<br>为什么需要定制排序，因为字符串 a和b 长度不等的情况。比如 “2” 和 “21” ,显然字符串”2”&lt;”21”,但是把他们链接起来的时候 221&gt;212.所以定制一种规则来排除这种情况。<br>定制排序规则如下：  若ab &gt; ba  则 a &gt; b， 若ab &lt; ba 则 a &lt; b，若ab = ba 则 a = b；<br>这个定制排序很妙！</p>
@@ -129,6 +133,8 @@ undefined
     
     </summary>
     
+      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
     
       <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
@@ -139,7 +145,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/19/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/"/>
     <id>https://xiaoybboy.github.io/2017/03/19/连续子数组的最大和/</id>
     <published>2017-03-19T07:33:33.000Z</published>
-    <updated>2017-03-20T06:52:04.353Z</updated>
+    <updated>2017-03-22T03:02:50.463Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。你会不会被他忽悠住？(子向量的长度至少是1)</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><div class="note primary"><p>test </p>
@@ -150,6 +156,8 @@ undefined
       &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如
     
     </summary>
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
       <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
