@@ -95,22 +95,16 @@
 
 
 
-<meta name="description" content="题目描述&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.
-思路&amp;emsp;&amp;emsp;暴力求解。
-代码1234567891011121314151617181920212223242526272829303132333435/** * 在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由">
+<meta name="description" content="题目描述&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一个只出现一次的字符">
 <meta property="og:url" content="https://xiaoybboy.github.io/2017/03/21/第一个只出现一次的字符/index.html">
 <meta property="og:site_name" content="如果一切重来">
-<meta property="og:description" content="题目描述&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.
-思路&amp;emsp;&amp;emsp;暴力求解。
-代码1234567891011121314151617181920212223242526272829303132333435/** * 在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由">
-<meta property="og:updated_time" content="2017-03-22T03:02:34.533Z">
+<meta property="og:description" content="题目描述&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.">
+<meta property="og:updated_time" content="2017-03-22T03:05:51.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一个只出现一次的字符">
-<meta name="twitter:description" content="题目描述&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.
-思路&amp;emsp;&amp;emsp;暴力求解。
-代码1234567891011121314151617181920212223242526272829303132333435/** * 在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由">
+<meta name="twitter:description" content="题目描述&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.">
 
 
 
@@ -452,7 +446,7 @@
       
 
       
-        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;在一个字符串(1&lt;=字符串长度&lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.</p>
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;在一个字符串(1&lt;=字符串长度&lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.<br><a id="more"></a></p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;暴力求解。</p>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 在一个字符串(1&lt;=字符串长度&lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置</div><div class="line"> * </div><div class="line"> * 思路：暴力求解</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstNotRepeatingCharSolution</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">FirstNotRepeatingChar</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (str == <span class="keyword">null</span> || str.length() == <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 用一个map记录每个字符出现的次数</span></div><div class="line">		HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</div><div class="line">			<span class="keyword">char</span> c = str.charAt(i);</div><div class="line">			<span class="keyword">if</span> (map.containsKey(c)) &#123;</div><div class="line">				<span class="keyword">int</span> times = map.get(c);</div><div class="line">				times += <span class="number">1</span>;</div><div class="line">				map.put(c, times);</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				map.put(c, <span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 出现一次的字符 首次出现的索引</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</div><div class="line">			<span class="keyword">char</span> c2 = str.charAt(i);</div><div class="line">			<span class="keyword">if</span> (map.get(c2) == <span class="number">1</span>) &#123;</div><div class="line">				<span class="keyword">return</span> i;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
