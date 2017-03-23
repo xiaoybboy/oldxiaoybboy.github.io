@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://xiaoybboy.github.io/2017/03/23/%E5%A6%82%E4%BD%95%E7%BB%88%E6%AD%A2%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2017-03-23T06:08:44.437Z</lastmod>
+    <data>
+        <display>
+        <title>如何终止一个线程</title>
+        <pubTime>2017-03-23T02:04:35.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://xiaoybboy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://xiaoybboy.github.io/2017/03/18/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2017-03-23T03:36:00.952Z</lastmod>
     <data>
@@ -58,21 +80,6 @@
              
               <breadCrumb title="算法" url="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xiaoybboy.github.io/2017/03/23/%E5%A6%82%E4%BD%95%E7%BB%88%E6%AD%A2%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2017-03-23T02:04:35.908Z</lastmod>
-    <data>
-        <display>
-        <title>如何终止一个线程</title>
-        <pubTime>2017-03-23T02:04:35.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>

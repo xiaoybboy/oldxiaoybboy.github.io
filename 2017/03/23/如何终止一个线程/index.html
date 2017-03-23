@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,线程," />
 
 
 
@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="两耳不闻窗外事">
+<meta name="description" content="JAVA如何让一个线程死亡或结束&amp;emsp;&amp;emsp;不推荐使用stop()方法终止线程。，因为stop()方法容易引起死锁。12345678910111213141516171819202122232425262728291.	/**2.	 * JAVA里面如何使用一个线程死亡或结束 *3.	 */4.	public class T &amp;#123;5.	  public static void">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何终止一个线程">
 <meta property="og:url" content="https://xiaoybboy.github.io/2017/03/23/如何终止一个线程/index.html">
 <meta property="og:site_name" content="如果一切重来">
-<meta property="og:description" content="两耳不闻窗外事">
-<meta property="og:updated_time" content="2017-03-23T02:04:35.908Z">
+<meta property="og:description" content="JAVA如何让一个线程死亡或结束&amp;emsp;&amp;emsp;不推荐使用stop()方法终止线程。，因为stop()方法容易引起死锁。12345678910111213141516171819202122232425262728291.	/**2.	 * JAVA里面如何使用一个线程死亡或结束 *3.	 */4.	public class T &amp;#123;5.	  public static void">
+<meta property="og:updated_time" content="2017-03-23T06:08:44.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何终止一个线程">
-<meta name="twitter:description" content="两耳不闻窗外事">
+<meta name="twitter:description" content="JAVA如何让一个线程死亡或结束&amp;emsp;&amp;emsp;不推荐使用stop()方法终止线程。，因为stop()方法容易引起死锁。12345678910111213141516171819202122232425262728291.	/**2.	 * JAVA里面如何使用一个线程死亡或结束 *3.	 */4.	public class T &amp;#123;5.	  public static void">
 
 
 
@@ -378,6 +378,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -424,7 +446,9 @@
       
 
       
-        
+        <h1 id="JAVA如何让一个线程死亡或结束"><a href="#JAVA如何让一个线程死亡或结束" class="headerlink" title="JAVA如何让一个线程死亡或结束"></a>JAVA如何让一个线程死亡或结束</h1><p>&emsp;&emsp;不推荐使用stop()方法终止线程。，因为stop()方法容易引起死锁。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.	<span class="comment">/**</span></div><div class="line">2.	 * JAVA里面如何使用一个线程死亡或结束 *</div><div class="line">3.	 */</div><div class="line"><span class="number">4</span>.	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</div><div class="line"><span class="number">5</span>.	  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"><span class="number">6</span>.	    <span class="comment">// 启动线程</span></div><div class="line"><span class="number">7</span>.	    MyThread thread = <span class="keyword">new</span> MyThread();</div><div class="line"><span class="number">8</span>.	    <span class="keyword">new</span> Thread(thread).start();</div><div class="line"><span class="number">9</span>.	</div><div class="line"><span class="number">10</span>.	    <span class="comment">// 你的其它的工作，此时线程在运行中</span></div><div class="line"><span class="number">11</span>.	</div><div class="line"><span class="number">12</span>.	    <span class="comment">// 你不想让线程干活了，停掉它</span></div><div class="line"><span class="number">13</span>.	    <span class="comment">// 注意，这只是一个标志，具体线程何时停，并不能精确控制</span></div><div class="line"><span class="number">14</span>.	    thread.allDone = <span class="keyword">true</span>;</div><div class="line"><span class="number">15</span>.	  &#125;</div><div class="line"><span class="number">16</span>.	&#125;</div><div class="line"><span class="number">17</span>.	</div><div class="line"><span class="number">18</span>.	<span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line"><span class="number">19</span>.	  <span class="keyword">boolean</span> **<span class="keyword">volatile</span>** allDone = <span class="keyword">false</span>;</div><div class="line"><span class="number">20</span>.	</div><div class="line"><span class="number">21</span>.	  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="number">22</span>.	    <span class="comment">// 每次循环都检测标志</span></div><div class="line"><span class="number">23</span>.	    <span class="comment">// 如果设置停止标志时已经在循环里</span></div><div class="line"><span class="number">24</span>.	    <span class="comment">// 则最长需要等待一个循环的时间才能终止</span></div><div class="line"><span class="number">25</span>.	    <span class="keyword">while</span> (!allDone) &#123;</div><div class="line"><span class="number">26</span>.	      <span class="comment">// 循环里的工作</span></div><div class="line"><span class="number">27</span>.	    &#125;</div><div class="line"><span class="number">28</span>.	  &#125;</div><div class="line"><span class="number">29</span>.	&#125;</div></pre></td></tr></table></figure></p>
+<p>使用 volatile 标识的变量具有线程可见性。当一个线程修改了这个变量的值，其他线程立即可以知道。所以可以避免多CPU出问题。</p>
+
       
     </div>
 
@@ -450,6 +474,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+        </div>
       
 
       
@@ -553,8 +585,17 @@ ds.charset = 'UTF-8';
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -580,7 +621,7 @@ ds.charset = 'UTF-8';
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -591,7 +632,7 @@ ds.charset = 'UTF-8';
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -662,6 +703,22 @@ ds.charset = 'UTF-8';
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA如何让一个线程死亡或结束"><span class="nav-number">1.</span> <span class="nav-text">JAVA如何让一个线程死亡或结束</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

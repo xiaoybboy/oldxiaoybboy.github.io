@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[如何终止一个线程]]></title>
       <url>%2F2017%2F03%2F23%2F%E5%A6%82%E4%BD%95%E7%BB%88%E6%AD%A2%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%2F</url>
-      <content type="text"></content>
+      <content type="text"><![CDATA[JAVA如何让一个线程死亡或结束&emsp;&emsp;不推荐使用stop()方法终止线程。，因为stop()方法容易引起死锁。12345678910111213141516171819202122232425262728291. /**2. * JAVA里面如何使用一个线程死亡或结束 *3. */4. public class T &#123;5. public static void main(String[] args) &#123;6. // 启动线程7. MyThread thread = new MyThread();8. new Thread(thread).start();9. 10. // 你的其它的工作，此时线程在运行中11. 12. // 你不想让线程干活了，停掉它13. // 注意，这只是一个标志，具体线程何时停，并不能精确控制14. thread.allDone = true;15. &#125;16. &#125;17. 18. class MyThread implements Runnable &#123;19. boolean **volatile** allDone = false;20. 21. public void run() &#123;22. // 每次循环都检测标志23. // 如果设置停止标志时已经在循环里24. // 则最长需要等待一个循环的时间才能终止25. while (!allDone) &#123;26. // 循环里的工作27. &#125;28. &#125;29. &#125; 使用 volatile 标识的变量具有线程可见性。当一个线程修改了这个变量的值，其他线程立即可以知道。所以可以避免多CPU出问题。]]></content>
     </entry>
 
     
