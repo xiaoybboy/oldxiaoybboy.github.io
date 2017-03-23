@@ -2,7 +2,7 @@
 title: 第N个丑数
 date: 2017-03-20 15:18:42
 tags: [算法]
-categroies: 算法
+categories: 算法
 ---
 # 题目描述
 {% note primary %}&emsp;&emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上
