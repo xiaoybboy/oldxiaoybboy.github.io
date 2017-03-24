@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[矩阵覆盖]]></title>
       <url>%2F2017%2F03%2F24%2F%E7%9F%A9%E9%98%B5%E8%A6%86%E7%9B%96%2F</url>
-      <content type="text"><![CDATA[题目描述我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？ 思路有以下几种情形： target &lt;= 0 大矩形为&lt;= 2*0,直接return 0； target = 1大矩形为2*1，只有一种摆放方法，return1； target = 2 大矩形为2*2，有两种摆放方法，return2； target = n 分为两步考虑：第一次摆放一块 21 的小矩阵，则摆放方法总共为f(target - 1)√√第一次摆放一块1\2的小矩阵，则摆放方法总共为f(target-2)因为，摆放了一块1*2的小矩阵（用√√表示），对应下方的1*2（用××表示）摆放方法就确定了，所以为f(targte-2)√ √× ×所以：f(target) =f(target - 1) + f(targte-2)实际上就是一个斐波那契数列。代码123456789101112131415public class Solution &#123; public int RectCover(int target) &#123; if(target==0)&#123; return 0; &#125; if(target==1)&#123; return 1; &#125; else if(target==2)&#123; return 2; &#125;else&#123; return RectCover(target-1)+RectCover(target-2); &#125; &#125; &#125;]]></content>
+      <content type="text"><![CDATA[题目描述我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？ 思路有以下几种情形： target &lt;= 0 大矩形为&lt;= 2*0,直接return 0； target = 1大矩形为2*1，只有一种摆放方法，return1； target = 2 大矩形为2*2，有两种摆放方法，return2； target = n 分为两步考虑：第一次摆放一块 21 的小矩阵，则摆放方法总共为f(target - 1)√√第一次摆放一块1\2的小矩阵，则摆放方法总共为f(target-2)因为，摆放了一块1*2的小矩阵（用√√表示），对应下方的1*2（用××表示）摆放方法就确定了，所以为f(targte-2)√ √× ×所以：f(target) =f(target - 1) + f(targte-2)实际上就是一个斐波那契数列。 代码123456789101112131415public class Solution &#123; public int RectCover(int target) &#123; if(target==0)&#123; return 0; &#125; if(target==1)&#123; return 1; &#125; else if(target==2)&#123; return 2; &#125;else&#123; return RectCover(target-1)+RectCover(target-2); &#125; &#125; &#125;]]></content>
     </entry>
 
     
