@@ -107,7 +107,7 @@
 <meta property="og:url" content="https://xiaoybboy.github.io/2017/03/24/栈与队列/index.html">
 <meta property="og:site_name" content="如果一切重来">
 <meta property="og:description" content="题目用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
-<meta property="og:updated_time" content="2017-03-24T08:38:40.882Z">
+<meta property="og:updated_time" content="2017-03-24T08:41:39.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="栈与队列">
 <meta name="twitter:description" content="题目用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
@@ -455,14 +455,12 @@
         <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><div class="note success"><p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
 </div>
 <a id="more"></a>
-
 # 思路
 
->假设两个栈为A和B。
->1. 入队列的时候，只需要向A栈中入栈即可。
->2. 出队列的时候，要先检查B栈是否为空。如果B为空，把A栈中的元素全部放入B栈中。如果B不为空，就从B栈顶弹出一个元素。
+假设两个栈为A和B。
+1. 入队列的时候，只需要向A栈中入栈即可。
+2. 出队列的时候，要先检查B栈是否为空。如果B为空，把A栈中的元素全部放入B栈中。如果B不为空，就从B栈顶弹出一个元素。
 这样就实现了一个队列先进先出的功能。
-
 
 # 代码实现
 undefined
