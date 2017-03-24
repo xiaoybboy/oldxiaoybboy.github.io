@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-24T07:46:10.582Z</updated>
+  <updated>2017-03-24T07:54:19.644Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>青蛙跳台阶</title>
+    <link href="https://xiaoybboy.github.io/2017/03/24/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/"/>
+    <id>https://xiaoybboy.github.io/2017/03/24/青蛙跳台阶/</id>
+    <published>2017-03-24T07:49:49.000Z</published>
+    <updated>2017-03-24T07:54:19.644Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+</div>
+<a id="more"></a>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
+<p>假设第一次跳了一阶，那么还剩 n-1 阶，有f(n-1)中跳法。 假设第一次跳了2阶，那么还剩 n-2 阶，有f(n-2)中跳法。所以，这是一个斐波那契数列。f(n) = f(n-1)+f(n-2)</p>
+</blockquote>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</div><div class="line"> * </div><div class="line"> * 思路：假设第一次跳了一阶，那么还剩 n-1 阶，有f(n-1)中跳法。</div><div class="line"> * </div><div class="line"> * 假设第一次跳了2阶，那么还剩 n-2 阶，有f(n-2)中跳法。</div><div class="line"> * </div><div class="line"> * 所以，这是一个斐波那契数列。f(n) = f(n-1)+f(n-2)</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JumpFloor</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorSolution</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">2</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> f1 = <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> f2 = <span class="number">2</span>;</div><div class="line">		<span class="keyword">int</span> cursum = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= target; i++) &#123;</div><div class="line">			cursum = f1 + f2;</div><div class="line">			f1 = f2;</div><div class="line">			f2 = cursum;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> cursum;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="题目2"><a href="#题目2" class="headerlink" title="题目2"></a>题目2</h1><blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+</blockquote>
+<h1 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h1><blockquote>
+<ol>
+<li>假设第一次跳 1 阶。那么还剩 n-1 阶。一共还剩f(n-1)种跳法。</li>
+<li>假设第一次跳 2 阶。那么还剩 n-2 阶。一共还剩f(n-2)种跳法。 。。。</li>
+<li>假设第一次跳 n-1 阶。那么还剩 1 阶。一共还剩f(1)种跳法。</li>
+<li>假设第一次跳 n 阶。一种跳法。</li>
+<li>所以：f(n) = f(n-1)+f(n-2)+…+1; 而且:f(n-1) = f(n-2) +…+1;</li>
+<li>所以f(n) = 2f(n-1)</li>
+</ol>
+</blockquote>
+<h1 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</div><div class="line"> * </div><div class="line"> * 思路：同样：假设第一次跳 1 阶。那么还剩 n-1 阶。一共还剩f(n-1)种跳法。</div><div class="line"> * </div><div class="line"> * 假设第一次跳 2 阶。那么还剩 n-2 阶。一共还剩f(n-2)种跳法。 。。。</div><div class="line"> * </div><div class="line"> * 假设第一次跳 n-1 阶。那么还剩 1 阶。一共还剩f(1)种跳法。</div><div class="line"> * </div><div class="line"> * 假设第一次跳 n 阶。一种跳法。</div><div class="line"> * </div><div class="line"> * 所以：f(n) = f(n-1)+f(n-2)+...+1; 而且:f(n-1) = f(n-2) +...+1;</div><div class="line"> * </div><div class="line"> * 所以f(n) = 2f(n-1)</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JumoFloor2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorSolution</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (target &lt;= <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> JumpFloorSolution(target - <span class="number">1</span>) * <span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。&lt;/p&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>矩阵覆盖</title>
@@ -449,9 +492,9 @@ undefined
     </summary>
     
     
-      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
     
   </entry>
   
