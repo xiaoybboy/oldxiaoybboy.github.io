@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="题目描述我们可以用21的小矩形横着或者竖着去覆盖更大的矩形。请问用n个21的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
+<meta name="description" content="题目描述我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵覆盖">
 <meta property="og:url" content="https://xiaoybboy.github.io/2017/03/24/矩阵覆盖/index.html">
 <meta property="og:site_name" content="如果一切重来">
-<meta property="og:description" content="题目描述我们可以用21的小矩形横着或者竖着去覆盖更大的矩形。请问用n个21的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
-<meta property="og:updated_time" content="2017-03-24T07:38:46.266Z">
+<meta property="og:description" content="题目描述我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
+<meta property="og:updated_time" content="2017-03-24T07:41:02.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="矩阵覆盖">
-<meta name="twitter:description" content="题目描述我们可以用21的小矩形横着或者竖着去覆盖更大的矩形。请问用n个21的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
+<meta name="twitter:description" content="题目描述我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
 
 
 
@@ -446,10 +446,10 @@
       
 
       
-        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>我们可以用2<em>1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2</em>1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
 </div>
 <a id="more"></a>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>有以下几种情形：<br>1.target &lt;= 0 大矩形为&lt;= 2<em>0,直接return 0；<br>2.target = 1大矩形为2</em>1，只有一种摆放方法，return1；<br>3.target = 2 大矩形为2<em>2，有两种摆放方法，return2；<br>4.target = n 分为两步考虑：<br>第一次摆放一块 2</em>1 的小矩阵，则摆放方法总共为f(target - 1)<br>√<br>√<br>第一次摆放一块1<em>2的小矩阵，则摆放方法总共为f(target-2)<br>因为，摆放了一块1</em>2的小矩阵（用√√表示），对应下方的1*2（用××表示）摆放方法就确定了，所以为f(targte-2)<br>√    √<br>×    ×<br>所以：f(target) =f(target - 1) + f(targte-2)<br>实际上就是一个斐波那契数列。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>有以下几种情形：<br>1.target &lt;= 0 大矩形为&lt;= 2*0,直接return 0；<br>2.target = 1大矩形为2*1，只有一种摆放方法，return1；<br>3.target = 2 大矩形为2*2，有两种摆放方法，return2；<br>4.target = n 分为两步考虑：<br>第一次摆放一块 2<em>1 的小矩阵，则摆放方法总共为f(target - 1)<br>√<br>√<br>第一次摆放一块1\</em>2的小矩阵，则摆放方法总共为f(target-2)<br>因为，摆放了一块1*2的小矩阵（用√√表示），对应下方的1*2（用××表示）摆放方法就确定了，所以为f(targte-2)<br>√    √<br>×    ×<br>所以：f(target) =f(target - 1) + f(targte-2)<br>实际上就是一个斐波那契数列。</p>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">RectCover</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span>(target==<span class="number">0</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">        &#125; </div><div class="line">        <span class="keyword">if</span>(target==<span class="number">1</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target==<span class="number">2</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="keyword">return</span> RectCover(target-<span class="number">1</span>)+RectCover(target-<span class="number">2</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
