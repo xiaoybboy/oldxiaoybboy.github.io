@@ -97,7 +97,7 @@ font:
   global:
     # external: true will load this font family from host.
     external: true
-    family: Lato
+    family: Monda
     #family: Lato
 
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
@@ -105,7 +105,6 @@ font:
   headings:
     external: true
     family: Roboto Slab
-    size: 13
     #family:
 
   # Font settings for posts
@@ -126,7 +125,7 @@ font:
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family:
+    family: PT Mono
     size:
 
 
@@ -364,7 +363,7 @@ duoshuo_share: true
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
   ua_enable: true
-  admin_enable: false
+  admin_enable: true
   user_id: 0
   #admin_nickname: Author
 
