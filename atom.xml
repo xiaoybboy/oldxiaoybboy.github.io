@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-03-30T04:25:51.998Z</updated>
+  <updated>2017-03-30T04:26:31.302Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://xiaoybboy.github.io/2017/03/24/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/"/>
     <id>https://xiaoybboy.github.io/2017/03/24/栈与队列/</id>
     <published>2017-03-24T08:11:27.000Z</published>
-    <updated>2017-03-30T04:25:51.998Z</updated>
+    <updated>2017-03-30T04:26:31.302Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><div class="note success"><p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型.</p>
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型.</p>
 </div>
 # 思路
 假设两个栈为A和B。
@@ -42,7 +42,7 @@ undefined
     
     <summary type="html">
     
-      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型.&lt;/
+      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为
     
     </summary>
     
