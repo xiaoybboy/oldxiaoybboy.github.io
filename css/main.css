@@ -1068,7 +1068,7 @@ pre .javascript .function {
 }
 .menu .menu-item a {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   line-height: inherit;
   border-bottom: 1px solid transparent;
   transition-property: border-color;
@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #79aac8;
+  background: #a4887f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2595,7 +2595,7 @@ hr {
   border: none;
   border-radius: 2px;
   transition-property: background;
-  font-size: 14px;
+  font-size: 13px;
 }
 @media (max-width: 767px) {
   .menu .menu-item a {
