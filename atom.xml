@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-04-02T05:58:56.700Z</updated>
+  <updated>2017-04-06T07:10:30.311Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xiaoybboy.github.io/2017/04/02/Java-Scanner-next-%E5%92%8CnextLine/"/>
     <id>https://xiaoybboy.github.io/2017/04/02/Java-Scanner-next-和nextLine/</id>
     <published>2017-04-02T05:29:44.000Z</published>
-    <updated>2017-04-02T05:58:56.700Z</updated>
+    <updated>2017-04-06T07:10:30.311Z</updated>
     
     <content type="html"><![CDATA[<p>java中使用Scanner类获取数据输入十分方便，Scanner类中next()与nextLine()都可以实现字符串String的获取.它们的区别如下：</p>
 <ol>
@@ -51,11 +51,41 @@
   </entry>
   
   <entry>
+    <title>github上ssh配置</title>
+    <link href="https://xiaoybboy.github.io/2017/03/31/github%E4%B8%8Assh%E9%85%8D%E7%BD%AE/"/>
+    <id>https://xiaoybboy.github.io/2017/03/31/github上ssh配置/</id>
+    <published>2017-03-30T20:13:14.000Z</published>
+    <updated>2017-04-06T07:10:30.313Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="配置-ssh-key"><a href="#配置-ssh-key" class="headerlink" title="配置 ssh key"></a>配置 ssh key</h1><p>使用 git bash 生成 public ssh key，以下是最简单的方法<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa</div><div class="line">C/Documents and Settings/username/.ssh 目录下会生成 id_rsa.pub</div></pre></td></tr></table></figure></p>
+<p>将 id_rsa.pub 的内容完全复制到 github Account Setting 里的 ssh key 里即可</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure>
+<p>然后会看到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hi [yourGithubAccount]! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure></p>
+<p>设置用户信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;[yourName]&quot;//用户名</div><div class="line">$ git config --global user.email  &quot;[yourEmail]&quot;//填写自己的邮箱</div></pre></td></tr></table></figure></p>
+<p>经过以上步骤，本机已成功连接到 github，为部署打下基础。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;配置-ssh-key&quot;&gt;&lt;a href=&quot;#配置-ssh-key&quot; class=&quot;headerlink&quot; title=&quot;配置 ssh key&quot;&gt;&lt;/a&gt;配置 ssh key&lt;/h1&gt;&lt;p&gt;使用 git bash 生成 public ssh key，以下是最简单的方法&lt;br&gt;
+    
+    </summary>
+    
+      <category term="hexo" scheme="https://xiaoybboy.github.io/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
     <title>栈与队列</title>
     <link href="https://xiaoybboy.github.io/2017/03/24/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/"/>
     <id>https://xiaoybboy.github.io/2017/03/24/栈与队列/</id>
     <published>2017-03-24T08:11:27.000Z</published>
-    <updated>2017-03-30T04:37:22.903Z</updated>
+    <updated>2017-04-06T07:10:30.325Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型.</p>
 </div>
@@ -93,7 +123,7 @@
     <link href="https://xiaoybboy.github.io/2017/03/24/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/"/>
     <id>https://xiaoybboy.github.io/2017/03/24/青蛙跳台阶/</id>
     <published>2017-03-24T07:49:49.000Z</published>
-    <updated>2017-03-24T07:54:19.644Z</updated>
+    <updated>2017-04-06T07:10:30.332Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
 </div>
@@ -136,7 +166,7 @@
     <link href="https://xiaoybboy.github.io/2017/03/24/%E7%9F%A9%E9%98%B5%E8%A6%86%E7%9B%96/"/>
     <id>https://xiaoybboy.github.io/2017/03/24/矩阵覆盖/</id>
     <published>2017-03-24T07:30:40.000Z</published>
-    <updated>2017-03-24T07:46:10.582Z</updated>
+    <updated>2017-04-06T07:10:30.329Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
 </div>
@@ -171,7 +201,7 @@
     <link href="https://xiaoybboy.github.io/2017/03/23/%E5%A6%82%E4%BD%95%E7%BB%88%E6%AD%A2%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B/"/>
     <id>https://xiaoybboy.github.io/2017/03/23/如何终止一个线程/</id>
     <published>2017-03-23T02:04:35.000Z</published>
-    <updated>2017-03-23T10:44:40.876Z</updated>
+    <updated>2017-04-06T07:10:30.320Z</updated>
     
     <content type="html"><![CDATA[<h1 id="JAVA如何让一个线程死亡或结束"><a href="#JAVA如何让一个线程死亡或结束" class="headerlink" title="JAVA如何让一个线程死亡或结束"></a>JAVA如何让一个线程死亡或结束</h1><p>&emsp;&emsp;不推荐使用stop()方法终止线程。，因为stop()方法容易引起死锁。<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.	<span class="comment">/**</span></div><div class="line">2.	 * JAVA里面如何使用一个线程死亡或结束 *</div><div class="line">3.	 */</div><div class="line"><span class="number">4</span>.	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span> </span>&#123;</div><div class="line"><span class="number">5</span>.	  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"><span class="number">6</span>.	    <span class="comment">// 启动线程</span></div><div class="line"><span class="number">7</span>.	    MyThread thread = <span class="keyword">new</span> MyThread();</div><div class="line"><span class="number">8</span>.	    <span class="keyword">new</span> Thread(thread).start();</div><div class="line"><span class="number">9</span>.	</div><div class="line"><span class="number">10</span>.	    <span class="comment">// 你的其它的工作，此时线程在运行中</span></div><div class="line"><span class="number">11</span>.	</div><div class="line"><span class="number">12</span>.	    <span class="comment">// 你不想让线程干活了，停掉它</span></div><div class="line"><span class="number">13</span>.	    <span class="comment">// 注意，这只是一个标志，具体线程何时停，并不能精确控制</span></div><div class="line"><span class="number">14</span>.	    thread.allDone = <span class="keyword">true</span>;</div><div class="line"><span class="number">15</span>.	  &#125;</div><div class="line"><span class="number">16</span>.	&#125;</div><div class="line"><span class="number">17</span>.	</div><div class="line"><span class="number">18</span>.	<span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line"><span class="number">19</span>.	  <span class="keyword">boolean</span> **<span class="keyword">volatile</span>** allDone = <span class="keyword">false</span>;</div><div class="line"><span class="number">20</span>.	</div><div class="line"><span class="number">21</span>.	  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="number">22</span>.	    <span class="comment">// 每次循环都检测标志</span></div><div class="line"><span class="number">23</span>.	    <span class="comment">// 如果设置停止标志时已经在循环里</span></div><div class="line"><span class="number">24</span>.	    <span class="comment">// 则最长需要等待一个循环的时间才能终止</span></div><div class="line"><span class="number">25</span>.	    <span class="keyword">while</span> (!allDone) &#123;</div><div class="line"><span class="number">26</span>.	      <span class="comment">// 循环里的工作</span></div><div class="line"><span class="number">27</span>.	    &#125;</div><div class="line"><span class="number">28</span>.	  &#125;</div><div class="line"><span class="number">29</span>.	&#125;</div></pre></td></tr></table></figure></p>
 <p>使用 volatile 标识的变量具有线程可见性。当一个线程修改了这个变量的值，其他线程立即可以知道。所以可以避免多CPU出问题。</p>
@@ -197,7 +227,7 @@
     <link href="https://xiaoybboy.github.io/2017/03/21/%E6%B1%82%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/21/求二叉树的深度/</id>
     <published>2017-03-21T03:46:41.000Z</published>
-    <updated>2017-03-22T02:03:56.995Z</updated>
+    <updated>2017-04-06T07:10:30.327Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>&emsp;&emsp;输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。  </p>
 </div>
@@ -235,7 +265,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/21/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/21/第一个只出现一次的字符/</id>
     <published>2017-03-21T03:03:34.000Z</published>
-    <updated>2017-03-22T03:05:51.863Z</updated>
+    <updated>2017-04-06T07:10:30.331Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;在一个字符串(1&lt;=字符串长度&lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.<br><a id="more"></a></p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;暴力求解。</p>
@@ -259,7 +289,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/20/%E7%AC%ACN%E4%B8%AA%E4%B8%91%E6%95%B0/"/>
     <id>https://xiaoybboy.github.io/2017/03/20/第N个丑数/</id>
     <published>2017-03-20T07:18:42.000Z</published>
-    <updated>2017-03-22T03:02:39.965Z</updated>
+    <updated>2017-04-06T07:10:30.330Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note primary"><p>&emsp;&emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上<br>我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 </p>
 </div>
@@ -297,7 +327,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/20/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/"/>
     <id>https://xiaoybboy.github.io/2017/03/20/把数组排成最小的数/</id>
     <published>2017-03-20T06:52:50.000Z</published>
-    <updated>2017-03-22T03:02:44.651Z</updated>
+    <updated>2017-04-06T07:10:30.321Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。<br><a id="more"></a></p>
 <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>&emsp;&emsp;不得不说，看了这题的解法，真的佩服！~<br>&emsp;&emsp;先将整型数组转换成String数组，然后将String数组排序，最后将排好序的字符串数组拼接出来。关键就是制定排序规则。<br>为什么需要定制排序，因为字符串 a和b 长度不等的情况。比如 “2” 和 “21” ,显然字符串”2”&lt;”21”,但是把他们链接起来的时候 221&gt;212.所以定制一种规则来排除这种情况。<br>定制排序规则如下：  若ab &gt; ba  则 a &gt; b， 若ab &lt; ba 则 a &lt; b，若ab = ba 则 a = b；<br>这个定制排序很妙！</p>
@@ -322,7 +352,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/19/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/"/>
     <id>https://xiaoybboy.github.io/2017/03/19/连续子数组的最大和/</id>
     <published>2017-03-19T07:33:33.000Z</published>
-    <updated>2017-03-22T03:02:50.463Z</updated>
+    <updated>2017-04-06T07:10:30.332Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。你会不会被他忽悠住？(子向量的长度至少是1)</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><div class="note primary"><p>test </p>
@@ -346,7 +376,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/19/Hexo%E5%88%A9%E7%94%A8Github%E5%88%86%E6%94%AF%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%94%B5%E8%84%91%E4%B8%8A%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
     <id>https://xiaoybboy.github.io/2017/03/19/Hexo利用Github分支在不同电脑上写博客/</id>
     <published>2017-03-19T04:15:27.000Z</published>
-    <updated>2017-03-20T04:39:00.990Z</updated>
+    <updated>2017-04-06T07:10:30.310Z</updated>
     
     <content type="html"><![CDATA[<p>&emsp;&emsp;利用github的不同分支来分别保存网站静态文件与hexo源码（md原始文件及主题等），实现在不同电脑上都可以自由写博客。</p>
 <h1 id="Github-Page"><a href="#Github-Page" class="headerlink" title="Github Page"></a>Github Page</h1><p>&emsp;&emsp;这里假设你已经在github上建好了page的仓库，也就是 “yourusername.github.io”的名字的项目仓库，比如我的 dxjia.github.io 。另外，也假设你在自己的电脑上已经配置好git、hexo、node js等环境。<br><a id="more"></a></p>
@@ -387,7 +417,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/19/hexo%E6%8F%90%E4%BA%A4%E6%96%B0%E6%96%87%E7%AB%A0%E9%94%99%E8%AF%AF/"/>
     <id>https://xiaoybboy.github.io/2017/03/19/hexo提交新文章错误/</id>
     <published>2017-03-19T02:33:53.000Z</published>
-    <updated>2017-03-19T06:02:59.224Z</updated>
+    <updated>2017-04-06T07:10:30.316Z</updated>
     
     <content type="html"><![CDATA[<h1 id="hexo提交新文章出错"><a href="#hexo提交新文章出错" class="headerlink" title="hexo提交新文章出错"></a>hexo提交新文章出错</h1><p>&emsp;&emsp;提交文章的时候报了下面这个错误，<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">ERROR Process failed: _posts/数组中出现次数超过一半的数字.md</div><div class="line">YAMLException: can not read a block mapping entry; a multiline key may not be an                                             implicit key at line 5, column 1:</div><div class="line"></div><div class="line">    ^</div><div class="line">    at generateError (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\                                            js-yaml\loader.js:162:10)</div><div class="line">    at throwError (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\js-                                            yaml\loader.js:168:9)</div><div class="line">    at readBlockMapping (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\l                                            ib\js-yaml\loader.js:1045:9)</div><div class="line">    at composeNode (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\js                                            -yaml\loader.js:1331:12)</div><div class="line">    at readDocument (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\j                                            s-yaml\loader.js:1493:3)</div><div class="line">    at loadDocuments (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\                                            js-yaml\loader.js:1549:5)</div><div class="line">    at Object.load (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\js                                            -yaml\loader.js:1566:19)</div><div class="line">    at parseYAML (F:\Myblog\hexo\node_modules\hexo\node_modules\hexo-front-matte                                            r\lib\front_matter.js:80:21)</div><div class="line">    at parse (F:\Myblog\hexo\node_modules\hexo\node_modules\hexo-front-matter\li                                            b\front_matter.js:56:12)</div><div class="line">    at F:\Myblog\hexo\node_modules\hexo\lib\plugins\processor\post.js:52:18</div><div class="line">    at tryCatcher (F:\Myblog\hexo\node_modules\hexo\node_modules\bluebird\js\rel                                            ease\util.js:16:23)</div><div class="line">    at Promise._settlePromiseFromHandler (F:\Myblog\hexo\node_modules\hexo\node_                                            modules\bluebird\js\release\promise.js:509:35)</div><div class="line">    at Promise._settlePromise (F:\Myblog\hexo\node_modules\hexo\node_modules\blu                                            ebird\js\release\promise.js:569:18)</div><div class="line">    at Promise._settlePromise0 (F:\Myblog\hexo\node_modules\hexo\node_modules\bl                                            uebird\js\release\promise.js:614:10)</div><div class="line">    at Promise._settlePromises (F:\Myblog\hexo\node_modules\hexo\node_modules\bl                                            uebird\js\release\promise.js:693:18)</div><div class="line">    at Promise._fulfill (F:\Myblog\hexo\node_modules\hexo\node_modules\bluebird\                                            js\release\promise.js:638:18)</div><div class="line">    at PromiseArray._resolve (F:\Myblog\hexo\node_modules\hexo\node_modules\blue                                            bird\js\release\promise_array.js:126:19)</div><div class="line">    at PromiseArray._promiseFulfilled (F:\Myblog\hexo\node_modules\hexo\node_mod                                            ules\bluebird\js\release\promise_array.js:144:14)</div><div class="line">    at PromiseArray._iterate (F:\Myblog\hexo\node_modules\hexo\node_modules\blue</div></pre></td></tr></table></figure></p>
 <p>仔细排查之后，发现是文章开头的categroies的冒号，写成了中文的冒号。额。。。</p>
@@ -411,7 +441,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/19/%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/"/>
     <id>https://xiaoybboy.github.io/2017/03/19/数组中出现次数超过一半的数字/</id>
     <published>2017-03-19T01:47:31.000Z</published>
-    <updated>2017-03-19T06:02:46.798Z</updated>
+    <updated>2017-04-06T07:10:30.324Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。<br><a id="more"></a></p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;对于这个问题提供两个解题思路。还有很多其他解法。</p>
@@ -441,7 +471,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/18/%E6%8C%89%E5%AD%97%E5%85%B8%E5%BA%8F%E8%BE%93%E5%87%BA%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%85%A8%E6%8E%92%E5%BA%8F/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/按字典序输出一个字符串的全排序/</id>
     <published>2017-03-18T08:39:56.000Z</published>
-    <updated>2017-03-23T03:35:20.522Z</updated>
+    <updated>2017-04-06T07:10:30.323Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。<br><a id="more"></a></p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;大脑短路了，想明白这个竟然花了半小时。这个题目的核心其实是求解一个字符串的全排列。因为字典序只需要用<br>Collection.sort()方法排序一个ArrayList<string> 或者TreeSet就行了。<br>&emsp;主要说下怎么对一个字符串进行全排列。比如说”abcd”怎么全排序呢?直觉告诉我们先把a放第一位，对”bcd”再进行全排列，就是一个递归。然后把b放在第一位，”acd”进行递归。…具体操作下面结合代码说。<br>&emsp;下面就是对全排列的字符串进行排序操作，按字典序输出即可。</string></p>
@@ -467,7 +497,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/18/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/二叉搜索树与双向链表/</id>
     <published>2017-03-18T07:07:36.000Z</published>
-    <updated>2017-03-23T03:36:00.952Z</updated>
+    <updated>2017-04-06T07:10:30.317Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。<br><a id="more"></a></p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;使用递归的思想。步骤如下：<br>&emsp;1. 将左子树构造成双链表，并返回链表头节点。<br>&emsp;2. 定位至左子树双链表最后一个节点。<br>&emsp;3. 如果左子树链表不为空的话，将当前root追加到左子树链表。<br>&emsp;4. 将右子树构造成双链表，并返回链表头节点。<br>&emsp;5. 如果右子树链表不为空的话，将该链表追加到root节点之后。<br>&emsp;6. 根据左子树链表是否为空确定返回的节点。</p>
@@ -491,7 +521,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/二叉树中和为某一值的路径/</id>
     <published>2017-03-18T06:17:10.000Z</published>
-    <updated>2017-03-23T03:35:48.434Z</updated>
+    <updated>2017-04-06T07:10:30.319Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。<br><a id="more"></a></p>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; listAll = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</div><div class="line">    <span class="keyword">private</span> ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; FindPath(TreeNode root,<span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> listAll;</div><div class="line">        list.add(root.val);</div><div class="line">        target -= root.val;</div><div class="line">        <span class="keyword">if</span>(target == <span class="number">0</span> &amp;&amp; root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>)</div><div class="line">            listAll.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(list));</div><div class="line">        FindPath(root.left, target);</div><div class="line">        FindPath(root.right, target);</div><div class="line">        list.remove(list.size()-<span class="number">1</span>);<span class="comment">//返回父节点继续搜索</span></div><div class="line">        <span class="keyword">return</span> listAll;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -515,7 +545,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/18/%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6/"/>
     <id>https://xiaoybboy.github.io/2017/03/18/测试字符串中是否包含重复字符/</id>
     <published>2017-03-18T04:07:14.000Z</published>
-    <updated>2017-03-18T06:53:42.836Z</updated>
+    <updated>2017-04-06T07:10:30.328Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;请实现一个算法，确定一个字符串的所有字符全都不同。要求不允许使用额外的存储空间。</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;暂时没想到好的思路，只能暴力求解。<br><a id="more"></a></p>
@@ -543,7 +573,7 @@ undefined
     <link href="https://xiaoybboy.github.io/2017/03/07/hello-world/"/>
     <id>https://xiaoybboy.github.io/2017/03/07/hello-world/</id>
     <published>2017-03-06T16:00:00.000Z</published>
-    <updated>2017-03-18T04:17:52.867Z</updated>
+    <updated>2017-04-06T07:10:30.314Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
