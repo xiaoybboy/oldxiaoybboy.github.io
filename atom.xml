@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-04-07T03:16:20.507Z</updated>
+  <updated>2017-04-07T03:17:30.151Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://xiaoybboy.github.io/2017/04/07/Java%E6%BA%90%E7%A0%81%E4%B9%8BHashSet/"/>
     <id>https://xiaoybboy.github.io/2017/04/07/Java源码之HashSet/</id>
     <published>2017-04-07T03:10:20.000Z</published>
-    <updated>2017-04-07T03:16:20.507Z</updated>
+    <updated>2017-04-07T03:17:30.151Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>1.HashSet 是一个没有重复元素的集合。它是由HashMap实现的，不保证元素的顺序，特别是它不保证该顺序恒久不变。而且HashSet允许使用 null 元素。<br>2.HashSet是非同步的。如果多个线程同时访问一个哈希 set，而其中至少一个线程修改了该 set，那么它必须保持外部同步。这通常是通过对自然封装该 set 的对象执行同步操作来完成的。如果不存在这样的对象，则应该使用 Collections.synchronizedSet 方法来“包装” Set。最好在创建时完成这一操作，以防止对该 set 进行意外的不同步访问：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Set s = Collections.synchronizedSet(<span class="keyword">new</span> HashSet(...));</div></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>1.HashSet 是一个没有重复元素的集合。它是由HashMap实现的，不保证元素的顺序，特别是它不保证该顺序恒久不变。而且HashSet允许使用 null 元素。<br>2.HashSet是非同步的。如果多个线程同时访问一个哈希 set，而其中至少一个线程修改了该 set，那么它必须保持外部同步。这通常是通过对自然封装该 set 的对象执行同步操作来完成的。如果不存在这样的对象，则应该使用 Collections.synchronizedSet 方法来“包装” Set。最好在创建时完成这一操作，以防止对该 set 进行意外的不同步访问：<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Set s = Collections.synchronizedSet(<span class="keyword">new</span> HashSet(...));</div></pre></td></tr></table></figure></p>
 <p>3.HashSet通过iterator()返回的迭代器是fail-fast的。<br>4.HashSet的继承关系如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;  </span></div><div class="line">    <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt;  </div><div class="line">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div></pre></td></tr></table></figure></p>
 <h1 id="HashSet实现"><a href="#HashSet实现" class="headerlink" title="HashSet实现"></a>HashSet实现</h1><p>HashSet是基于HashMap实现的，底层使用HashMap来保存所有元素，相关HashSet的操作，基本上都是直接调用底层HashMap的相关方法来完成.</p>
 <h2 id="HashSet属性"><a href="#HashSet属性" class="headerlink" title="HashSet属性"></a>HashSet属性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.	<span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;  </div><div class="line"><span class="number">2</span>.	  <span class="comment">// Dummy value to associate with an Object in the backing Map </span></div><div class="line"><span class="number">3</span>.	<span class="comment">// 定义一个虚拟的Object对象作为HashMap的value，将此对象定义为static final。  </span></div><div class="line"><span class="number">4</span>.	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object PRESENT = <span class="keyword">new</span> Object();</div></pre></td></tr></table></figure>
@@ -42,7 +42,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;1.HashSet 是一个没有重复元素的集合。它是由HashMap实现的，不保证元素的顺序，特别是它不保证该顺序恒久不变。而且HashSet
+      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;1.HashSet 是一个没有重复元素的集合。它是由HashMap实现的，不保证元素的顺序，特别是它不保证该顺序恒久不变。而且HashSet允许使用 null 元素。&lt;br&gt;2.HashSet是非同步的。如果多个线程同时访问一个哈希 set，而其中至少一个线程修改了该 set，那么它必须保持外部同步。这通常是通过对自然封装该 set 的对象执行同步操作来完成的。如果不存在这样的对象，则应该使用 Collections.synchronizedSet 方法来“包装” Set。最好在创建时完成这一操作，以防止对该 set 进行意外的不同步访问：&lt;br&gt;
     
     </summary>
     
