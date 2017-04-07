@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://xiaoybboy.github.io/2017/04/06/java%E6%BA%90%E7%A0%81%E4%B9%8BArrayList/</loc>
+    <lastmod>2017-04-07T03:23:25.362Z</lastmod>
+    <data>
+        <display>
+        <title>java源码之ArrayList</title>
+        <pubTime>2017-04-06T07:20:38.000Z</pubTime>
+        
+        <tag>java源码</tag>
+         
+        <tag>ArrayList</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="https://xiaoybboy.github.io/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://xiaoybboy.github.io/2017/04/07/Java%E6%BA%90%E7%A0%81%E4%B9%8BHashSet/</loc>
     <lastmod>2017-04-07T03:17:30.151Z</lastmod>
     <data>
@@ -19,26 +41,6 @@
            
              
               <breadCrumb title="java集合" url="https://xiaoybboy.github.io/categories/java%E9%9B%86%E5%90%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xiaoybboy.github.io/2017/04/06/java%E6%BA%90%E7%A0%81%E4%B9%8BArrayList/</loc>
-    <lastmod>2017-04-06T11:16:28.630Z</lastmod>
-    <data>
-        <display>
-        <title>java源码之ArrayList</title>
-        <pubTime>2017-04-06T07:20:38.000Z</pubTime>
-        
-        <tag>java源码，ArrayList</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="https://xiaoybboy.github.io/categories/java/"/>
           
         </display>
     </data>
