@@ -1,8 +1,8 @@
 ---
 title: java源码之ArrayList
 date: 2017-04-06 15:20:38
-tags: java源码，ArrayList
-categories: java
+tags: [java源码,ArrayList]
+categories: java集合
 ---
 # ArrayList概述：  
 ```java
