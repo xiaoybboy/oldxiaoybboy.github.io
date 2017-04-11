@@ -4,16 +4,38 @@
 
     
   <url>
-    <loc>https://xiaoybboy.github.io/2017/04/06/java%E6%BA%90%E7%A0%81%E4%B9%8BArrayList/</loc>
-    <lastmod>2017-04-07T03:27:01.971Z</lastmod>
+    <loc>https://xiaoybboy.github.io/2017/04/11/%E5%9B%9E%E6%9C%94%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-04-11T04:11:34.446Z</lastmod>
     <data>
         <display>
-        <title>java源码之ArrayList</title>
-        <pubTime>2017-04-06T07:20:38.000Z</pubTime>
+        <title>回溯算法详解</title>
+        <pubTime>2017-04-11T03:47:08.000Z</pubTime>
         
-        <tag>java源码</tag>
+        <tag>算法</tag>
          
-        <tag>ArrayList</tag>
+        <tag>回溯法</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://xiaoybboy.github.io/2017/04/07/Java%E6%BA%90%E7%A0%81%E4%B9%8BHashSet/</loc>
+    <lastmod>2017-04-08T01:35:21.352Z</lastmod>
+    <data>
+        <display>
+        <title>Java源码之HashSet</title>
+        <pubTime>2017-04-07T03:10:20.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>HashSet</tag>
          
          
            
@@ -26,16 +48,16 @@
 
     
   <url>
-    <loc>https://xiaoybboy.github.io/2017/04/07/Java%E6%BA%90%E7%A0%81%E4%B9%8BHashSet/</loc>
-    <lastmod>2017-04-07T03:17:30.151Z</lastmod>
+    <loc>https://xiaoybboy.github.io/2017/04/06/java%E6%BA%90%E7%A0%81%E4%B9%8BArrayList/</loc>
+    <lastmod>2017-04-07T03:27:01.971Z</lastmod>
     <data>
         <display>
-        <title>Java源码之HashSet</title>
-        <pubTime>2017-04-07T03:10:20.000Z</pubTime>
+        <title>java源码之ArrayList</title>
+        <pubTime>2017-04-06T07:20:38.000Z</pubTime>
         
-        <tag>java</tag>
+        <tag>java源码</tag>
          
-        <tag>HashSet</tag>
+        <tag>ArrayList</tag>
          
          
            
