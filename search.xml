@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[hexo个人域名配置]]></title>
       <url>%2F2017%2F05%2F31%2Fhexo%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%2F</url>
-      <content type="text"><![CDATA[1.在万网上购买域名https://wanwang.aliyun.com.或者其他域名购买网站 2.配置域名解析进入你的管理后台 3.添加域名解析按下图所示添加域名解析。其中，记录类型选A或CNAME，A记录的记录值就是ip地址，github(官方文档)提供了两个IP地址，192.30.252.153和192.30.252.154，这两个IP地址为github的服务器地址，两个都要填上，解析记录设置两个www和@，线路就默认就行了，CNAME记录值填你的github博客网址。 4.创建CNAME文件 这些全部设置完成后，此时你并不能要申请的域名访问你的博客。接着你需要做的是在hexo根目录的source文件夹里创建CNAME文件，不带任何后缀，里面添加你的域名信息，如：xiaoyb.me。 5.发布并访问重新发布hexo d -g然后就可以访问你的新域名了。快点试试吧！]]></content>
+      <content type="text"><![CDATA[1.在万网上购买域名https://wanwang.aliyun.com 或者其他域名购买网站 2.配置域名解析进入你的管理后台 3.添加域名解析按下图所示添加域名解析。其中，记录类型选A或CNAME，A记录的记录值就是ip地址，github(官方文档)提供了两个IP地址，192.30.252.153和192.30.252.154，这两个IP地址为github的服务器地址，两个都要填上，解析记录设置两个www和@，线路就默认就行了，CNAME记录值填你的github博客网址。 4.创建CNAME文件 这些全部设置完成后，此时你并不能要申请的域名访问你的博客。接着你需要做的是在hexo根目录的source文件夹里创建CNAME文件，不带任何后缀，里面添加你的域名信息，如：xiaoyb.me。 5.发布并访问重新发布hexo d -g然后就可以访问你的新域名了。快点试试吧！]]></content>
     </entry>
 
     
