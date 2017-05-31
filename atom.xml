@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-05-31T10:26:15.975Z</updated>
+  <updated>2017-05-31T10:48:32.422Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>lightgbm python接口的安装</title>
+    <link href="https://xiaoybboy.github.io/2017/05/31/lightgbm-python%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%89%E8%A3%85/"/>
+    <id>https://xiaoybboy.github.io/2017/05/31/lightgbm-python接口的安装/</id>
+    <published>2017-05-31T10:32:15.000Z</published>
+    <updated>2017-05-31T10:48:32.422Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近看一些大数据比赛大神们开源的解决方案，发现他们经常使用所谓数据挖掘三驾马车。恶补了一下boosting方法.现在把lightgbm的python接口的安装过程记录下来，免得以后忘了。<br>LightGBM（Light Gradient Boosting Machine）是一个基于决策树算法的快速的、分布式的、高性能 gradient boosting（GBDT、GBRT、GBM 或 MART）框架，可被用于排行、分类以及其他许多机器学习任务中。<br>开源项目地址： <a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">https://github.com/Microsoft/LightGBM</a><br>优势：</p>
+<blockquote>
+<p>更快的训练效率<br>低内存使用<br>更好的准确率<br>支持并行学习<br>可处理大规模数据</p>
+<h1 id="1-下载源码"><a href="#1-下载源码" class="headerlink" title="1.下载源码"></a>1.下载源码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone --recursive https://github.com/Microsoft/LightGBM</div></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="2-编译dll"><a href="#2-编译dll" class="headerlink" title="2.编译dll"></a>2.编译dll</h1><p>进入下载的LightGBM目录下，用VS打开windows/LightGBM.sln，生成时选择DLL和x64，然后进行编译。dll文件就会在windows/x64/DLL/目录里。<br><img src="http://i.imgur.com/lRW0CwU.png" alt=""></p>
+<h1 id="3-安装python包"><a href="#3-安装python包" class="headerlink" title="3.安装python包"></a>3.安装python包</h1><p>进入目录python-package，执行命令<br>python setup.py install</p>
+<h1 id="4-测试是否安装成功"><a href="#4-测试是否安装成功" class="headerlink" title="4.测试是否安装成功"></a>4.测试是否安装成功</h1><p>进入examples\python-guide，执行样例<br>python .\simple_example.py<br>如果没有报错，那就说明安装成功了！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近看一些大数据比赛大神们开源的解决方案，发现他们经常使用所谓数据挖掘三驾马车。恶补了一下boosting方法.现在把lightgbm的python接口的安装过程记录下来，免得以后忘了。&lt;br&gt;LightGBM（Light Gradient Boosting Machine
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://xiaoybboy.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习，数据挖掘" scheme="https://xiaoybboy.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%8C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo个人域名配置</title>
@@ -733,36 +763,6 @@ undefined
     
     
       <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数组中出现次数超过一半的数字</title>
-    <link href="https://xiaoybboy.github.io/2017/03/19/%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/"/>
-    <id>https://xiaoybboy.github.io/2017/03/19/数组中出现次数超过一半的数字/</id>
-    <published>2017-03-19T01:47:31.000Z</published>
-    <updated>2017-04-06T07:10:30.324Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>&emsp;&emsp;数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。<br><a id="more"></a></p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>&emsp;&emsp;对于这个问题提供两个解题思路。还有很多其他解法。</p>
-<ol>
-<li>利用排序。先对数组进行排序，因为题目已知，有一个数字出现的次数超过了数组长度的一半。显然，排序完成之<br>后中间的那个数组必定是这个数组。复杂度O(nlgn)</li>
-<li>充分利用数组中有一个数字出现的次数超过数组长度的一半这个条件。这个数一定是相邻重复出现的次数最多的数。<br>即使是最差情况，隔一个数插入这个数，最终这个数必定会出现在最后一位（还是因为出现次数大于数组长度的一半）。<br>这个算法的复杂度只有O（n），不得不说，这个思路真的巧妙。<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组&#123;1,2,3,2,2,2,5,4,2&#125;。</div><div class="line"> * 由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。</div><div class="line"> * </div><div class="line"> * 思路1：快速排序 思路2：找最大相邻重复出现的元素</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MoreThanHalfNumArray</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 第一种思路</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> array</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">MoreThanHalfNum_Solution</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</div><div class="line">		<span class="comment">// 判断数组长度是否为0或者数组为null</span></div><div class="line">		<span class="keyword">if</span> (array.length == <span class="number">0</span> || array == <span class="keyword">null</span>)</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		Arrays.sort(array);<span class="comment">// 快速排序对数组进行排序</span></div><div class="line">		<span class="keyword">int</span> mid = array[(array.length) / <span class="number">2</span>];<span class="comment">// 中间的元素</span></div><div class="line"></div><div class="line">		<span class="comment">// 对mid 进行验证</span></div><div class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">			<span class="keyword">if</span> (mid == array[i]) &#123;</div><div class="line">				count++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> count &gt; (array.length / <span class="number">2</span>) ? mid : <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 第二种思路，想了很久才想明白。关键是利用有一个数的出现次数大于数组长度的一半这个条件</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">MoreThanHalfNum_Solution2</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</div><div class="line">		<span class="comment">// 判断数组长度是否为0或者数组为null</span></div><div class="line">		<span class="keyword">if</span> (array.length == <span class="number">0</span> || array == <span class="keyword">null</span>)</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		<span class="comment">// 寻找相邻重复次数最多的元素</span></div><div class="line">		<span class="keyword">int</span> temp = array[<span class="number">0</span>];<span class="comment">// 从第一个元素开始找</span></div><div class="line">		<span class="keyword">int</span> times = <span class="number">1</span>;<span class="comment">// 重复出现的次数</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; array.length; i++) &#123;</div><div class="line">			<span class="keyword">if</span> (times == <span class="number">0</span>) &#123;</div><div class="line">				temp = array[i];<span class="comment">// 最后一次赋值的必定是我们要找的元素</span></div><div class="line">				times = <span class="number">1</span>;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[i] == temp) &#123;</div><div class="line">				times++;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				times--;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 验证</span></div><div class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</div><div class="line">			<span class="keyword">if</span> (array[i] == temp) &#123;</div><div class="line">				count++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> count &gt; (array.length / <span class="number">2</span>) ? temp : <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>&emsp;&emsp;总体来看，第一种方法比较容易想到，时间复杂度较高。第二种方法想了很久才想明白，哎，算法能力<br>有待提高！时间复杂度才O(N)!其他还有很多方法，有待考虑。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
