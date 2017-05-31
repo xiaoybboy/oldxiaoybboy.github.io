@@ -303,7 +303,7 @@ mathjax:
 #swiftype_key:
 
 # Baidu Analytics ID
-baidu_analytics: 4b8e932f7f9d6960a63982f386fcfa70
+baidu_analytics: 89b72b8b15f71e8732bbf6020d51d20e
 
 # Duoshuo ShortName
 #duoshuo_shortname: xiaoyb
@@ -315,6 +315,7 @@ baidu_analytics: 4b8e932f7f9d6960a63982f386fcfa70
 #hypercomments_id:
 
 # Gentie productKey
+# 网易云跟帖
 gentie_productKey: e761aa7691cd46b5b71aa995986b26b4
 
 # Support for youyan comments system.
@@ -400,8 +401,8 @@ vkontakte_api:
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: true
-  app_id: sbC7S6lxgsLBuoHHM0Vgwd15-gzGzoHsz
-  app_key: rjhePcHq8MQ2W7RUK7IoJGbJ
+  app_id: afn4hnpX8n57aiCwli0VLiFR-gzGzoHsz
+  app_key: sG7pfhLYAsSkH4rqtvlWOgWF
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/

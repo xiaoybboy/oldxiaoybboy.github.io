@@ -1,4 +1,4 @@
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </script>
 <div class="copyright" >
   {% set current = date(Date.now(), "YYYY") %}
@@ -9,6 +9,4 @@
   </span>
   <span class="author" itemprop="copyrightHolder">{{ config.author }}</span>
 </div>
-<span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_uv"></span>次
-</span>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span>
