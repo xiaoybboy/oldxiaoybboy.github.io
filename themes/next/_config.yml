@@ -315,7 +315,7 @@ baidu_analytics: 4b8e932f7f9d6960a63982f386fcfa70
 #hypercomments_id:
 
 # Gentie productKey
-gentie_productKey:e761aa7691cd46b5b71aa995986b26b4
+gentie_productKey: e761aa7691cd46b5b71aa995986b26b4
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
@@ -362,8 +362,8 @@ gentie_productKey:e761aa7691cd46b5b71aa995986b26b4
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
-  ua_enable: flase
-  admin_enable: false
+  ua_enable: true
+  admin_enable: true
   user_id: 0
   #admin_nickname: Author
 
