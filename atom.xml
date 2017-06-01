@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-05-31T10:55:34.637Z</updated>
+  <updated>2017-06-01T10:19:44.017Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sklearn PCA降维</title>
+    <link href="https://xiaoybboy.github.io/2017/06/01/sklearn-PCA%E9%99%8D%E7%BB%B4/"/>
+    <id>https://xiaoybboy.github.io/2017/06/01/sklearn-PCA降维/</id>
+    <published>2017-06-01T10:01:31.000Z</published>
+    <updated>2017-06-01T10:19:44.017Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于太多的特征，一般需要进行降维处理。sklearn提供了PCA降维的方法</p>
+<h1 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a>函数原型</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class sklearn.decomposition.PCA(n_components=None, copy=True, whiten=False, svd_solver=&apos;auto&apos;, tol=0.0, iterated_power=&apos;auto&apos;, random_state=None)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="主要参数"><a href="#主要参数" class="headerlink" title="主要参数"></a>主要参数</h1><ol>
+<li>n_components:<br>意义：PCA算法中所要保留的主成分个数n，也即保留下来的特征个数n<br>类型：int 或者 string，缺省时默认为None，所有成分被保留。<br> 赋值为int，比如n_components=1，将把原始数据降到一个维度。<br> 赋值为string，比如n_components=’mle’，将自动选取特征个数n，使得满足所要求的方差百分比。</li>
+<li>copy:<br>类型：bool，True或者False，缺省时默认为True。<br>意义：表示是否在运行算法时，将原始训练数据复制一份。若为True，则运行PCA算法后，原始训练数据的值不            会有任何改变，因为是在原始数据的副本上进行运算；若为False，则运行PCA算法后，原始训练数据的              值会改，因为是在原始数据上进行降维计算。</li>
+<li><p>whiten:<br>类型：bool，缺省时默认为False<br>意义：白化，使得每个特征具有相同的方差。</p>
+<h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><p>和参数差不多，参考<a href="http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html" target="_blank" rel="external">http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html</a></p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>fit(X[, y]) —— Fit the model with X.<br>fit_transform(X[, y])—— Fit the model with X and apply the dimensionality reduction on X.<br>get_covariance() —— Compute data covariance with the generative model.<br>get_params([deep]) —— Get parameters for this estimator.<br>get_precision() —— Compute data precision matrix with the generative model.<br>inverse_transform(X) —— Transform data back to its original space, i.e.,<br>score(X[, y]) —— Return the average log-likelihood of all samples<br>score_samples(X) —— Return the log-likelihood of each sample<br>set_params(**params) —— Set the parameters of this estimator.<br>transform(X) —— Apply the dimensionality reduction on X.</p>
+</li>
+<li><p>fit(X,y=None)<br>fit()可以说是scikit-learn中通用的方法，每个需要训练的算法都会有fit()方法，它其实就是算法中的“训练”这一步骤。因为PCA是无监督学习算法，此处y自然等于None。</p>
+</li>
+<li><p>fit(X)，表示用数据X来训练PCA模型。</p>
+</li>
+</ol>
+<p>函数返回值：调用fit方法的对象本身。比如pca.fit(X)，表示用X对pca这个对象进行训练。</p>
+<ol>
+<li><p>fit_transform(X)<br>用X来训练PCA模型，同时返回降维后的数据。<br>newX=pca.fit_transform(X)，newX就是降维后的数据。</p>
+</li>
+<li><p>inverse_transform()<br>将降维后的数据转换成原始数据，X=pca.inverse_transform(newX)</p>
+</li>
+<li><p>transform(X)<br>将数据X转换成降维后的数据。当模型训练好后，对于新输入的数据，都可以用transform方法来降维。</p>
+</li>
+</ol>
+<p>此外，还有get_covariance()、get_precision()、get_params(deep=True)、score(X, y=None)等方法，参考上面的英文。</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>在一个论坛上看到的例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#导入数值计算库</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="comment">#导入科学计算库</span></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="comment">#导入数据预处理库</span></div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</div><div class="line"><span class="comment">#导入PCA算法库</span></div><div class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</div><div class="line"></div><div class="line"><span class="comment">#读取贷款状态数据从创建名为LoanStats3a的数据表</span></div><div class="line">LoanStats3a=pd.DataFrame(pd.read_csv(<span class="string">'LoanStats3a.csv'</span>))</div><div class="line"> </div><div class="line"><span class="comment">#查看数据表内容</span></div><div class="line">LoanStats3a.head()</div><div class="line"></div><div class="line"><span class="comment">#删除包含空值的特征</span></div><div class="line">LoanStats3a=LoanStats3a.dropna()</div><div class="line"></div><div class="line"><span class="comment">#设置特征表X</span></div><div class="line"><span class="comment">#将贷款数据表中的贷款特征数据单独提取出来，用于后面的降维操作。</span></div><div class="line">X = np.array(LoanStats3a[[<span class="string">'loan_amnt'</span>, <span class="string">'funded_amnt_inv'</span>, <span class="string">'installment'</span>,</div><div class="line"><span class="string">'annual_inc'</span>, <span class="string">'dti'</span>, <span class="string">'delinq_2yrs'</span>, <span class="string">'inq_last_6mths'</span>, <span class="string">'open_acc'</span>,</div><div class="line"><span class="string">'pub_rec'</span>, <span class="string">'revol_bal'</span>, <span class="string">'total_acc'</span>, <span class="string">'out_prncp'</span>, <span class="string">'out_prncp_inv'</span>,</div><div class="line"><span class="string">'total_pymnt'</span>, <span class="string">'total_pymnt_inv'</span>, <span class="string">'total_rec_prncp'</span>, <span class="string">'total_rec_int'</span>,</div><div class="line"><span class="string">'total_rec_late_fee'</span>, <span class="string">'recoveries'</span>, <span class="string">'collection_recovery_fee'</span>,</div><div class="line"><span class="string">'last_pymnt_amnt'</span>]])</div><div class="line"></div><div class="line"><span class="comment">#对特征数据进行标准化处理,去除不同数据的单位限制，将它们转化为无量纲的纯数值。</span></div><div class="line">sc = StandardScaler()</div><div class="line">X_std = sc.fit_transform(X)</div><div class="line"></div><div class="line"><span class="comment">#创建PCA对象，n_components=3</span></div><div class="line">pca = decomposition.PCA(n_components=<span class="number">3</span>)</div><div class="line"></div><div class="line"><span class="comment">#使用PCA对特征进行降维</span></div><div class="line">X_std_pca = pca.fit_transform(X_std)</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于太多的特征，一般需要进行降维处理。sklearn提供了PCA降维的方法&lt;/p&gt;
+&lt;h1 id=&quot;函数原型&quot;&gt;&lt;a href=&quot;#函数原型&quot; class=&quot;headerlink&quot; title=&quot;函数原型&quot;&gt;&lt;/a&gt;函数原型&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;class sklearn.decomposition.PCA(n_components=None, copy=True, whiten=False, svd_solver=&amp;apos;auto&amp;apos;, tol=0.0, iterated_power=&amp;apos;auto&amp;apos;, random_state=None)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="机器学习,sklearn学习" scheme="https://xiaoybboy.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-sklearn%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习，sklearn" scheme="https://xiaoybboy.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%8Csklearn/"/>
+    
+  </entry>
   
   <entry>
     <title>lightgbm python接口的安装</title>
@@ -734,30 +783,6 @@ undefined
     
       &lt;p&gt;&amp;emsp;&amp;emsp;利用github的不同分支来分别保存网站静态文件与hexo源码（md原始文件及主题等），实现在不同电脑上都可以自由写博客。&lt;/p&gt;
 &lt;h1 id=&quot;Github-Page&quot;&gt;&lt;a href=&quot;#Github-Page&quot; class=&quot;headerlink&quot; title=&quot;Github Page&quot;&gt;&lt;/a&gt;Github Page&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的仓库，也就是 “yourusername.github.io”的名字的项目仓库，比如我的 dxjia.github.io 。另外，也假设你在自己的电脑上已经配置好git、hexo、node js等环境。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="https://xiaoybboy.github.io/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo提交新文章错误</title>
-    <link href="https://xiaoybboy.github.io/2017/03/19/hexo%E6%8F%90%E4%BA%A4%E6%96%B0%E6%96%87%E7%AB%A0%E9%94%99%E8%AF%AF/"/>
-    <id>https://xiaoybboy.github.io/2017/03/19/hexo提交新文章错误/</id>
-    <published>2017-03-19T02:33:53.000Z</published>
-    <updated>2017-04-06T07:10:30.316Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="hexo提交新文章出错"><a href="#hexo提交新文章出错" class="headerlink" title="hexo提交新文章出错"></a>hexo提交新文章出错</h1><p>&emsp;&emsp;提交文章的时候报了下面这个错误，<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">ERROR Process failed: _posts/数组中出现次数超过一半的数字.md</div><div class="line">YAMLException: can not read a block mapping entry; a multiline key may not be an                                             implicit key at line 5, column 1:</div><div class="line"></div><div class="line">    ^</div><div class="line">    at generateError (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\                                            js-yaml\loader.js:162:10)</div><div class="line">    at throwError (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\js-                                            yaml\loader.js:168:9)</div><div class="line">    at readBlockMapping (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\l                                            ib\js-yaml\loader.js:1045:9)</div><div class="line">    at composeNode (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\js                                            -yaml\loader.js:1331:12)</div><div class="line">    at readDocument (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\j                                            s-yaml\loader.js:1493:3)</div><div class="line">    at loadDocuments (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\                                            js-yaml\loader.js:1549:5)</div><div class="line">    at Object.load (F:\Myblog\hexo\node_modules\hexo\node_modules\js-yaml\lib\js                                            -yaml\loader.js:1566:19)</div><div class="line">    at parseYAML (F:\Myblog\hexo\node_modules\hexo\node_modules\hexo-front-matte                                            r\lib\front_matter.js:80:21)</div><div class="line">    at parse (F:\Myblog\hexo\node_modules\hexo\node_modules\hexo-front-matter\li                                            b\front_matter.js:56:12)</div><div class="line">    at F:\Myblog\hexo\node_modules\hexo\lib\plugins\processor\post.js:52:18</div><div class="line">    at tryCatcher (F:\Myblog\hexo\node_modules\hexo\node_modules\bluebird\js\rel                                            ease\util.js:16:23)</div><div class="line">    at Promise._settlePromiseFromHandler (F:\Myblog\hexo\node_modules\hexo\node_                                            modules\bluebird\js\release\promise.js:509:35)</div><div class="line">    at Promise._settlePromise (F:\Myblog\hexo\node_modules\hexo\node_modules\blu                                            ebird\js\release\promise.js:569:18)</div><div class="line">    at Promise._settlePromise0 (F:\Myblog\hexo\node_modules\hexo\node_modules\bl                                            uebird\js\release\promise.js:614:10)</div><div class="line">    at Promise._settlePromises (F:\Myblog\hexo\node_modules\hexo\node_modules\bl                                            uebird\js\release\promise.js:693:18)</div><div class="line">    at Promise._fulfill (F:\Myblog\hexo\node_modules\hexo\node_modules\bluebird\                                            js\release\promise.js:638:18)</div><div class="line">    at PromiseArray._resolve (F:\Myblog\hexo\node_modules\hexo\node_modules\blue                                            bird\js\release\promise_array.js:126:19)</div><div class="line">    at PromiseArray._promiseFulfilled (F:\Myblog\hexo\node_modules\hexo\node_mod                                            ules\bluebird\js\release\promise_array.js:144:14)</div><div class="line">    at PromiseArray._iterate (F:\Myblog\hexo\node_modules\hexo\node_modules\blue</div></pre></td></tr></table></figure></p>
-<p>仔细排查之后，发现是文章开头的categroies的冒号，写成了中文的冒号。额。。。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;hexo提交新文章出错&quot;&gt;&lt;a href=&quot;#hexo提交新文章出错&quot; class=&quot;headerlink&quot; title=&quot;hexo提交新文章出错&quot;&gt;&lt;/a&gt;hexo提交新文章出错&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;提交文章的时候报了下面这个错误，&lt;br&gt;
     
     </summary>
     
