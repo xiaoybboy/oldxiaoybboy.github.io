@@ -109,7 +109,7 @@
 <meta property="og:description" content="近来做一个比赛，一个识别鼠标轨迹是人还是机器的二分类问题。自己用SVM和神经网络等传统的机器学习的方法都试过了，但是提交之后的结果发现并不好。正好前几天研究过几个别人做的其他比赛的解决方案，发现用的boosting方法比较多,其中尤其是xgboost。于是打算再用xgboost的模型做一下，看看结果怎么样。但是，安装xgboost的过程并不轻松。试了好几种方法，最后花了一下午时间，终于安装成功。">
 <meta property="og:image" content="http://i.imgur.com/wMngVUt.png">
 <meta property="og:image" content="http://i.imgur.com/9VfyKQV.png">
-<meta property="og:updated_time" content="2017-06-05T08:12:45.548Z">
+<meta property="og:updated_time" content="2017-06-05T08:16:24.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次坑爹的windows下安装xgboost的经历">
 <meta name="twitter:description" content="近来做一个比赛，一个识别鼠标轨迹是人还是机器的二分类问题。自己用SVM和神经网络等传统的机器学习的方法都试过了，但是提交之后的结果发现并不好。正好前几天研究过几个别人做的其他比赛的解决方案，发现用的boosting方法比较多,其中尤其是xgboost。于是打算再用xgboost的模型做一下，看看结果怎么样。但是，安装xgboost的过程并不轻松。试了好几种方法，最后花了一下午时间，终于安装成功。">
@@ -455,7 +455,7 @@
       
 
       
-        <p>近来做一个比赛，一个识别鼠标轨迹是人还是机器的二分类问题。自己用SVM和神经网络等传统的机器学习的方法都试过了，但是提交之后的结果发现并不好。正好前几天研究过几个别人做的其他比赛的解决方案，发现用的boosting方法比较多,其中尤其是xgboost。于是打算再用xgboost的模型做一下，看看结果怎么样。<br>但是，安装xgboost的过程并不轻松。试了好几种方法，最后花了一下午时间，终于安装成功。</p>
+        <p>近来做一个比赛，一个识别鼠标轨迹是人还是机器的二分类问题。自己用SVM和神经网络等传统的机器学习的方法都试过了，但是提交之后的结果发现并不好。正好前几天研究过几个别人做的其他比赛的解决方案，发现用的boosting方法比较多,其中尤其是xgboost。于是打算再用xgboost的模型做一下，看看结果怎么样。<br>但是，安装xgboost的过程并不轻松。试了好几种方法，最后花了一下午时间，终于安装成功。<br><a id="more"></a></p>
 <h1 id="1-使用纯命令行安装"><a href="#1-使用纯命令行安装" class="headerlink" title="1.使用纯命令行安装"></a>1.使用纯命令行安装</h1><p>参考：<a href="http://www.th7.cn/system/win/201603/157092.shtml" target="_blank" rel="external">http://www.th7.cn/system/win/201603/157092.shtml</a><br><a href="http://blog.csdn.net/ychanmy/article/details/50972530" target="_blank" rel="external">http://blog.csdn.net/ychanmy/article/details/50972530</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git clone --recursive https://github.com/dmlc/xgboost$ cd xgboost</div><div class="line">$ git submodule init</div><div class="line">$ git submodule update</div><div class="line">$cp make/mingw64.mk config.mk</div><div class="line">$make -j4</div><div class="line"></div><div class="line">$cd python-package</div><div class="line">$python setup.py install</div></pre></td></tr></table></figure></p>
 <p>但是，为毛别人都能成功，我就是一直报错呢，而且google不到答案，哎。。。<br><img src="http://i.imgur.com/wMngVUt.png" alt=""><br>看来这个东西看人品的，没办法，找其他的办法吧！</p>
 <h1 id="2-使用旧版本的xgboost"><a href="#2-使用旧版本的xgboost" class="headerlink" title="2.使用旧版本的xgboost"></a>2.使用旧版本的xgboost</h1><p>最终，在<a href="http://m.blog.csdn.net/article/details?id=53118803找到一个可用的解决方法。" target="_blank" rel="external">http://m.blog.csdn.net/article/details?id=53118803找到一个可用的解决方法。</a><br>下载旧版本的xgboost,<a href="http://download.csdn.net/detail/zhuqiuhui/9476012" target="_blank" rel="external">http://download.csdn.net/detail/zhuqiuhui/9476012</a><br>然后就很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$cd xgboost</div><div class="line">$make -j4</div><div class="line"></div><div class="line">$cd python-package</div><div class="line">$python setup.py install</div></pre></td></tr></table></figure></p>
