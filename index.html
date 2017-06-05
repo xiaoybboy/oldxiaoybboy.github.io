@@ -338,6 +338,164 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/06/05/记一次坑爹的windows下安装xgboost的经历/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="A Happy Boy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="如果一切重来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/05/记一次坑爹的windows下安装xgboost的经历/" itemprop="url">
+                  记一次坑爹的windows下安装xgboost的经历
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T15:51:28+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python-大数据比赛/" itemprop="url" rel="index">
+                    <span itemprop="name">python,大数据比赛</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/05/记一次坑爹的windows下安装xgboost的经历/" class="leancloud_visitors" data-flag-title="记一次坑爹的windows下安装xgboost的经历">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近来做一个比赛，一个识别鼠标轨迹是人还是机器的二分类问题。自己用SVM和神经网络等传统的机器学习的方法都试过了，但是提交之后的结果发现并不好。正好前几天研究过几个别人做的其他比赛的解决方案，发现用的boosting方法比较多,其中尤其是xgboost。于是打算再用xgboost的模型做一下，看看结果怎么样。<br>但是，安装xgboost的过程并不轻松。试了好几种方法，最后花了一下午时间，终于安装成功。</p>
+<h1 id="1-使用纯命令行安装"><a href="#1-使用纯命令行安装" class="headerlink" title="1.使用纯命令行安装"></a>1.使用纯命令行安装</h1><p>参考：<a href="http://www.th7.cn/system/win/201603/157092.shtml" target="_blank" rel="external">http://www.th7.cn/system/win/201603/157092.shtml</a><br><a href="http://blog.csdn.net/ychanmy/article/details/50972530" target="_blank" rel="external">http://blog.csdn.net/ychanmy/article/details/50972530</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git clone --recursive https://github.com/dmlc/xgboost$ cd xgboost</div><div class="line">$ git submodule init</div><div class="line">$ git submodule update</div><div class="line">$cp make/mingw64.mk config.mk</div><div class="line">$make -j4</div><div class="line"></div><div class="line">$cd python-package</div><div class="line">$python setup.py install</div></pre></td></tr></table></figure></p>
+<p>但是，为毛别人都能成功，我就是一直报错呢，而且google不到答案，哎。。。<br><img src="http://i.imgur.com/wMngVUt.png" alt=""><br>看来这个东西看人品的，没办法，找其他的办法吧！</p>
+<h1 id="2-使用旧版本的xgboost"><a href="#2-使用旧版本的xgboost" class="headerlink" title="2.使用旧版本的xgboost"></a>2.使用旧版本的xgboost</h1><p>最终，在<a href="http://m.blog.csdn.net/article/details?id=53118803找到一个可用的解决方法。" target="_blank" rel="external">http://m.blog.csdn.net/article/details?id=53118803找到一个可用的解决方法。</a><br>下载旧版本的xgboost,<a href="http://download.csdn.net/detail/zhuqiuhui/9476012" target="_blank" rel="external">http://download.csdn.net/detail/zhuqiuhui/9476012</a><br>然后就很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$cd xgboost</div><div class="line">$make -j4</div><div class="line"></div><div class="line">$cd python-package</div><div class="line">$python setup.py install</div></pre></td></tr></table></figure></p>
+<p><img src="http://i.imgur.com/9VfyKQV.png" alt=""><br>终于！不知道旧版本的xgbosot有没有什么问题，先用用试试吧！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/06/01/sklearn-PCA降维/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1753,164 +1911,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/03/31/github上ssh配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="A Happy Boy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="如果一切重来">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/31/github上ssh配置/" itemprop="url">
-                  github上ssh配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T04:13:14+08:00">
-                2017-03-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/31/github上ssh配置/" class="leancloud_visitors" data-flag-title="github上ssh配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="配置-ssh-key"><a href="#配置-ssh-key" class="headerlink" title="配置 ssh key"></a>配置 ssh key</h1><p>使用 git bash 生成 public ssh key，以下是最简单的方法<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/31/github上ssh配置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1960,7 +1960,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1971,7 +1971,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1982,7 +1982,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

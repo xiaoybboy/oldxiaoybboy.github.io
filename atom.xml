@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-06-01T10:37:57.748Z</updated>
+  <updated>2017-06-05T08:12:45.548Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次坑爹的windows下安装xgboost的经历</title>
+    <link href="https://xiaoybboy.github.io/2017/06/05/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9D%91%E7%88%B9%E7%9A%84windows%E4%B8%8B%E5%AE%89%E8%A3%85xgboost%E7%9A%84%E7%BB%8F%E5%8E%86/"/>
+    <id>https://xiaoybboy.github.io/2017/06/05/记一次坑爹的windows下安装xgboost的经历/</id>
+    <published>2017-06-05T07:51:28.000Z</published>
+    <updated>2017-06-05T08:12:45.548Z</updated>
+    
+    <content type="html"><![CDATA[<p>近来做一个比赛，一个识别鼠标轨迹是人还是机器的二分类问题。自己用SVM和神经网络等传统的机器学习的方法都试过了，但是提交之后的结果发现并不好。正好前几天研究过几个别人做的其他比赛的解决方案，发现用的boosting方法比较多,其中尤其是xgboost。于是打算再用xgboost的模型做一下，看看结果怎么样。<br>但是，安装xgboost的过程并不轻松。试了好几种方法，最后花了一下午时间，终于安装成功。</p>
+<h1 id="1-使用纯命令行安装"><a href="#1-使用纯命令行安装" class="headerlink" title="1.使用纯命令行安装"></a>1.使用纯命令行安装</h1><p>参考：<a href="http://www.th7.cn/system/win/201603/157092.shtml" target="_blank" rel="external">http://www.th7.cn/system/win/201603/157092.shtml</a><br><a href="http://blog.csdn.net/ychanmy/article/details/50972530" target="_blank" rel="external">http://blog.csdn.net/ychanmy/article/details/50972530</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git clone --recursive https://github.com/dmlc/xgboost$ cd xgboost</div><div class="line">$ git submodule init</div><div class="line">$ git submodule update</div><div class="line">$cp make/mingw64.mk config.mk</div><div class="line">$make -j4</div><div class="line"></div><div class="line">$cd python-package</div><div class="line">$python setup.py install</div></pre></td></tr></table></figure></p>
+<p>但是，为毛别人都能成功，我就是一直报错呢，而且google不到答案，哎。。。<br><img src="http://i.imgur.com/wMngVUt.png" alt=""><br>看来这个东西看人品的，没办法，找其他的办法吧！</p>
+<h1 id="2-使用旧版本的xgboost"><a href="#2-使用旧版本的xgboost" class="headerlink" title="2.使用旧版本的xgboost"></a>2.使用旧版本的xgboost</h1><p>最终，在<a href="http://m.blog.csdn.net/article/details?id=53118803找到一个可用的解决方法。" target="_blank" rel="external">http://m.blog.csdn.net/article/details?id=53118803找到一个可用的解决方法。</a><br>下载旧版本的xgboost,<a href="http://download.csdn.net/detail/zhuqiuhui/9476012" target="_blank" rel="external">http://download.csdn.net/detail/zhuqiuhui/9476012</a><br>然后就很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$cd xgboost</div><div class="line">$make -j4</div><div class="line"></div><div class="line">$cd python-package</div><div class="line">$python setup.py install</div></pre></td></tr></table></figure></p>
+<p><img src="http://i.imgur.com/9VfyKQV.png" alt=""><br>终于！不知道旧版本的xgbosot有没有什么问题，先用用试试吧！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;近来做一个比赛，一个识别鼠标轨迹是人还是机器的二分类问题。自己用SVM和神经网络等传统的机器学习的方法都试过了，但是提交之后的结果发现并不好。正好前几天研究过几个别人做的其他比赛的解决方案，发现用的boosting方法比较多,其中尤其是xgboost。于是打算再用xgboo
+    
+    </summary>
+    
+      <category term="python,大数据比赛" scheme="https://xiaoybboy.github.io/categories/python-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%AF%94%E8%B5%9B/"/>
+    
+    
+      <category term="xgboost" scheme="https://xiaoybboy.github.io/tags/xgboost/"/>
+    
+  </entry>
   
   <entry>
     <title>sklearn PCA降维</title>
@@ -749,47 +776,6 @@ undefined
     
     
       <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo利用Github分支在不同电脑上写博客</title>
-    <link href="https://xiaoybboy.github.io/2017/03/19/Hexo%E5%88%A9%E7%94%A8Github%E5%88%86%E6%94%AF%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%94%B5%E8%84%91%E4%B8%8A%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://xiaoybboy.github.io/2017/03/19/Hexo利用Github分支在不同电脑上写博客/</id>
-    <published>2017-03-19T04:15:27.000Z</published>
-    <updated>2017-04-06T07:10:30.310Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;利用github的不同分支来分别保存网站静态文件与hexo源码（md原始文件及主题等），实现在不同电脑上都可以自由写博客。</p>
-<h1 id="Github-Page"><a href="#Github-Page" class="headerlink" title="Github Page"></a>Github Page</h1><p>&emsp;&emsp;这里假设你已经在github上建好了page的仓库，也就是 “yourusername.github.io”的名字的项目仓库，比如我的 dxjia.github.io 。另外，也假设你在自己的电脑上已经配置好git、hexo、node js等环境。<br><a id="more"></a></p>
-<h2 id="新建hexo分支"><a href="#新建hexo分支" class="headerlink" title="新建hexo分支"></a>新建hexo分支</h2><p>&emsp;仓库建好之后，都是默认一个master分支的，Github page要求你的网站文件必须存放在这个master分支上，这个没得选；所以我们需要新建另外一个分支来保存我们的hexo原始文件；master 保存的全是public 文件夹下的内容，这也是 hexo发布到github上的内容，而hexo这个分支，保存的是我们网站的配置 。</p>
-<p>如下图在红色输入框内写入新建的branch名hexo后，回车即可建立新的branch-hexo；<br><img src="http://7xqitw.com1.z0.glb.clouddn.com/blog-resgit_hub_new_branch.png" alt=""></p>
-<h2 id="设置默认分支"><a href="#设置默认分支" class="headerlink" title="设置默认分支"></a>设置默认分支</h2><p>&emsp;&emsp;因为我们写博客更多的是更新这个分支，网站文件所在的master分支则由hexo d命令发布文章的时候进行推送，所以我们将hexo分支设置为默认分支，这样我们在新的电脑环境下git clone该仓库时，自动切到hexo`分支。按下图进行操作。<br><img src="http://7xqitw.com1.z0.glb.clouddn.com/blog-resgit_hub_set_default_branch.png" alt="设置默认分支"></p>
-<h2 id="配置hexo-deploy参数"><a href="#配置hexo-deploy参数" class="headerlink" title="配置hexo deploy参数"></a>配置hexo deploy参数</h2><p>&emsp;&emsp;为了保证hexo d命令可以正确部署到master分支，在hexo 的配置文件 _config.yml文件中配置参数如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/dxjia/dxjia.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;hexo 3.0之后 deploy type，将github改为了git，这样适用性更广了，如果你发现无法hexo d，使用下面的命令安装git deployer插件后重试即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<h2 id="修改推送到hexo分支"><a href="#修改推送到hexo分支" class="headerlink" title="修改推送到hexo分支"></a>修改推送到hexo分支</h2><p>&emsp;&emsp;上一步的deploy参数正确配置后，文章写完使用hexo g -d命令就可以直接部署了，生成的博客静态文件会自动部署到 username.github.io仓库的master分支上，这时候通过浏览器访问<a href="http://username.github.io就可以看到你的博客页面里。" target="_blank" rel="external">http://username.github.io就可以看到你的博客页面里。</a></p>
-<p>&emsp;&emsp;网站页面是保存了，但这时候我们还没有保存我们的hexo原始文件，包括我们的文章md文件，我们千辛万苦修改的主题配置等。。。接下来使用下面的步骤将他们都统统推送到hexo分支上去。其中目录下的.gitignore 表示哪些文件或文件夹不提交，根据自己需要配置。<br>如果没有.git文件，先git init。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m “change description”</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure></p>
-<p>如果没关联远程仓库，执行第三步会出错。和远程仓库关联执行：git remote add origin &lt;远程仓库地址&gt;<br>这样就OK了，我们的原始文件就都上去了，换电脑也不怕了。</p>
-<h1 id="日常写博客"><a href="#日常写博客" class="headerlink" title="日常写博客"></a>日常写博客</h1><p>&emsp;&emsp;有时候我们可能会在不同的电脑上写博客，那在不同的电脑上配置 hexo、git、node.js，以及配置git ssh key等都要折腾一下的，这是免不了的，也是比wordpress等其他博客框架麻烦的一点。</p>
-<h2 id="已有环境"><a href="#已有环境" class="headerlink" title="已有环境"></a>已有环境</h2><p>&emsp;&emsp;如果在电脑上已经写过博客，那么可以在已有的工作目录下同步之前写的博客。<br>在你的仓库目录下右键’git bash shell’，起来bash命令行，然后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull</div></pre></td></tr></table></figure>
-<p>这样你的状态就更新了，之后就是 hexo命令写文章啦。。。<br>写完hexo g -d部署好后，使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m “change description”</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
-<p>推送到hexo分支上去。</p>
-<h2 id="新的环境"><a href="#新的环境" class="headerlink" title="新的环境"></a>新的环境</h2><p>&emsp;&emsp;到了新的电脑上时，我们需要将项目先下载到本地，然后再进行hexo初始化。<br><strong>记住不需要hexo init指令</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/dxjia/dxjia.github.io.git</div><div class="line">cd dxjia.github.io</div><div class="line">npm install hexo</div><div class="line">npm install</div><div class="line">npm install hexo-deployer-git –save</div></pre></td></tr></table></figure></p>
-<p>之后开始写博客，写好部署好之后，别忘记 git add , ….git push origin hexo…推上去。。。<br>&emsp;&emsp;原文地址：<a href="http://dxjia.cn/2016/01/27/hexo-write-everywhere/" title="原文" target="_blank" rel="external">http://dxjia.cn/2016/01/27/hexo-write-everywhere/</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;利用github的不同分支来分别保存网站静态文件与hexo源码（md原始文件及主题等），实现在不同电脑上都可以自由写博客。&lt;/p&gt;
-&lt;h1 id=&quot;Github-Page&quot;&gt;&lt;a href=&quot;#Github-Page&quot; class=&quot;headerlink&quot; title=&quot;Github Page&quot;&gt;&lt;/a&gt;Github Page&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;这里假设你已经在github上建好了page的仓库，也就是 “yourusername.github.io”的名字的项目仓库，比如我的 dxjia.github.io 。另外，也假设你在自己的电脑上已经配置好git、hexo、node js等环境。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="https://xiaoybboy.github.io/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
     
   </entry>
   
