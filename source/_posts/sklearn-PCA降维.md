@@ -1,8 +1,8 @@
 ---
 title: sklearn PCA降维
 date: 2017-06-01 18:01:31
-tags: [机器学习，sklearn]
-categories: 机器学习,sklearn学习
+tags: [机器学习,sklearn]
+categories: sklearn学习
 ---
 对于太多的特征，一般需要进行降维处理。PCA是最常用的降维的方法，sklearn提供了PCA降维的方法。
 # 函数原型
