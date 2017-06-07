@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://xiaoybboy.github.io/2017/06/07/%E4%BD%BF%E7%94%A8sklearn%E4%BC%98%E9%9B%85%E5%9C%B0%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</loc>
+    <lastmod>2017-06-07T02:26:46.187Z</lastmod>
+    <data>
+        <display>
+        <title>使用sklearn优雅地进行数据挖掘</title>
+        <pubTime>2017-06-07T02:12:24.000Z</pubTime>
+        
+        <tag>数据挖掘</tag>
+         
+        <tag>sklearn</tag>
+         
+         
+           
+             
+              <breadCrumb title="sklearn笔记" url="https://xiaoybboy.github.io/categories/sklearn%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://xiaoybboy.github.io/2017/06/06/%E7%94%A8sklearn%E5%81%9A%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/</loc>
     <lastmod>2017-06-06T08:03:38.260Z</lastmod>
     <data>
@@ -541,9 +563,9 @@
         <title>Hello World</title>
         <pubTime>2017-03-06T16:00:00.000Z</pubTime>
         
-        <tag>hexo</tag>
-         
         <tag>github</tag>
+         
+        <tag>hexo</tag>
          
          
            
@@ -560,9 +582,9 @@
         <title>github上ssh配置</title>
         <pubTime>2017-03-30T20:13:14.000Z</pubTime>
         
-        <tag>hexo</tag>
-         
         <tag>github</tag>
+         
+        <tag>hexo</tag>
          
          
            
