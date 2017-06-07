@@ -338,6 +338,160 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/06/07/python求list的平均数、众数、最大值、最小值、极值、方差等/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="A Happy Boy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="如果一切重来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/07/python求list的平均数、众数、最大值、最小值、极值、方差等/" itemprop="url">
+                  python求list的平均数、众数、最大值、最小值、极值、方差等
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-07T17:03:36+08:00">
+                2017-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/07/python求list的平均数、众数、最大值、最小值、极值、方差等/" class="leancloud_visitors" data-flag-title="python求list的平均数、众数、最大值、最小值、极值、方差等">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据挖掘中经常会用到一组数据(list)的相关特征。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line">feature.py</div><div class="line">'''</div><div class="line"><span class="comment">#最大数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Max</span><span class="params">(list)</span>:</span></div><div class="line">    <span class="keyword">return</span> max(list)</div><div class="line"></div><div class="line"><span class="comment">#最小数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Min</span><span class="params">(list)</span>:</span></div><div class="line">    <span class="keyword">return</span> min(list)</div><div class="line"></div><div class="line"><span class="comment">#极差</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Range</span><span class="params">(list)</span>:</span></div><div class="line">    <span class="keyword">return</span> max(list) - min(list)</div><div class="line"></div><div class="line"><span class="comment">#中位数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_median</span><span class="params">(data)</span>:</span></div><div class="line">   data = sorted(data)</div><div class="line">   size = len(data)</div><div class="line">   <span class="keyword">if</span> size % <span class="number">2</span> == <span class="number">0</span>: <span class="comment"># 判断列表长度为偶数</span></div><div class="line">       median = (data[size//<span class="number">2</span>]+data[size//<span class="number">2</span><span class="number">-1</span>])/<span class="number">2</span></div><div class="line">   <span class="keyword">if</span> size % <span class="number">2</span> == <span class="number">1</span>: <span class="comment"># 判断列表长度为奇数</span></div><div class="line">       median = data[(size<span class="number">-1</span>)//<span class="number">2</span>]</div><div class="line">   <span class="keyword">return</span> median</div><div class="line"></div><div class="line"><span class="comment">#众数(返回多个众数的平均值)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Most</span><span class="params">(list)</span>:</span></div><div class="line">    most=[]</div><div class="line">    item_num = dict((item, list.count(item)) <span class="keyword">for</span> item <span class="keyword">in</span> list)</div><div class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> item_num.items():</div><div class="line">        <span class="keyword">if</span> v == max(item_num.values()):</div><div class="line">           most.append(k)</div><div class="line">    <span class="keyword">return</span> sum(most)/len(most)</div><div class="line"></div><div class="line"><span class="comment">#获取平均数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Average</span><span class="params">(list)</span>:</span></div><div class="line">	sum = <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> item <span class="keyword">in</span> list:</div><div class="line">		sum += item</div><div class="line">	<span class="keyword">return</span> sum/len(list)</div><div class="line"></div><div class="line"><span class="comment">#获取方差</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Variance</span><span class="params">(list)</span>:</span></div><div class="line">	sum = <span class="number">0</span></div><div class="line">	average = Get_Average(list)</div><div class="line">	<span class="keyword">for</span> item <span class="keyword">in</span> list:</div><div class="line">		sum += (item - average)**<span class="number">2</span></div><div class="line">	<span class="keyword">return</span> sum/len(list)</div><div class="line"></div><div class="line"><span class="comment">#获取n阶原点距</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_NMoment</span><span class="params">(list,n)</span>:</span></div><div class="line">    sum=<span class="number">0</span></div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> list:</div><div class="line">        sum += item**n</div><div class="line">    <span class="keyword">return</span> sum/len(list)</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/06/07/使用sklearn优雅地进行数据挖掘/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -400,8 +554,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sklearn笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">sklearn笔记</span>
+                  <a href="/categories/sklearn学习/" itemprop="url" rel="index">
+                    <span itemprop="name">sklearn学习</span>
                   </a>
                 </span>
 
@@ -1772,169 +1926,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/04/07/Java源码之HashSet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="A Happy Boy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="如果一切重来">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/07/Java源码之HashSet/" itemprop="url">
-                  Java源码之HashSet
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T11:10:20+08:00">
-                2017-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java集合/" itemprop="url" rel="index">
-                    <span itemprop="name">java集合</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/04/07/Java源码之HashSet/" class="leancloud_visitors" data-flag-title="Java源码之HashSet">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>1.HashSet 是一个没有重复元素的集合。它是由HashMap实现的，不保证元素的顺序，特别是它不保证该顺序恒久不变。而且HashSet允许使用 null 元素。<br>2.HashSet是非同步的。如果多个线程同时访问一个哈希 set，而其中至少一个线程修改了该 set，那么它必须保持外部同步。这通常是通过对自然封装该 set 的对象执行同步操作来完成的。如果不存在这样的对象，则应该使用 Collections.synchronizedSet 方法来“包装” Set。最好在创建时完成这一操作，以防止对该 set 进行意外的不同步访问：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/07/Java源码之HashSet/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1979,7 +1975,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2001,7 +1997,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

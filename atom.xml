@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-06-07T02:48:28.271Z</updated>
+  <updated>2017-06-07T09:05:48.914Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -16,11 +16,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python求list的平均数、众数、最大值、最小值、极值、方差等</title>
+    <link href="https://xiaoybboy.github.io/2017/06/07/python%E6%B1%82list%E7%9A%84%E5%B9%B3%E5%9D%87%E6%95%B0%E3%80%81%E4%BC%97%E6%95%B0%E3%80%81%E6%9C%80%E5%A4%A7%E5%80%BC%E3%80%81%E6%9C%80%E5%B0%8F%E5%80%BC%E3%80%81%E6%9E%81%E5%80%BC%E3%80%81%E6%96%B9%E5%B7%AE%E7%AD%89/"/>
+    <id>https://xiaoybboy.github.io/2017/06/07/python求list的平均数、众数、最大值、最小值、极值、方差等/</id>
+    <published>2017-06-07T09:03:36.000Z</published>
+    <updated>2017-06-07T09:05:48.914Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据挖掘中经常会用到一组数据(list)的相关特征。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line">feature.py</div><div class="line">'''</div><div class="line"><span class="comment">#最大数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Max</span><span class="params">(list)</span>:</span></div><div class="line">    <span class="keyword">return</span> max(list)</div><div class="line"></div><div class="line"><span class="comment">#最小数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Min</span><span class="params">(list)</span>:</span></div><div class="line">    <span class="keyword">return</span> min(list)</div><div class="line"></div><div class="line"><span class="comment">#极差</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Range</span><span class="params">(list)</span>:</span></div><div class="line">    <span class="keyword">return</span> max(list) - min(list)</div><div class="line"></div><div class="line"><span class="comment">#中位数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_median</span><span class="params">(data)</span>:</span></div><div class="line">   data = sorted(data)</div><div class="line">   size = len(data)</div><div class="line">   <span class="keyword">if</span> size % <span class="number">2</span> == <span class="number">0</span>: <span class="comment"># 判断列表长度为偶数</span></div><div class="line">       median = (data[size//<span class="number">2</span>]+data[size//<span class="number">2</span><span class="number">-1</span>])/<span class="number">2</span></div><div class="line">   <span class="keyword">if</span> size % <span class="number">2</span> == <span class="number">1</span>: <span class="comment"># 判断列表长度为奇数</span></div><div class="line">       median = data[(size<span class="number">-1</span>)//<span class="number">2</span>]</div><div class="line">   <span class="keyword">return</span> median</div><div class="line"></div><div class="line"><span class="comment">#众数(返回多个众数的平均值)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Most</span><span class="params">(list)</span>:</span></div><div class="line">    most=[]</div><div class="line">    item_num = dict((item, list.count(item)) <span class="keyword">for</span> item <span class="keyword">in</span> list)</div><div class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> item_num.items():</div><div class="line">        <span class="keyword">if</span> v == max(item_num.values()):</div><div class="line">           most.append(k)</div><div class="line">    <span class="keyword">return</span> sum(most)/len(most)</div><div class="line"></div><div class="line"><span class="comment">#获取平均数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Average</span><span class="params">(list)</span>:</span></div><div class="line">	sum = <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> item <span class="keyword">in</span> list:</div><div class="line">		sum += item</div><div class="line">	<span class="keyword">return</span> sum/len(list)</div><div class="line"></div><div class="line"><span class="comment">#获取方差</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_Variance</span><span class="params">(list)</span>:</span></div><div class="line">	sum = <span class="number">0</span></div><div class="line">	average = Get_Average(list)</div><div class="line">	<span class="keyword">for</span> item <span class="keyword">in</span> list:</div><div class="line">		sum += (item - average)**<span class="number">2</span></div><div class="line">	<span class="keyword">return</span> sum/len(list)</div><div class="line"></div><div class="line"><span class="comment">#获取n阶原点距</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_NMoment</span><span class="params">(list,n)</span>:</span></div><div class="line">    sum=<span class="number">0</span></div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> list:</div><div class="line">        sum += item**n</div><div class="line">    <span class="keyword">return</span> sum/len(list)</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据挖掘中经常会用到一组数据(list)的相关特征。&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;li
+    
+    </summary>
+    
+      <category term="python" scheme="https://xiaoybboy.github.io/categories/python/"/>
+    
+    
+      <category term="python" scheme="https://xiaoybboy.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用sklearn优雅地进行数据挖掘</title>
     <link href="https://xiaoybboy.github.io/2017/06/07/%E4%BD%BF%E7%94%A8sklearn%E4%BC%98%E9%9B%85%E5%9C%B0%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     <id>https://xiaoybboy.github.io/2017/06/07/使用sklearn优雅地进行数据挖掘/</id>
     <published>2017-06-07T02:12:24.000Z</published>
-    <updated>2017-06-07T02:48:28.271Z</updated>
+    <updated>2017-06-07T03:01:05.661Z</updated>
     
     <content type="html"><![CDATA[<p>今天找资料的时候，发现一个很牛的大神。写的博客是真的好。慢慢的汲取养分。<br>转自：<a href="http://www.cnblogs.com/jasonfreak/p/5448462.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5448462.html</a></p>
 <h1 id="使用sklearn进行数据挖掘"><a href="#使用sklearn进行数据挖掘" class="headerlink" title="使用sklearn进行数据挖掘"></a>使用sklearn进行数据挖掘</h1><h2 id="数据挖掘的步骤"><a href="#数据挖掘的步骤" class="headerlink" title="数据挖掘的步骤"></a>数据挖掘的步骤</h2><p>数据挖掘通常包括数据采集，数据分析，特征工程，训练模型，模型评估等步骤。使用sklearn工具可以方便地进行特征工程和模型训练工作，在《使用sklearn做单机特征工程》中，我们最后留下了一些疑问：特征处理类都有三个方法fit、transform和fit_transform，fit方法居然和模型训练方法fit同名（不光同名，参数列表都一样），这难道都是巧合？<br>显然，这不是巧合，这正是sklearn的设计风格。我们能够更加优雅地使用sklearn进行特征工程和模型训练工作。此时，不妨从一个基本的数据挖掘场景入手：<br><a id="more"></a><br><img src="http://i.imgur.com/Tru96mm.png" alt=""><br>我们使用sklearn进行虚线框内的工作（sklearn也可以进行文本特征提取）。通过分析sklearn源码，我们可以看到除训练，预测和评估以外，处理其他工作的类都实现了3个方法：fit、transform和fit_transform。从命名中可以看到，fit_transform方法是先调用fit然后调用transform，我们只需要关注fit方法和transform方法即可。</p>
@@ -45,12 +68,12 @@
     
     </summary>
     
-      <category term="sklearn笔记" scheme="https://xiaoybboy.github.io/categories/sklearn%E7%AC%94%E8%AE%B0/"/>
+      <category term="sklearn学习" scheme="https://xiaoybboy.github.io/categories/sklearn%E5%AD%A6%E4%B9%A0/"/>
     
-    
-      <category term="数据挖掘" scheme="https://xiaoybboy.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     
       <category term="sklearn" scheme="https://xiaoybboy.github.io/tags/sklearn/"/>
+    
+      <category term="数据挖掘" scheme="https://xiaoybboy.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     
   </entry>
   
@@ -575,9 +598,9 @@
       <category term="hexo" scheme="https://xiaoybboy.github.io/categories/hexo/"/>
     
     
-      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
     
   </entry>
   
@@ -775,44 +798,6 @@ undefined
     <summary type="html">
     
       &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;&amp;emsp;&amp;emsp;在一个字符串(1&amp;lt;=字符串长度&amp;lt;=10000，全部由大写字母组成)中找到第一个只出现一次的字符,并返回它的位置.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第N个丑数</title>
-    <link href="https://xiaoybboy.github.io/2017/03/20/%E7%AC%ACN%E4%B8%AA%E4%B8%91%E6%95%B0/"/>
-    <id>https://xiaoybboy.github.io/2017/03/20/第N个丑数/</id>
-    <published>2017-03-20T07:18:42.000Z</published>
-    <updated>2017-04-06T07:10:30.330Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note primary"><p>&emsp;&emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上<br>我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 </p>
-</div>
-<a id="more"></a>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><div class="note success"><p>&emsp;&emsp;暴力求解思路。首先我们要搞清楚怎么求丑数。ugly[]表示丑数数组。</p>
-</div>
-<ol>
-<li>ugly[0]=1;</li>
-<li>ugly[1]=1*2;</li>
-<li>ugly[3]=1*3;</li>
-<li>ugly[4]=1<em>2</em>2;</li>
-<li>ugly[5]=1*5;</li>
-<li>ugly[6]=1<em>2</em>3;</li>
-<li>…<br>&emsp;&emsp;是不是可以找出规律来，我们需要记录 丑数中因子 2,3,5 出现的次数。具体用语言不好描述，可以看出规律。<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。</div><div class="line"> * 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetUglyNumber</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">GetUglyNumber_Solution</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (index &lt;= <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[index];</div><div class="line">		result[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> i2 = <span class="number">0</span>, i3 = <span class="number">0</span>, i5 = <span class="number">0</span>;<span class="comment">// i2,i3,i5分别记录丑数的因子中2,3,5的个数</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; index; i++) &#123;</div><div class="line">			result[i] = min(result[i2] * <span class="number">2</span>, min(result[i3] * <span class="number">3</span>, result[i5] * <span class="number">5</span>));</div><div class="line">			<span class="keyword">if</span> (result[i] == result[i2] * <span class="number">2</span>) &#123;</div><div class="line">				i2++;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (result[i] == result[i3] * <span class="number">3</span>) &#123;</div><div class="line">				i3++;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (result[i] == result[i5] * <span class="number">5</span>) &#123;</div><div class="line">				i5++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> result[index - <span class="number">1</span>];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> i &gt; j ? j : i;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note primary&quot;&gt;&lt;p&gt;&amp;emsp;&amp;emsp;把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。习惯上&lt;br&gt;我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 &lt;/p&gt;
-&lt;/div&gt;
     
     </summary>
     
