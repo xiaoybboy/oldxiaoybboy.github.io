@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-06-07T02:26:46.187Z</updated>
+  <updated>2017-06-07T02:27:28.771Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xiaoybboy.github.io/2017/06/07/%E4%BD%BF%E7%94%A8sklearn%E4%BC%98%E9%9B%85%E5%9C%B0%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     <id>https://xiaoybboy.github.io/2017/06/07/使用sklearn优雅地进行数据挖掘/</id>
     <published>2017-06-07T02:12:24.000Z</published>
-    <updated>2017-06-07T02:26:46.187Z</updated>
+    <updated>2017-06-07T02:27:28.771Z</updated>
     
     <content type="html"><![CDATA[<p>今天找资料的时候，发现一个很牛的大神。写的博客是真的好。慢慢的汲取养分。<br>转自：<a href="http://www.cnblogs.com/jasonfreak/p/5448462.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5448462.html</a></p>
 <h1 id="使用sklearn进行数据挖掘"><a href="#使用sklearn进行数据挖掘" class="headerlink" title="使用sklearn进行数据挖掘"></a>使用sklearn进行数据挖掘</h1><h2 id="数据挖掘的步骤"><a href="#数据挖掘的步骤" class="headerlink" title="数据挖掘的步骤"></a>数据挖掘的步骤</h2><p>数据挖掘通常包括数据采集，数据分析，特征工程，训练模型，模型评估等步骤。使用sklearn工具可以方便地进行特征工程和模型训练工作，在《使用sklearn做单机特征工程》中，我们最后留下了一些疑问：特征处理类都有三个方法fit、transform和fit_transform，fit方法居然和模型训练方法fit同名（不光同名，参数列表都一样），这难道都是巧合？<br>显然，这不是巧合，这正是sklearn的设计风格。我们能够更加优雅地使用sklearn进行特征工程和模型训练工作。此时，不妨从一个基本的数据挖掘场景入手：<br><img src="http://i.imgur.com/Tru96mm.png" alt=""><br>我们使用sklearn进行虚线框内的工作（sklearn也可以进行文本特征提取）。通过分析sklearn源码，我们可以看到除训练，预测和评估以外，处理其他工作的类都实现了3个方法：fit、transform和fit_transform。从命名中可以看到，fit_transform方法是先调用fit然后调用transform，我们只需要关注fit方法和transform方法即可。</p>
