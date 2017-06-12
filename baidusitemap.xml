@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://xiaoybboy.github.io/2017/06/12/Xgboost%E5%8F%82%E6%95%B0/</loc>
+    <lastmod>2017-06-12T11:09:34.075Z</lastmod>
+    <data>
+        <display>
+        <title>Xgboost参数</title>
+        <pubTime>2017-06-12T10:58:23.000Z</pubTime>
+        
+        <tag>Xgboost</tag>
+         
+         
+           
+             
+              <breadCrumb title="Xgboost" url="https://xiaoybboy.github.io/categories/Xgboost/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://xiaoybboy.github.io/2017/06/07/python%E6%B1%82list%E7%9A%84%E5%B9%B3%E5%9D%87%E6%95%B0%E3%80%81%E4%BC%97%E6%95%B0%E3%80%81%E6%9C%80%E5%A4%A7%E5%80%BC%E3%80%81%E6%9C%80%E5%B0%8F%E5%80%BC%E3%80%81%E6%9E%81%E5%80%BC%E3%80%81%E6%96%B9%E5%B7%AE%E7%AD%89/</loc>
     <lastmod>2017-06-07T09:08:56.827Z</lastmod>
     <data>
@@ -31,9 +51,9 @@
         <title>使用sklearn优雅地进行数据挖掘</title>
         <pubTime>2017-06-07T02:12:24.000Z</pubTime>
         
-        <tag>sklearn</tag>
-         
         <tag>数据挖掘</tag>
+         
+        <tag>sklearn</tag>
          
          
            
@@ -266,12 +286,12 @@
 
     
   <url>
-    <loc>https://xiaoybboy.github.io/2017/03/24/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/</loc>
+    <loc>https://xiaoybboy.github.io/2017/03/19/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/</loc>
     <lastmod>2017-04-06T07:10:30.332Z</lastmod>
     <data>
         <display>
-        <title>青蛙跳台阶</title>
-        <pubTime>2017-03-24T07:49:49.000Z</pubTime>
+        <title>连续子数组的最大和</title>
+        <pubTime>2017-03-19T07:33:33.000Z</pubTime>
         
         <tag>算法</tag>
          
@@ -286,12 +306,12 @@
 
     
   <url>
-    <loc>https://xiaoybboy.github.io/2017/03/19/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/</loc>
+    <loc>https://xiaoybboy.github.io/2017/03/24/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/</loc>
     <lastmod>2017-04-06T07:10:30.332Z</lastmod>
     <data>
         <display>
-        <title>连续子数组的最大和</title>
-        <pubTime>2017-03-19T07:33:33.000Z</pubTime>
+        <title>青蛙跳台阶</title>
+        <pubTime>2017-03-24T07:49:49.000Z</pubTime>
         
         <tag>算法</tag>
          
