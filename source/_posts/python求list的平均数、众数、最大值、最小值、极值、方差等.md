@@ -5,6 +5,7 @@ tags: [python]
 categories: python
 ---
 数据挖掘中经常会用到一组数据(list)的相关特征。
+<!--more-->
 ```python
 '''
 feature.py
