@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[maven项目创建时出错]]></title>
       <url>%2F2017%2F07%2F22%2Fmaven%2F</url>
-      <content type="text"><![CDATA[哎，一些问题每次出错都要重新找方法解决。以后还是都记录下来把。 问题描述Eclipse创建Maven项目时，报错Could not calculate build plan: Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6 解决方案删除本地Maven仓库org.apache.maven.plugins:maven-resources-plugin所在目录文件夹。然后在一个maven项目中的pom.xml文件中增加以下依赖12345&lt;dependency&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.2&lt;/version&gt;&lt;/dependency&gt; 然后执行maven install重新下载maven-resources-plugin这个jar包即可。]]></content>
+      <content type="text"><![CDATA[哎，一些问题每次出错都要重新找方法解决。以后还是都记录下来把。 问题描述Eclipse创建Maven项目时，报错Could not calculate build plan: Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6 解决方案删除本地Maven仓库org.apache.maven.plugins:maven-resources-plugin所在目录文件夹。然后在一个maven项目中的pom.xml文件中增加以下依赖12345&lt;dependency&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.2&lt;/version&gt;&lt;/dependency&gt; 然后执行maven install重新下载maven-resources-plugin这个jar包即可。同样的，有可能其他plugin会报类似的错误，解决方法和上面类似。]]></content>
     </entry>
 
     
@@ -62,6 +62,13 @@
       <title><![CDATA[hexo个人域名配置]]></title>
       <url>%2F2017%2F05%2F31%2Fhexo%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%2F</url>
       <content type="text"><![CDATA[1.在万网上购买域名https://wanwang.aliyun.com 或者其他域名购买网站 2.配置域名解析进入你的管理后台 3.添加域名解析按下图所示添加域名解析。其中，记录类型选A或CNAME，A记录的记录值就是ip地址，github(官方文档)提供了两个IP地址，192.30.252.153和192.30.252.154，这两个IP地址为github的服务器地址，两个都要填上，解析记录设置两个www和@，线路就默认就行了，CNAME记录值填你的github博客网址。 4.创建CNAME文件 这些全部设置完成后，此时你并不能要申请的域名访问你的博客。接着你需要做的是在hexo根目录的source文件夹里创建CNAME文件，不带任何后缀，里面添加你的域名信息，如：xiaoyb.me。 5.发布并访问重新发布hexo d -g然后就可以访问你的新域名了。快点试试吧！]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[eclipse下创建maven webapp项目]]></title>
+      <url>%2F2017%2F04%2F22%2Feclipse%E4%B8%8B%E5%88%9B%E5%BB%BAmaven-webapp%E9%A1%B9%E7%9B%AE%2F</url>
+      <content type="text"><![CDATA[1、开启eclipse，右键new——》other，如下图找到maven project2、选择maven project，显示创建maven项目的窗口，勾选如图所示，Create a simple project3、输入maven项目的基本信息，如下图所示：4、完成maven项目的创建，生成相应的maven项目结果，如下所示，此处有部分结构是项目不需要的，我们需要去掉：5、选择项目，右键选择Properties，进入属性页面，选择到Maven菜单下，如下图所示：6、选择java版本为1.7，并去掉其他两项，如下图：7、点击ok之后，再次回到项目结构，此时项目结构比较清晰，符合我们想要创建的maven项目8、此时webapp下的结果还没有显示出来，因为此时我们还没有配置此的项目为web项目，再次进去Properties配置，如下图所示：9、点击Further configuration available…，如下：10、配置src/main/webapp，并勾选生成web.xml的选项，如下：11、确定之后，返回到maven菜单下去掉Dynamic Web Module的勾选，点击ok，如下所示，webapp目录结构显示出来了：12、此时还需要配置，src/main/webapp为“/”项目的根目录，如下所示：13、完成如上配置后，最后完成maven webapp项目结构如下图所示：]]></content>
     </entry>
 
     

@@ -1790,7 +1790,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/04/12/为什么新生代需要两个Survivor区/">
+    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/04/22/eclipse下创建maven-webapp项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="A Happy Boy">
@@ -1812,8 +1812,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/12/为什么新生代需要两个Survivor区/" itemprop="url">
-                  为什么新生代需要两个Survivor区
+                <a class="post-title-link" href="/2017/04/22/eclipse下创建maven-webapp项目/" itemprop="url">
+                  eclipse下创建maven webapp项目
                 </a>
               
             
@@ -1829,8 +1829,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T22:14:32+08:00">
-                2017-04-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T16:17:03+08:00">
+                2017-04-22
               </time>
             
 
@@ -1852,8 +1852,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java虚拟机/" itemprop="url" rel="index">
-                    <span itemprop="name">java虚拟机</span>
+                  <a href="/categories/javaweb/" itemprop="url" rel="index">
+                    <span itemprop="name">javaweb</span>
                   </a>
                 </span>
 
@@ -1869,7 +1869,7 @@
 
           
           
-             <span id="/2017/04/12/为什么新生代需要两个Survivor区/" class="leancloud_visitors" data-flag-title="为什么新生代需要两个Survivor区">
+             <span id="/2017/04/22/eclipse下创建maven-webapp项目/" class="leancloud_visitors" data-flag-title="eclipse下创建maven webapp项目">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1899,15 +1899,10 @@
 
       
         
-          <p>在JVM的新生代内存中，为什么除了Eden区，还要设置两个Survivor区？</p>
-<h1 id="为什么要有Survivor区"><a href="#为什么要有Survivor区" class="headerlink" title="为什么要有Survivor区"></a>为什么要有Survivor区</h1><p>先不去想为什么有两个Survivor区，第一个问题是，设置Survivor区的意义在哪里？<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/12/为什么新生代需要两个Survivor区/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>1、开启eclipse，右键new——》other，如下图找到maven project<br><img src="http://i.imgur.com/tLozsmT.jpg" alt=""><br>2、选择maven project，显示创建maven项目的窗口，勾选如图所示，Create a simple project<br><img src="http://i.imgur.com/8RBxu5E.jpg" alt=""><br>3、输入maven项目的基本信息，如下图所示：<br><img src="http://i.imgur.com/m69rSeD.jpg" alt=""><br>4、完成maven项目的创建，生成相应的maven项目结果，如下所示，此处有部分结构是项目不需要的，我们需要去掉：<br><img src="http://i.imgur.com/MzkoXcz.jpg" alt=""><br>5、选择项目，右键选择Properties，进入属性页面，选择到Maven菜单下，如下图所示：<br><img src="http://i.imgur.com/wMgDBuy.jpg" alt=""><br>6、选择java版本为1.7，并去掉其他两项，如下图：<br><img src="http://i.imgur.com/SXeVRQJ.jpg" alt=""><br>7、点击ok之后，再次回到项目结构，此时项目结构比较清晰，符合我们想要创建的maven项目<br><img src="http://i.imgur.com/335DCN2.jpg" alt=""><br>8、此时webapp下的结果还没有显示出来，因为此时我们还没有配置此的项目为web项目，再次进去Properties配置，如下图所示：<br><img src="http://i.imgur.com/rNzAT8S.jpg" alt=""><br>9、点击Further configuration available…，如下：<br><img src="http://i.imgur.com/ZD9GThf.jpg" alt=""><br>10、配置src/main/webapp，并勾选生成web.xml的选项，如下：<br><img src="http://i.imgur.com/WRO3v9x.jpg" alt=""><br>11、确定之后，返回到maven菜单下去掉Dynamic Web Module的勾选，点击ok，如下所示，webapp目录结构显示出来了：<br><img src="http://i.imgur.com/XMUM5u7.jpg" alt=""><br>12、此时还需要配置，src/main/webapp为“/”项目的根目录，如下所示：<br><img src="http://i.imgur.com/VfwJFIP.jpg" alt=""><br>13、完成如上配置后，最后完成maven webapp项目结构如下图所示：<br><img src="http://i.imgur.com/ZNSDos7.jpg" alt=""></p>
+
+          
         
       
     </div>
@@ -1989,7 +1984,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2000,7 +1995,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

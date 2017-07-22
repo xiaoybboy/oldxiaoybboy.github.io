@@ -83,7 +83,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="maven,javaweb," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="如果一切重来">
 <meta property="og:description" content="哎，一些问题每次出错都要重新找方法解决。以后还是都记录下来把。
 问题描述Eclipse创建Maven项目时，报错Could not calculate build plan: Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Fai">
-<meta property="og:updated_time" content="2017-07-22T08:03:27.546Z">
+<meta property="og:updated_time" content="2017-07-22T08:17:37.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven项目创建时出错">
 <meta name="twitter:description" content="哎，一些问题每次出错都要重新找方法解决。以后还是都记录下来把。
@@ -448,7 +448,7 @@
         <p>哎，一些问题每次出错都要重新找方法解决。以后还是都记录下来把。</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Eclipse创建Maven项目时，报错<br>Could not calculate build plan: Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6<br>Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6<br><a id="more"></a></p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>删除本地Maven仓库org.apache.maven.plugins:maven-resources-plugin所在目录文件夹。然后在一个maven项目中的pom.xml文件中增加以下依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>然后执行maven install重新下载maven-resources-plugin这个jar包即可。</p>
+<p>然后执行maven install重新下载maven-resources-plugin这个jar包即可。<br>同样的，有可能其他plugin会报类似的错误，解决方法和上面类似。</p>
 
       
     </div>
@@ -475,14 +475,6 @@
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/maven/" rel="tag"># maven</a>
-          
-            <a href="/tags/javaweb/" rel="tag"># javaweb</a>
-          
-        </div>
       
 
       
@@ -575,7 +567,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -586,7 +578,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
