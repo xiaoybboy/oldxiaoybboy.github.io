@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-06-12T11:39:57.734Z</updated>
+  <updated>2017-07-22T08:03:27.546Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>maven项目创建时出错</title>
+    <link href="https://xiaoybboy.github.io/2017/07/22/maven/"/>
+    <id>https://xiaoybboy.github.io/2017/07/22/maven/</id>
+    <published>2017-07-22T07:56:06.000Z</published>
+    <updated>2017-07-22T08:03:27.546Z</updated>
+    
+    <content type="html"><![CDATA[<p>哎，一些问题每次出错都要重新找方法解决。以后还是都记录下来把。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Eclipse创建Maven项目时，报错<br>Could not calculate build plan: Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6<br>Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6<br><a id="more"></a></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>删除本地Maven仓库org.apache.maven.plugins:maven-resources-plugin所在目录文件夹。然后在一个maven项目中的pom.xml文件中增加以下依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>然后执行maven install重新下载maven-resources-plugin这个jar包即可。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;哎，一些问题每次出错都要重新找方法解决。以后还是都记录下来把。&lt;/p&gt;
+&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;Eclipse创建Maven项目时，报错&lt;br&gt;Could not calculate build plan: Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6&lt;br&gt;Plugin org.apache.maven.plugins:maven-resources-plugin:2.6 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.apache.maven.plugins:maven-resources-plugin:jar:2.6&lt;br&gt;
+    
+    </summary>
+    
+      <category term="奇怪的问题" scheme="https://xiaoybboy.github.io/categories/%E5%A5%87%E6%80%AA%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    
+    
+      <category term="maven" scheme="https://xiaoybboy.github.io/tags/maven/"/>
+    
+      <category term="javaweb" scheme="https://xiaoybboy.github.io/tags/javaweb/"/>
+    
+  </entry>
   
   <entry>
     <title>Xgboost参数</title>
@@ -786,44 +815,6 @@
       <category term="java" scheme="https://xiaoybboy.github.io/tags/java/"/>
     
       <category term="线程" scheme="https://xiaoybboy.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>求二叉树的深度</title>
-    <link href="https://xiaoybboy.github.io/2017/03/21/%E6%B1%82%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/"/>
-    <id>https://xiaoybboy.github.io/2017/03/21/求二叉树的深度/</id>
-    <published>2017-03-21T03:46:41.000Z</published>
-    <updated>2017-04-06T07:10:30.327Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>&emsp;&emsp;输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。  </p>
-</div>
-<a id="more"></a>
-# 思路
-&emsp;&emsp;递归求解
-# 代码
-
-undefined
-
-&emsp;下面是一个跟上面类似的题目。
-# 题目描述
-<div class="note success"><p>&emsp;&emsp;判断一棵树是不是平衡二叉树。平衡二叉树指左右子树的高度不超过1的二叉树。<br>思路很简单，直接贴代码。</p>
-</div>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 判断一棵树是不是平衡二叉树</div><div class="line"> * </div><div class="line"> * 思路：递归求左右子树的深度，比较判断是否是平衡二叉树</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IsBalancedBinaryTree</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">IsBalanced_Solution</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> left = getDepth(root.left);</div><div class="line">		<span class="keyword">int</span> right = getDepth(root.right);</div><div class="line">		<span class="keyword">if</span> (Math.abs(left - right) &gt; <span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 递归求解二叉树的深度</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getDepth</span><span class="params">(TreeNode node)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> left = getDepth(node.left);</div><div class="line">		<span class="keyword">int</span> right = getDepth(node.right);</div><div class="line">		<span class="keyword">return</span> left &gt; right ? left + <span class="number">1</span> : right + <span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;&amp;emsp;&amp;emsp;输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。  &lt;/p&gt;
-&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="二叉树" scheme="https://xiaoybboy.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     
   </entry>
   
