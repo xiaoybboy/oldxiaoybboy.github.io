@@ -316,7 +316,7 @@ baidu_analytics: 89b72b8b15f71e8732bbf6020d51d20e
 
 # Gentie productKey
 # 网易云跟帖
-gentie_productKey: e761aa7691cd46b5b71aa995986b26b4
+#gentie_productKey: e761aa7691cd46b5b71aa995986b26b4
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
@@ -324,7 +324,7 @@ gentie_productKey: e761aa7691cd46b5b71aa995986b26b4
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+livere_uid: MTAyMC8yOTUxNS82MDgz
 
 # Baidu Share
 # Available value:
