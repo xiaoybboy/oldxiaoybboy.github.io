@@ -70,7 +70,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -448,7 +448,7 @@
       
         
           <p>最近在进行项目开发的时候需要对接口做Session验证</p>
-<h1 id="自定义一个注解-AuthCheckAnnotation"><a href="#自定义一个注解-AuthCheckAnnotation" class="headerlink" title="自定义一个注解@AuthCheckAnnotation"></a>自定义一个注解@AuthCheckAnnotation</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AuthCheckAnnotation &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">check</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="自定义一个注解-AuthCheckAnnotation"><a href="#自定义一个注解-AuthCheckAnnotation" class="headerlink" title="自定义一个注解@AuthCheckAnnotation"></a>自定义一个注解@AuthCheckAnnotation</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AuthCheckAnnotation &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">check</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;<span class="comment">//默认不需要进行验证</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/01/SpringMVC自定义注解/#more" rel="contents">
