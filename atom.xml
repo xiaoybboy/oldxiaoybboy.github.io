@@ -47,7 +47,7 @@
     <link href="https://xiaoybboy.github.io/2017/08/07/SpringMVC%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E9%AA%8C%E8%AF%81/"/>
     <id>https://xiaoybboy.github.io/2017/08/07/SpringMVC自定义注解和拦截器实现用户行为验证/</id>
     <published>2017-08-07T10:59:23.000Z</published>
-    <updated>2017-08-10T11:24:33.704Z</updated>
+    <updated>2017-08-10T11:36:00.204Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样<br>在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getLoginUser</span><span class="params">(HttpServletRequest request)</span> </span>&#123;  </div><div class="line">        HttpSession session = request.getSession();  </div><div class="line">        <span class="keyword">return</span> (User) session.getAttribute(<span class="string">"user"</span>);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>总感觉特别的不好…<br>现在如果我们看了下面介绍的HandlerMethodArgumentResolver自定义解析器实现的请求数据绑定方法入参，你就会看到像下面的代码只需要一个注解就能解决上面的问题↓<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)  </div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@MyUser User user,ModelMap modelMap)</span></span>&#123;  </div><div class="line">    logger.info(user.getUsername()+<span class="string">"---------------------------"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="string">"login"</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -75,6 +75,8 @@
       &lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样&lt;br&gt;在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….&lt;br&gt;
     
     </summary>
+    
+      <category term="spring" scheme="https://xiaoybboy.github.io/categories/spring/"/>
     
     
       <category term="springmvc" scheme="https://xiaoybboy.github.io/tags/springmvc/"/>
