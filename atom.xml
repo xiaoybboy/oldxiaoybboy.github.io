@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-08-10T09:48:48.029Z</updated>
+  <updated>2017-08-10T11:07:38.813Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -16,11 +16,149 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>springMVC自定义注解和拦截器实现用户行为验证</title>
+    <title>SpringMVC 使用HandlerMethodArgumentResolver自定义解析器实现请求数据绑定方法入参</title>
+    <link href="https://xiaoybboy.github.io/2017/08/07/SpringMVC%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E9%AA%8C%E8%AF%81/"/>
+    <id>https://xiaoybboy.github.io/2017/08/07/SpringMVC自定义注解和拦截器实现用户行为验证/</id>
+    <published>2017-08-07T10:59:23.000Z</published>
+    <updated>2017-08-10T11:07:38.813Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样<br>在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getLoginUser</span><span class="params">(HttpServletRequest request)</span> </span>&#123;  </div><div class="line">        HttpSession session = request.getSession();  </div><div class="line">        <span class="keyword">return</span> (User) session.getAttribute(<span class="string">"user"</span>);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>总感觉特别的不好…<br>现在如果我们看了下面介绍的HandlerMethodArgumentResolver自定义解析器实现的请求数据绑定方法入参，你就会看到像下面的代码只需要一个注解就能解决上面的问题↓<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)  </div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@MyUser User user,ModelMap modelMap)</span></span>&#123;  </div><div class="line">    logger.info(user.getUsername()+<span class="string">"---------------------------"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="string">"login"</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="用HandlerMethodArgumentResolver解决"><a href="#用HandlerMethodArgumentResolver解决" class="headerlink" title="用HandlerMethodArgumentResolver解决"></a>用HandlerMethodArgumentResolver解决</h1><p>首先，我们需要知道一点的就是SpringMVC的工作流程，SpringMVC的DispatchServlet会根据请求来找到对应的HandlerMapping，最终spring会选择用RequestMappingHandlerMapping，然后根据RequestMappingHandlerMapping来获取HandlerMethod，然后来找支持的HandlerMethodArgumentResolver来处理对应controller的方法的入参。<br>首先，我们需要做的就是创建一个Annotation<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.PARAMETER)  </div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)  </div><div class="line"><span class="meta">@Documented</span> </div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyUser &#123;  </div><div class="line">  <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后我们要做的就是创建一个MyUserMethodArgumentResolver这个类来实现HandlerMethodArgumentResolver这个接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyUserMethodArgumentResolver</span> <span class="keyword">implements</span> <span class="title">HandlerMethodArgumentResolver</span> </span>&#123;  </div><div class="line">	<span class="meta">@Override</span>  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsParameter</span><span class="params">(MethodParameter methodParameter)</span> </span>&#123;  </div><div class="line">	      <span class="keyword">return</span> methodParameter.hasParameterAnnotation(ManyUser.class);  </div><div class="line">	&#125;  </div><div class="line">	<span class="meta">@Override</span>  </div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">resolveArgument</span><span class="params">(MethodParameter methodParameter, ModelAndViewContainer   modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory)</span> <span class="keyword">throws</span> Exception </span>&#123;  </div><div class="line"><span class="number">8</span>.	         <span class="comment">//直接返回request域对象的user</span></div><div class="line"><span class="number">9</span>.	        <span class="keyword">return</span> nativeWebRequest.getAttribute(<span class="string">"user"</span>, NativeWebRequest.SCOPE_REQUEST);;  </div><div class="line"><span class="number">10</span>.	        <span class="comment">//或者这里你也可以直接返回自己创建的User对象 </span></div><div class="line"><span class="number">11</span>.	        <span class="comment">/* </span></div><div class="line">12.	            User user = new User(); </div><div class="line">13.	            user.setUsername("yangpeng"); </div><div class="line">14.	            return user; </div><div class="line">15.	          */  </div><div class="line"><span class="number">16</span>.	         <span class="comment">/**自定义实现，比如参数是很多用户：如    custom?names=lyncc,fly,ted&amp;ids=1,2,3</span></div><div class="line">17.			   List&lt;User&gt; users = new ArrayList&lt;User&gt;();  </div><div class="line">18.	        String names = (String)webRequest.getParameter("names");  </div><div class="line">19.	        String ids = (String)webRequest.getParameter("ids");  </div><div class="line">20.	        if(null != names &amp;&amp; null != ids)&#123;  </div><div class="line">21.	            String[] nameStrs = names.trim().split(",");  </div><div class="line">22.	            String[] idStrs = ids.trim().split(",");  </div><div class="line">23.	            for(int i = 0;i&lt;nameStrs.length;i++)&#123;  </div><div class="line">24.	             User user = new User(Integer.parseInt(idStrs[i]), nameStrs[i]);</div><div class="line">25.	                users.add(user);  </div><div class="line">26.	            &#125;  </div><div class="line">27.	        &#125;  </div><div class="line">28.	        return users;  //返回list 例如注解式 <span class="doctag">@manyUser</span> List&lt;User&gt; users</div><div class="line">29.	    &#125;         </div><div class="line">30.	&#125;  &#125;</div></pre></td></tr></table></figure></p>
+<p>Spring默认会注册多个HandlerMethodArgumentResolver来处理不同的请求，Spring会根据HandlerMethodArgumentResolver的supportsParameter()方法来判断是否支持处理当前请求。<br>第一个supportsParameter方法是判断这个MyUserMethodArgumentResolver是否支持传入的MethodParameter对象。<br>第二个resolveArgument方法是处理具体的需要绑定到方法入参，返回的对象就是需要绑定的对象，这里我是直接从session里面获取了一个user的对象直接返回，或者你也可以在这里直接创建一个User对象然后返回用于测试是一样的。<br>接下来就是在spring-mvc.xml中配置了</p>
+<pre><code class="xml"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span>  
+   <span class="tag">&lt;<span class="name">mvc:argument-resolvers</span>&gt;</span>  
+        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.yp.code.common.bind.method.MyUserMethodArgumentResolver"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  
+    <span class="tag">&lt;/<span class="name">mvc:argument-resolvers</span>&gt;</span>  
+<span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span>
+</code></pre>
+<p>最后就是使用创建的@MyUser这个Annotation来让SpringMVC自动的帮你绑定到Controller的方法里面了</p>
+<pre><code class="java"><span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)  
+<span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@MyUser User user,ModelMap modelMap)</span></span>{  
+    System.out.println(user.getUsername());  
+    <span class="keyword">return</span> <span class="string">"login"</span>;  
+}
+</code></pre>
+<p>这样就非常优雅的解决了上面的问题。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样&lt;br&gt;在controller中需
+    
+    </summary>
+    
+    
+      <category term="springmvc" scheme="https://xiaoybboy.github.io/tags/springmvc/"/>
+    
+      <category term="自定义参数解析器" scheme="https://xiaoybboy.github.io/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用@ExceptionHandler，@ControllerAdvice 来进行异常处理</title>
+    <link href="https://xiaoybboy.github.io/2017/08/05/%E7%94%A8-ExceptionHandler%EF%BC%8C-ControllerAdvice-%E6%9D%A5%E8%BF%9B%E8%A1%8C%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    <id>https://xiaoybboy.github.io/2017/08/05/用-ExceptionHandler，-ControllerAdvice-来进行异常处理/</id>
+    <published>2017-08-05T11:03:25.000Z</published>
+    <updated>2017-08-10T11:07:17.867Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时候我们想统一处理一个Controller中抛出的异常怎么搞呢？<br>直接在Controller里面加上用@ExceptionHandler标注一个处理异常的方法像下面这样子，@ExceptionHandler只在当前controller里面有效。当前controller中所有抛出指定异常的方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.	<span class="meta">@ExceptionHandler</span>(MissingServletRequestParameterException.class)  </div><div class="line"><span class="number">2</span>.	<span class="meta">@ResponseStatus</span>(HttpStatus.BAD_REQUEST)  </div><div class="line"><span class="number">3</span>.	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">processMethod</span><span class="params">(MissingServletRequestParameterException ex,HttpServletRequest request ,HttpServletResponse response)</span> <span class="keyword">throws</span> IOException </span>&#123;  </div><div class="line"><span class="number">4</span>.	    System.out.println(<span class="string">"抛异常了！"</span>+ex.getLocalizedMessage());  </div><div class="line"><span class="number">5</span>.	    logger.error(<span class="string">"抛异常了！"</span>+ex.getLocalizedMessage());  </div><div class="line"><span class="number">6</span>.	    response.getWriter().printf(ex.getMessage());  </div><div class="line"><span class="number">7</span>.	    response.flushBuffer();  </div><div class="line">```  </div><div class="line">这样，Controller里面的方法抛出了MissingServletRequestParameterException异常就会执行上面的这个方法来进行异常处理。</div><div class="line">像我下面的代码`</div><div class="line">```java</div><div class="line"><span class="number">1</span>.	<span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)  </div><div class="line"><span class="number">2</span>.	<span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@RequestParam String id,ModelMap modelMap)</span></span>&#123;  </div><div class="line"><span class="number">3</span>.	    <span class="keyword">if</span> (id==<span class="keyword">null</span>)&#123;</div><div class="line"><span class="number">4</span>.		   <span class="keyword">throw</span> <span class="keyword">new</span> MissingServletRequestParameterException();</div><div class="line"><span class="number">5</span>.	&#125;</div><div class="line"><span class="number">6</span>.	    <span class="keyword">return</span> <span class="string">"login"</span>;  </div><div class="line"><span class="number">7</span>.	&#125; </div><div class="line">``` </div><div class="line">如果我没有传入id值，那么就会抛出MissingServletRequestParameterException的异常，就会被上面的异常处理方法处理。</div><div class="line">上面的<span class="meta">@ExceptionHandler</span>(MissingServletRequestParameterException.class)这个注解的value的值是一个Class[]类型的，这里的ExceptionClass是你自己指定的，你也可以指定多个需要处理的异常类型，比如这样</div><div class="line"><span class="meta">@ExceptionHandler</span>(value = &#123;MissingServletRequestParameterException.class,BindException.class&#125;)，这样就会处理多个异常了。</div><div class="line">另一种更加通用的方法时：</div><div class="line">首先定义这样一个统一异常处理类</div><div class="line">```java</div><div class="line">ExceptionController.Java</div><div class="line"><span class="number">1</span>.	<span class="keyword">import</span> net.sf.json.JSONObject;  </div><div class="line"><span class="number">2</span>.	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionController</span> </span>&#123;  </div><div class="line"><span class="number">3</span>.	    <span class="meta">@ExceptionHandler</span>  </div><div class="line"><span class="number">4</span>.	    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">String <span class="title">exceptionProcess</span><span class="params">(HttpServletRequest request, HttpServletResponse  </span></span></div><div class="line"><span class="number">5.</span>	            response, RuntimeException ex) &#123;  </div><div class="line"><span class="number">6</span>.	        JSONObject json = <span class="keyword">new</span> JSONObject();  </div><div class="line"><span class="number">7</span>.	        json.put(<span class="string">"isError"</span>, <span class="keyword">true</span>);  </div><div class="line"><span class="number">8</span>.	        json.put(<span class="string">"msg"</span>, ex.getMessage());  </div><div class="line"><span class="number">9</span>.	        <span class="keyword">return</span> json.toString();  </div><div class="line"><span class="number">10</span>.	    &#125;  </div><div class="line"><span class="number">11</span>.	&#125;</div></pre></td></tr></table></figure></p>
+<p>在需要进行统一处理的类中继承这个class</p>
+<pre><code class="java"><span class="number">1</span>.    <span class="keyword">import</span> net.sf.json.JSONObject;  
+<span class="number">2</span>.    <span class="meta">@RequestMapping</span>(<span class="string">"/auth/customer"</span>)  
+<span class="number">3</span>.    <span class="meta">@Controller</span>  
+<span class="number">4</span>.    <span class="meta">@LoginAuth</span>  
+<span class="number">5</span>.    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerController</span> <span class="keyword">extends</span> <span class="title">ExceptionController</span> </span>{  
+<span class="number">6</span>.        <span class="meta">@Resource</span>  
+<span class="number">7</span>.        <span class="keyword">private</span> CustomerService customerService;  
+<span class="number">8</span>.          
+<span class="number">9</span>.        <span class="comment">/** 
+10.         *  
+11.         * <span class="doctag">@param</span> page 第几页，从1开始 
+12.         * <span class="doctag">@param</span> rows 每页多少记录的行数 
+13.         * <span class="doctag">@return</span> JSON String 
+14.         */</span>  
+<span class="number">15</span>.        <span class="meta">@RequestMapping</span>(<span class="string">"/querybypage"</span>)  
+<span class="number">16</span>.        <span class="meta">@ResponseBody</span>  
+<span class="number">17</span>.        <span class="function"><span class="keyword">public</span> String <span class="title">QueryByPage</span><span class="params">(<span class="keyword">int</span> page, <span class="keyword">int</span> rows)</span> </span>{  
+<span class="number">18</span>.            <span class="comment">//当为缺省值的时候进行赋值  </span>
+<span class="number">19</span>.            <span class="keyword">int</span> currentpage = ( page == <span class="number">0</span>) ? <span class="number">1</span>: page;   <span class="comment">//第几页  </span>
+<span class="number">20</span>.            <span class="keyword">int</span> pageSize = (rows == <span class="number">0</span>) ? <span class="number">5</span>: rows;   <span class="comment">//每页显示数量  </span>
+<span class="number">21</span>.            <span class="keyword">int</span> index = (currentpage - <span class="number">1</span>) * pageSize;   <span class="comment">//从第几条开始显示  </span>
+<span class="number">22</span>.            JSONObject map = customerService.queryByPage(index, pageSize);  
+<span class="number">23</span>.            <span class="keyword">return</span> map.toString();  
+<span class="number">24</span>.        }  
+<span class="number">25</span>.          
+<span class="number">26</span>.        <span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)  
+<span class="number">27</span>.        <span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">Object <span class="title">test</span><span class="params">()</span> </span>{  
+<span class="number">28</span>.            JSONObject json = <span class="keyword">new</span> JSONObject();  
+<span class="number">29</span>.            json.put(<span class="string">"status"</span>, <span class="string">"success"</span>);  
+<span class="number">30</span>.            String str = <span class="keyword">null</span>;  
+<span class="number">31</span>.            str.toString();  
+<span class="number">32</span>.            <span class="keyword">return</span> json.toString();  
+<span class="number">33</span>.        }  
+<span class="number">34</span>.    }
+</code></pre>
+<p>其中重要的一行是</p>
+<ol>
+<li>public class CustomerController extends ExceptionController<br>这样CustomController里的方法被访问的时候， 如果有异常，就会被exceptionProces()处理.因为继承之后，子类中都有这个标注的方法了。<br>但这个注解只会是在当前的Controller里面起作用，如果想在所有的Controller里面统一处理异常的话，可以用@ControllerAdvice来创建一个专门处理全局的的类。<br>```java</li>
+<li>@ControllerAdvice    </li>
+<li>public class SpringExceptionHandler{    </li>
+<li>/**  </li>
+<li><ul>
+<li>全局处理Exception  </li>
+</ul>
+</li>
+<li><ul>
+<li>错误的情况下返回500  </li>
+</ul>
+</li>
+<li><ul>
+<li>@param ex  </li>
+</ul>
+</li>
+<li><ul>
+<li>@param req  </li>
+</ul>
+</li>
+<li><ul>
+<li>@return  </li>
+</ul>
+</li>
+<li>*/    </li>
+<li>@ExceptionHandler(value = {Exception.class})    </li>
+<li>public ResponseEntity<object> handleOtherExceptions(final Exception ex, final WebRequest req) {    </object></li>
+<li>TResult tResult = new TResult();  //处理结果  </li>
+<li>tResult.setStatus(CodeType.V_500);    </li>
+<li>tResult.setErrorMessage(ex.getMessage());    </li>
+<li>return new ResponseEntity<object>(tResult,HttpStatus.OK);    </object></li>
+<li>}    </li>
+<li>}<br>```<br>注意，这种注解在springmvc的配置文件中扫描是，要把@ControllerAdvice也包含进来，否则不起作用。<br>此外，@ControllerAdvice还可以用于全局的requestMapping，较少用。<br>参考：<a href="http://jinnianshilongnian.iteye.com/blog/1866350" target="_blank" rel="external">http://jinnianshilongnian.iteye.com/blog/1866350</a><br><a href="http://blog.csdn.net/u013632755/article/details/49908621" target="_blank" rel="external">http://blog.csdn.net/u013632755/article/details/49908621</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有时候我们想统一处理一个Controller中抛出的异常怎么搞呢？&lt;br&gt;直接在Controller里面加上用@ExceptionHandler标注一个处理异常的方法像下面这样子，@ExceptionHandler只在当前controller里面有效。当前controlle
+    
+    </summary>
+    
+      <category term="spring" scheme="https://xiaoybboy.github.io/categories/spring/"/>
+    
+    
+      <category term="springmvc" scheme="https://xiaoybboy.github.io/tags/springmvc/"/>
+    
+      <category term="异常处理" scheme="https://xiaoybboy.github.io/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMVC自定义注解和拦截器实现用户行为验证</title>
     <link href="https://xiaoybboy.github.io/2017/08/01/SpringMVC%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/"/>
     <id>https://xiaoybboy.github.io/2017/08/01/SpringMVC自定义注解/</id>
     <published>2017-08-01T09:30:39.000Z</published>
-    <updated>2017-08-10T09:48:48.029Z</updated>
+    <updated>2017-08-10T11:07:05.489Z</updated>
     
     <content type="html"><![CDATA[<p>最近在进行项目开发的时候需要对接口做Session验证</p>
 <h1 id="自定义一个注解-AuthCheckAnnotation"><a href="#自定义一个注解-AuthCheckAnnotation" class="headerlink" title="自定义一个注解@AuthCheckAnnotation"></a>自定义一个注解@AuthCheckAnnotation</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AuthCheckAnnotation &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">check</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;<span class="comment">//默认不需要进行验证</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -33,7 +171,9 @@
 </li>
 </ol>
 <p>在springMVC.xml文件中添加拦截器<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/*.do"</span>  /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">bean</span>  <span class="attr">class</span>=<span class="string">"com.party.common.interceptor.AuthCheckInteceptor"</span>/&gt;</span>        </div><div class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h1 id="在springMVC-controller中使用实例"><a href="#在springMVC-controller中使用实例" class="headerlink" title="在springMVC controller中使用实例"></a>在springMVC controller中使用实例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AuthCheckAnnotation</span>(check=<span class="keyword">true</span>)</div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"doLogin"</span>)</div><div class="line"><span class="meta">@ResponseBody</span></div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">doLogin</span><span class="params">(HttpServletRequest request,HttpServletResponse response)</span></span>&#123;</div><div class="line">    .......</div><div class="line">    <span class="keyword">return</span> RetMessage.toJson(responseBody);</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+<h1 id="在springMVC-controller中使用实例"><a href="#在springMVC-controller中使用实例" class="headerlink" title="在springMVC controller中使用实例"></a>在springMVC controller中使用实例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AuthCheckAnnotation</span>(check=<span class="keyword">true</span>)</div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"doLogin"</span>)</div><div class="line"><span class="meta">@ResponseBody</span></div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">doLogin</span><span class="params">(HttpServletRequest request,HttpServletResponse response)</span></span>&#123;</div><div class="line">    .......</div><div class="line">    <span class="keyword">return</span> RetMessage.toJson(responseBody);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>转：<a href="https://www.bbsmax.com/A/QV5Z1jwbJy/" target="_blank" rel="external">https://www.bbsmax.com/A/QV5Z1jwbJy/</a></p>
+]]></content>
     
     <summary type="html">
     
@@ -730,87 +870,6 @@
       <category term="hexo" scheme="https://xiaoybboy.github.io/tags/hexo/"/>
     
       <category term="github" scheme="https://xiaoybboy.github.io/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>栈与队列</title>
-    <link href="https://xiaoybboy.github.io/2017/03/24/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/"/>
-    <id>https://xiaoybboy.github.io/2017/03/24/栈与队列/</id>
-    <published>2017-03-24T08:11:27.000Z</published>
-    <updated>2017-04-06T07:10:30.325Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型.</p>
-</div>
-<a id="more"></a>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>假设两个栈为A和B。</p>
-<ol>
-<li>入队列的时候，只需要向A栈中入栈即可。</li>
-<li>出队列的时候，要先检查B栈是否为空。如果B为空，把A栈中的元素全部放入B栈中。如果B不为空，就从B栈顶弹出一个元素。<br>这样就实现了一个队列先进先出的功能。<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。 </div><div class="line"> * &lt;分析&gt;： </div><div class="line"> * 入队：将元素进栈A</div><div class="line"> * 出队：判断栈B是否为空，如果为空，则将栈A中所有元素pop，并push进栈B，栈B出栈； 如果不为空，栈B直接出栈。</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">import</span> java.util.Stack;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackQueue</span> </span>&#123;</div><div class="line">	Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">	Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</div><div class="line">		stack1.push(node);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> a;</div><div class="line">		<span class="keyword">if</span> (!stack2.isEmpty()) &#123;</div><div class="line">			a = stack2.pop();</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">while</span> (!stack1.isEmpty()) &#123;</div><div class="line">				stack2.push(stack1.pop());</div><div class="line">			&#125;</div><div class="line">			a = stack2.pop();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> a;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h1><p>用两个队列实现栈的功能。</p>
-<h1 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h1><p>把B当做一个中转站<br>入栈：将元素进队列A<br>出栈：判断队列A中元素的个数是否为1，如果等于1，则出队列，否则将队列A中的元素出队列并放入队列B，直到队列A中的元素留下一个，然<br>后队列A出队列，再把队列B中的元素出队列以此放入队列A中。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 用两个队列实现栈的功能； 思路 &lt;分析&gt;：把B当做一个中转站 入栈：将元素进队列A</div><div class="line"> * 出栈：判断队列A中元素的个数是否为1，如果等于1，则出队列，否则将队列A中的元素出队列并放入队列B，直到队列A中的元素留下一</div><div class="line"> * 个，然后队列A出队列，再把 队列B中的元素出队列以此放入队列A中。</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QueueStack</span> </span>&#123;</div><div class="line">	Queue&lt;Integer&gt; queue1 = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</div><div class="line">	Queue&lt;Integer&gt; queue2 = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</div><div class="line">		<span class="comment">// 两个栈都为空时，优先考虑queue1</span></div><div class="line">		<span class="keyword">if</span> (queue1.isEmpty() &amp;&amp; queue2.isEmpty()) &#123;</div><div class="line">			queue1.add(node);</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 如果queue1为空，queue2有元素，直接放入queue2</span></div><div class="line">		<span class="keyword">if</span> (queue1.isEmpty()) &#123;</div><div class="line">			queue2.add(node);</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (queue2.isEmpty()) &#123;</div><div class="line">			queue1.add(node);</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">// 两个栈都为空时，没有元素可以弹出</span></div><div class="line">		<span class="keyword">if</span> (queue1.isEmpty() &amp;&amp; queue2.isEmpty()) &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"stack is empty"</span>);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 如果queue1为空，queue2有元素， 将queue2的元素依次放入queue1中，直到最后一个元素，我们弹出。</span></div><div class="line">		<span class="keyword">if</span> (queue1.isEmpty()) &#123;</div><div class="line">			<span class="keyword">while</span> (queue2.size() &gt; <span class="number">1</span>) &#123;</div><div class="line">				queue1.add(queue2.poll());</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> queue2.poll();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (queue2.isEmpty()) &#123;</div><div class="line">			<span class="keyword">while</span> (queue1.size() &gt; <span class="number">1</span>) &#123;</div><div class="line">				queue2.add(queue1.poll());</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> queue1.poll();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> (Integer) <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型.&lt;/p&gt;
-&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="栈" scheme="https://xiaoybboy.github.io/tags/%E6%A0%88/"/>
-    
-      <category term="队列" scheme="https://xiaoybboy.github.io/tags/%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>青蛙跳台阶</title>
-    <link href="https://xiaoybboy.github.io/2017/03/24/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6/"/>
-    <id>https://xiaoybboy.github.io/2017/03/24/青蛙跳台阶/</id>
-    <published>2017-03-24T07:49:49.000Z</published>
-    <updated>2017-04-06T07:10:30.332Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
-</div>
-<a id="more"></a>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
-<p>假设第一次跳了一阶，那么还剩 n-1 阶，有f(n-1)中跳法。 假设第一次跳了2阶，那么还剩 n-2 阶，有f(n-2)中跳法。所以，这是一个斐波那契数列。f(n) = f(n-1)+f(n-2)</p>
-</blockquote>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</div><div class="line"> * </div><div class="line"> * 思路：假设第一次跳了一阶，那么还剩 n-1 阶，有f(n-1)中跳法。</div><div class="line"> * </div><div class="line"> * 假设第一次跳了2阶，那么还剩 n-2 阶，有f(n-2)中跳法。</div><div class="line"> * </div><div class="line"> * 所以，这是一个斐波那契数列。f(n) = f(n-1)+f(n-2)</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JumpFloor</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorSolution</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">2</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> f1 = <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> f2 = <span class="number">2</span>;</div><div class="line">		<span class="keyword">int</span> cursum = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= target; i++) &#123;</div><div class="line">			cursum = f1 + f2;</div><div class="line">			f1 = f2;</div><div class="line">			f2 = cursum;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> cursum;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="题目2"><a href="#题目2" class="headerlink" title="题目2"></a>题目2</h1><blockquote>
-<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
-</blockquote>
-<h1 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h1><blockquote>
-<ol>
-<li>假设第一次跳 1 阶。那么还剩 n-1 阶。一共还剩f(n-1)种跳法。</li>
-<li>假设第一次跳 2 阶。那么还剩 n-2 阶。一共还剩f(n-2)种跳法。 。。。</li>
-<li>假设第一次跳 n-1 阶。那么还剩 1 阶。一共还剩f(1)种跳法。</li>
-<li>假设第一次跳 n 阶。一种跳法。</li>
-<li>所以：f(n) = f(n-1)+f(n-2)+…+1; 而且:f(n-1) = f(n-2) +…+1;</li>
-<li>所以f(n) = 2f(n-1)</li>
-</ol>
-</blockquote>
-<h1 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</div><div class="line"> * </div><div class="line"> * 思路：同样：假设第一次跳 1 阶。那么还剩 n-1 阶。一共还剩f(n-1)种跳法。</div><div class="line"> * </div><div class="line"> * 假设第一次跳 2 阶。那么还剩 n-2 阶。一共还剩f(n-2)种跳法。 。。。</div><div class="line"> * </div><div class="line"> * 假设第一次跳 n-1 阶。那么还剩 1 阶。一共还剩f(1)种跳法。</div><div class="line"> * </div><div class="line"> * 假设第一次跳 n 阶。一种跳法。</div><div class="line"> * </div><div class="line"> * 所以：f(n) = f(n-1)+f(n-2)+...+1; 而且:f(n-1) = f(n-2) +...+1;</div><div class="line"> * </div><div class="line"> * 所以f(n) = 2f(n-1)</div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> XIAO</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JumoFloor2</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorSolution</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (target &lt;= <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> (target == <span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> JumpFloorSolution(target - <span class="number">1</span>) * <span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。&lt;/p&gt;
-&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
