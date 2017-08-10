@@ -101,16 +101,16 @@
 
 
 
-<meta name="description" content="问题首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….1234public User getLoginUser(HttpServletRequest request) &amp;#">
+<meta name="description" content="问题首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringMVC 使用HandlerMethodArgumentResolver自定义解析器实现请求数据绑定方法入参">
 <meta property="og:url" content="https://xiaoybboy.github.io/2017/08/07/SpringMVC自定义注解和拦截器实现用户行为验证/index.html">
 <meta property="og:site_name" content="如果一切重来">
-<meta property="og:description" content="问题首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….1234public User getLoginUser(HttpServletRequest request) &amp;#">
-<meta property="og:updated_time" content="2017-08-10T11:07:38.813Z">
+<meta property="og:description" content="问题首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….">
+<meta property="og:updated_time" content="2017-08-10T11:24:33.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC 使用HandlerMethodArgumentResolver自定义解析器实现请求数据绑定方法入参">
-<meta name="twitter:description" content="问题首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….1234public User getLoginUser(HttpServletRequest request) &amp;#">
+<meta name="twitter:description" content="问题首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….">
 
 
 
@@ -420,7 +420,7 @@
       
 
       
-        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样<br>在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getLoginUser</span><span class="params">(HttpServletRequest request)</span> </span>&#123;  </div><div class="line">        HttpSession session = request.getSession();  </div><div class="line">        <span class="keyword">return</span> (User) session.getAttribute(<span class="string">"user"</span>);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样<br>在controller中需要从session中获取user对象，那么可能你会想到在controller里面或者其他类里面写这样的代码，然后在controller里面调用….<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getLoginUser</span><span class="params">(HttpServletRequest request)</span> </span>&#123;  </div><div class="line">        HttpSession session = request.getSession();  </div><div class="line">        <span class="keyword">return</span> (User) session.getAttribute(<span class="string">"user"</span>);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>总感觉特别的不好…<br>现在如果我们看了下面介绍的HandlerMethodArgumentResolver自定义解析器实现的请求数据绑定方法入参，你就会看到像下面的代码只需要一个注解就能解决上面的问题↓<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)  </div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(@MyUser User user,ModelMap modelMap)</span></span>&#123;  </div><div class="line">    logger.info(user.getUsername()+<span class="string">"---------------------------"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="string">"login"</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h1 id="用HandlerMethodArgumentResolver解决"><a href="#用HandlerMethodArgumentResolver解决" class="headerlink" title="用HandlerMethodArgumentResolver解决"></a>用HandlerMethodArgumentResolver解决</h1><p>首先，我们需要知道一点的就是SpringMVC的工作流程，SpringMVC的DispatchServlet会根据请求来找到对应的HandlerMapping，最终spring会选择用RequestMappingHandlerMapping，然后根据RequestMappingHandlerMapping来获取HandlerMethod，然后来找支持的HandlerMethodArgumentResolver来处理对应controller的方法的入参。<br>首先，我们需要做的就是创建一个Annotation<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.PARAMETER)  </div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)  </div><div class="line"><span class="meta">@Documented</span> </div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyUser &#123;  </div><div class="line">  <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>然后我们要做的就是创建一个MyUserMethodArgumentResolver这个类来实现HandlerMethodArgumentResolver这个接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyUserMethodArgumentResolver</span> <span class="keyword">implements</span> <span class="title">HandlerMethodArgumentResolver</span> </span>&#123;  </div><div class="line">	<span class="meta">@Override</span>  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsParameter</span><span class="params">(MethodParameter methodParameter)</span> </span>&#123;  </div><div class="line">	      <span class="keyword">return</span> methodParameter.hasParameterAnnotation(ManyUser.class);  </div><div class="line">	&#125;  </div><div class="line">	<span class="meta">@Override</span>  </div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">resolveArgument</span><span class="params">(MethodParameter methodParameter, ModelAndViewContainer   modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory)</span> <span class="keyword">throws</span> Exception </span>&#123;  </div><div class="line"><span class="number">8</span>.	         <span class="comment">//直接返回request域对象的user</span></div><div class="line"><span class="number">9</span>.	        <span class="keyword">return</span> nativeWebRequest.getAttribute(<span class="string">"user"</span>, NativeWebRequest.SCOPE_REQUEST);;  </div><div class="line"><span class="number">10</span>.	        <span class="comment">//或者这里你也可以直接返回自己创建的User对象 </span></div><div class="line"><span class="number">11</span>.	        <span class="comment">/* </span></div><div class="line">12.	            User user = new User(); </div><div class="line">13.	            user.setUsername("yangpeng"); </div><div class="line">14.	            return user; </div><div class="line">15.	          */  </div><div class="line"><span class="number">16</span>.	         <span class="comment">/**自定义实现，比如参数是很多用户：如    custom?names=lyncc,fly,ted&amp;ids=1,2,3</span></div><div class="line">17.			   List&lt;User&gt; users = new ArrayList&lt;User&gt;();  </div><div class="line">18.	        String names = (String)webRequest.getParameter("names");  </div><div class="line">19.	        String ids = (String)webRequest.getParameter("ids");  </div><div class="line">20.	        if(null != names &amp;&amp; null != ids)&#123;  </div><div class="line">21.	            String[] nameStrs = names.trim().split(",");  </div><div class="line">22.	            String[] idStrs = ids.trim().split(",");  </div><div class="line">23.	            for(int i = 0;i&lt;nameStrs.length;i++)&#123;  </div><div class="line">24.	             User user = new User(Integer.parseInt(idStrs[i]), nameStrs[i]);</div><div class="line">25.	                users.add(user);  </div><div class="line">26.	            &#125;  </div><div class="line">27.	        &#125;  </div><div class="line">28.	        return users;  //返回list 例如注解式 <span class="doctag">@manyUser</span> List&lt;User&gt; users</div><div class="line">29.	    &#125;         </div><div class="line">30.	&#125;  &#125;</div></pre></td></tr></table></figure></p>
@@ -492,6 +492,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/10/SpringMVC-使用-ResponseBody返回json-中文乱码/" rel="prev" title="SpringMVC使用@ResponseBody返回json 中文乱码">
+                SpringMVC使用@ResponseBody返回json 中文乱码 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -565,7 +569,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +591,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
