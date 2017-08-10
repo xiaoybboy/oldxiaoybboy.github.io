@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-07-22T08:17:37.484Z</updated>
+  <updated>2017-08-10T09:41:46.698Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>springMVC自定义注解和拦截器实现用户行为验证</title>
+    <link href="https://xiaoybboy.github.io/2017/08/01/SpringMVC%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/"/>
+    <id>https://xiaoybboy.github.io/2017/08/01/SpringMVC自定义注解/</id>
+    <published>2017-08-01T09:30:39.000Z</published>
+    <updated>2017-08-10T09:41:46.698Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在进行项目开发的时候需要对接口做Session验证</p>
+<h1 id="自定义一个注解-AuthCheckAnnotation"><a href="#自定义一个注解-AuthCheckAnnotation" class="headerlink" title="自定义一个注解@AuthCheckAnnotation"></a>自定义一个注解@AuthCheckAnnotation</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AuthCheckAnnotation &#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">check</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="定义一个相应的拦截器，在springMVC配置文件中进行配置"><a href="#定义一个相应的拦截器，在springMVC配置文件中进行配置" class="headerlink" title="定义一个相应的拦截器，在springMVC配置文件中进行配置"></a>定义一个相应的拦截器，在springMVC配置文件中进行配置</h1><p>拦截器：<br>spring为我们提供了org.springframework.web.servlet.handler.HandlerInterceptorAdapter这个适配器，继承此类，可以非常方便的实现自己的拦截器。可以根据我们的需要重写preHandle、postHandle、afterCompletio方法。<br>分别实现预处理、后处理（调用了Service并返回ModelAndView，但未进行页面渲染）、返回处理（已经渲染了页面）<br>在preHandle中，可以进行编码、安全控制等处理；<br>在postHandle中，有机会修改ModelAndView；<br>在afterCompletion中，可以根据ex是否为null判断是否发生了异常，进行日志记录。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthCheckInteceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    UserInfoService userInfoService ;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        </div><div class="line">        HandlerMethod methodHandler=(HandlerMethod) handler;</div><div class="line">        AuthCheckAnnotation auth=methodHandler.getMethodAnnotation(AuthCheckAnnotation.class);</div><div class="line">　　　　　<span class="comment">//如果方法中添加了@AuthCheckAnnotation 这里的auth不为null</span></div><div class="line">　　　　　<span class="comment">//如果@AuthCheckAnnotation(check=false) 这里的auth为false,即不用进行拦截验证，@AuthCheckAnnotation默认为前面定义的true　　</span></div><div class="line">        <span class="keyword">if</span>(auth!=<span class="keyword">null</span>&amp;&amp;!auth.check())&#123;</div><div class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">        &#125;</div><div class="line">        UserInfo user=(UserInfo)request.getSession().getAttribute(Constants.SESSION_USER);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            userInfoService.login(request, user);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            request.getRequestDispatcher(<span class="string">"login.do"</span>).forward(request, response);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在springMVC.xml文件中添加拦截器<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/*.do"</span>  /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">bean</span>  <span class="attr">class</span>=<span class="string">"com.party.common.interceptor.AuthCheckInteceptor"</span>/&gt;</span>        </div><div class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h1 id="在springMVC-controller中使用实例"><a href="#在springMVC-controller中使用实例" class="headerlink" title="在springMVC controller中使用实例"></a>在springMVC controller中使用实例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AuthCheckAnnotation</span>(check=<span class="keyword">true</span>)</div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"doLogin"</span>)</div><div class="line"><span class="meta">@ResponseBody</span></div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">doLogin</span><span class="params">(HttpServletRequest request,HttpServletResponse response)</span></span>&#123;</div><div class="line">    .......</div><div class="line">    <span class="keyword">return</span> RetMessage.toJson(responseBody);</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在进行项目开发的时候需要对接口做Session验证&lt;/p&gt;
+&lt;h1 id=&quot;自定义一个注解-AuthCheckAnnotation&quot;&gt;&lt;a href=&quot;#自定义一个注解-AuthCheckAnnotation&quot; class=&quot;headerlink&quot; title=&quot;自定义一个注解@AuthCheckAnnotation&quot;&gt;&lt;/a&gt;自定义一个注解@AuthCheckAnnotation&lt;/h1&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Documented&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Target&lt;/span&gt;(ElementType.METHOD)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Inherited&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Retention&lt;/span&gt;(RetentionPolicy.RUNTIME)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;meta&quot;&gt;@interface&lt;/span&gt; AuthCheckAnnotation &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;check&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;false&lt;/span&gt;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="spring" scheme="https://xiaoybboy.github.io/categories/spring/"/>
+    
+    
+      <category term="springmvc" scheme="https://xiaoybboy.github.io/tags/springmvc/"/>
+    
+      <category term="自定义注解" scheme="https://xiaoybboy.github.io/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>maven项目创建时出错</title>
@@ -139,9 +169,9 @@
       <category term="sklearn学习" scheme="https://xiaoybboy.github.io/categories/sklearn%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="数据挖掘" scheme="https://xiaoybboy.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
       <category term="sklearn" scheme="https://xiaoybboy.github.io/tags/sklearn/"/>
+    
+      <category term="数据挖掘" scheme="https://xiaoybboy.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     
   </entry>
   
@@ -767,41 +797,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。&lt;/p&gt;
-&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://xiaoybboy.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>矩阵覆盖</title>
-    <link href="https://xiaoybboy.github.io/2017/03/24/%E7%9F%A9%E9%98%B5%E8%A6%86%E7%9B%96/"/>
-    <id>https://xiaoybboy.github.io/2017/03/24/矩阵覆盖/</id>
-    <published>2017-03-24T07:30:40.000Z</published>
-    <updated>2017-04-06T07:10:30.329Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><div class="note success"><p>我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
-</div>
-<a id="more"></a>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>有以下几种情形：</p>
-<blockquote>
-<ol>
-<li>target &lt;= 0 大矩形为&lt;= 2*0,直接return 0；</li>
-<li>target = 1大矩形为2*1，只有一种摆放方法，return1；</li>
-<li>target = 2 大矩形为2*2，有两种摆放方法，return2；</li>
-<li>target = n 分为两步考虑：<br>第一次摆放一块 2<em>1 的小矩阵，则摆放方法总共为f(target - 1)<br>√<br>√<br>第一次摆放一块1\</em>2的小矩阵，则摆放方法总共为f(target-2)<br>因为，摆放了一块1*2的小矩阵（用√√表示），对应下方的1*2（用××表示）摆放方法就确定了，所以为f(targte-2)<br>√    √<br>×    ×<br>所以：f(target) =f(target - 1) + f(targte-2)<br>实际上就是一个斐波那契数列。</li>
-</ol>
-</blockquote>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">RectCover</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span>(target==<span class="number">0</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">        &#125; </div><div class="line">        <span class="keyword">if</span>(target==<span class="number">1</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target==<span class="number">2</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="keyword">return</span> RectCover(target-<span class="number">1</span>)+RectCover(target-<span class="number">2</span>);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;&lt;p&gt;我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？&lt;/p&gt;
 &lt;/div&gt;
     
     </summary>
