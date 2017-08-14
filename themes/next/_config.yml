@@ -320,11 +320,11 @@ baidu_analytics: 89b72b8b15f71e8732bbf6020d51d20e
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
-#youyan_uid: your uid
+youyan_uid: 2141543
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-livere_uid: MTAyMC8yOTUxNS82MDgz
+#livere_uid: MTAyMC8yOTUxNS82MDgz
 
 # Baidu Share
 # Available value:

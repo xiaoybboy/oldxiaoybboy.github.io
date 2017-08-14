@@ -2,6 +2,7 @@
 title: SpringMVC 使用HandlerMethodArgumentResolver自定义解析器实现请求数据绑定方法入参
 date: 2017-08-07 18:59:23
 tags: [springmvc,自定义参数解析器]
+categories: spring
 ---
 # 问题
 首先，我们遇到的问题是，当我们需要在controller中频繁的从session中获取数据，比如向下面这样

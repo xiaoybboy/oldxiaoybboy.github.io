@@ -2,7 +2,7 @@
 title: Java源码之HashSet
 date: 2017-04-07 11:10:20
 tags: [java,HashSet]
-categories: java集合
+categories: java源码
 ---
 # 概述
 1.HashSet 是一个没有重复元素的集合。它是由HashMap实现的，不保证元素的顺序，特别是它不保证该顺序恒久不变。而且HashSet允许使用 null 元素。
