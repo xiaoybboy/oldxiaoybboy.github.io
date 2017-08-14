@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://xiaoybboy.github.io/2017/08/14/java%E6%BA%90%E7%A0%81-ArrayDeque/</loc>
+    <lastmod>2017-08-14T06:57:32.179Z</lastmod>
+    <data>
+        <display>
+        <title>java源码--ArrayDeque</title>
+        <pubTime>2017-08-14T05:52:23.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>ArrayDeque</tag>
+         
+         
+           
+             
+              <breadCrumb title="java源码" url="https://xiaoybboy.github.io/categories/java%E6%BA%90%E7%A0%81/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://xiaoybboy.github.io/2017/08/14/SpringMVC%E6%8B%A6%E6%88%AA%E5%99%A8/</loc>
     <lastmod>2017-08-14T06:52:06.300Z</lastmod>
     <data>
@@ -19,28 +41,6 @@
            
              
               <breadCrumb title="spring" url="https://xiaoybboy.github.io/categories/spring/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xiaoybboy.github.io/2017/08/14/java%E6%BA%90%E7%A0%81-ArrayDeque/</loc>
-    <lastmod>2017-08-14T06:43:52.259Z</lastmod>
-    <data>
-        <display>
-        <title>java源码--ArrayDeque</title>
-        <pubTime>2017-08-14T05:52:23.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>ArrayDeque</tag>
-         
-         
-           
-             
-              <breadCrumb title="java源码" url="https://xiaoybboy.github.io/categories/java%E6%BA%90%E7%A0%81/"/>
           
         </display>
     </data>
