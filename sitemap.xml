@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xiaoybboy.github.io/2017/08/14/SpringMVC%E6%8B%A6%E6%88%AA%E5%99%A8/</loc>
+    
+    <lastmod>2017-08-14T06:52:06.300Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xiaoybboy.github.io/2017/08/14/java%E6%BA%90%E7%A0%81-ArrayDeque/</loc>
     
-    <lastmod>2017-08-14T06:11:44.686Z</lastmod>
+    <lastmod>2017-08-14T06:43:52.259Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xiaoybboy.github.io/2017/04/07/Java%E6%BA%90%E7%A0%81%E4%B9%8BHashSet/</loc>
+    
+    <lastmod>2017-08-14T06:43:16.943Z</lastmod>
     
   </url>
   
@@ -124,13 +138,6 @@
     <loc>https://xiaoybboy.github.io/2017/04/11/%E5%9B%9E%E6%9C%94%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/</loc>
     
     <lastmod>2017-04-11T04:32:56.989Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xiaoybboy.github.io/2017/04/07/Java%E6%BA%90%E7%A0%81%E4%B9%8BHashSet/</loc>
-    
-    <lastmod>2017-04-08T01:35:21.352Z</lastmod>
     
   </url>
   

@@ -1,0 +1,1165 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="spring,拦截器," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="如果一切重来" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="SpringMVC 拦截器的原理图 注意postHandle方法的执行顺序与定义顺序正好相反。
+springMVC拦截器的实现一般有两种方式
+第一种方式是要定义的Interceptor类要实现了Spring的HandlerInterceptor 接口，或者子接口如WebRequestInterceptor
+第二种方式是继承实现了HandlerInterceptor接口的类，比如Spring已经提供">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC拦截器">
+<meta property="og:url" content="https://xiaoybboy.github.io/2017/08/14/SpringMVC拦截器/index.html">
+<meta property="og:site_name" content="如果一切重来">
+<meta property="og:description" content="SpringMVC 拦截器的原理图 注意postHandle方法的执行顺序与定义顺序正好相反。
+springMVC拦截器的实现一般有两种方式
+第一种方式是要定义的Interceptor类要实现了Spring的HandlerInterceptor 接口，或者子接口如WebRequestInterceptor
+第二种方式是继承实现了HandlerInterceptor接口的类，比如Spring已经提供">
+<meta property="og:image" content="http://i.imgur.com/IXPPwYv.png">
+<meta property="og:image" content="http://i.imgur.com/GGUBVhn.png">
+<meta property="og:updated_time" content="2017-08-14T06:52:06.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC拦截器">
+<meta name="twitter:description" content="SpringMVC 拦截器的原理图 注意postHandle方法的执行顺序与定义顺序正好相反。
+springMVC拦截器的实现一般有两种方式
+第一种方式是要定义的Interceptor类要实现了Spring的HandlerInterceptor 接口，或者子接口如WebRequestInterceptor
+第二种方式是继承实现了HandlerInterceptor接口的类，比如Spring已经提供">
+<meta name="twitter:image" content="http://i.imgur.com/IXPPwYv.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到 ${query}相关的内容","hits_stats":"${hits} 记录，耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiaoybboy.github.io/2017/08/14/SpringMVC拦截器/"/>
+
+
+
+
+
+  <title> SpringMVC拦截器 | 如果一切重来 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?89b72b8b15f71e8732bbf6020d51d20e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">如果一切重来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小小程序员的成长之路</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/08/14/SpringMVC拦截器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="A Happy Boy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="如果一切重来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SpringMVC拦截器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T14:42:35+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/14/SpringMVC拦截器/" class="leancloud_visitors" data-flag-title="SpringMVC拦截器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SpringMVC-拦截器的原理图"><a href="#SpringMVC-拦截器的原理图" class="headerlink" title="SpringMVC 拦截器的原理图"></a>SpringMVC 拦截器的原理图</h1><p> <img src="http://i.imgur.com/IXPPwYv.png" alt=""><br>注意postHandle方法的执行顺序与定义顺序正好相反。</p>
+<h1 id="springMVC拦截器的实现一般有两种方式"><a href="#springMVC拦截器的实现一般有两种方式" class="headerlink" title="springMVC拦截器的实现一般有两种方式"></a>springMVC拦截器的实现一般有两种方式</h1><ol>
+<li>第一种方式是要定义的Interceptor类要实现了Spring的HandlerInterceptor 接口，或者子接口如WebRequestInterceptor</li>
+<li><p>第二种方式是继承实现了HandlerInterceptor接口的类，比如Spring已经提供的实现了HandlerInterceptor接口的抽象类HandlerInterceptorAdapter.</p>
+<a id="more"></a>
+<p>HandlerInterceptor 接口中定义了三个方法，我们就是通过这三个方法来对用户的请求进行拦截处理的。流程：<br><img src="http://i.imgur.com/GGUBVhn.png" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringMVCInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，SpringMVC中的Interceptor拦截器是链式的，可以同时存在 </div><div class="line">     * 多个Interceptor，然后SpringMVC会根据声明的前后顺序一个接一个的执行，而且所有的Interceptor中的preHandle方法都会在 </div><div class="line">     * Controller方法调用之前调用。SpringMVC的这种Interceptor链式结构也是可以进行中断的，这种中断方式是令preHandle的返 </div><div class="line">     * 回值为false，当preHandle的返回值为false的时候整个请求就结束了。 </div><div class="line">     */  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request,  </span></span></div><div class="line">            HttpServletResponse response, Object handler) <span class="keyword">throws</span> Exception &#123;  </div><div class="line">        <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 这个方法只会在当前这个Interceptor的preHandle方法返回值为true的时候才会执行。postHandle是进行处理器拦截用的，它的执行时间是在处理器进行处理之 </div><div class="line">     * 后，也就是在Controller的方法调用之后执行，但是它会在DispatcherServlet进行视图的渲染之前执行，也就是说在这个方法中你可以对ModelAndView进行操 </div><div class="line">     * 作。这个方法的链式结构跟正常访问的方向是相反的，也就是说先声明的Interceptor拦截器该方法反而会后调用，这跟Struts2里面的拦截器的执行过程有点像， </div><div class="line">     * 只是Struts2里面的intercept方法中要手动的调用ActionInvocation的invoke方法，Struts2中调用ActionInvocation的invoke方法就是调用下一个Interceptor </div><div class="line">     * 或者是调用action，然后要在Interceptor之前调用的内容都写在调用invoke之前，要在Interceptor之后调用的内容都写在调用invoke方法之后。 </div><div class="line">     */  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request,  </span></span></div><div class="line">            HttpServletResponse response, Object handler,  </div><div class="line">            ModelAndView modelAndView) <span class="keyword">throws</span> Exception &#123;  </div><div class="line">        <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">          </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 该方法也是需要当前对应的Interceptor的preHandle方法的返回值为true时才会执行。该方法将在整个请求完成之后，也就是DispatcherServlet渲染了视图执行， </div><div class="line">     * 这个方法的主要作用是用于清理资源的，当然这个方法也只能在当前这个Interceptor的preHandle方法的返回值为true时才会执行。 </div><div class="line">     */  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request,  </span></span></div><div class="line">            HttpServletResponse response, Object handler, Exception ex)  </div><div class="line">    <span class="keyword">throws</span> Exception &#123;  </div><div class="line">        <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">          </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>preHandle：预处理回调方法，实现处理器的预处理（如登录检查），第三个参数为响应的处理器（如我们上一章的Controller实现）；<br>  返回值：true表示继续流程（如调用下一个拦截器或处理器）；</p>
+<pre><code>false表示流程中断（如登录检查失败），不会继续调用其他的拦截器或处理器，此时我们需要通过response来产生响应；
+</code></pre></li>
+<li>postHandle：后处理回调方法，实现处理器的后处理（但在渲染视图之前），此时我们可以通过modelAndView（模型和视图对象）对模型数据进行处理或对视图进行处理，modelAndView也可能为null。</li>
+<li>afterCompletion：整个请求处理完毕回调方法，即在视图渲染完毕时回调，如性能监控中我们可以在此记录结束时间并输出消耗时间，还可以进行一些资源清理，类似于try-catch-finally中的finally，但仅调用处理器执行链中preHandle返回true的拦截器的afterCompletion。<h2 id="实例1：SpringMVC拦截器实现登录认证"><a href="#实例1：SpringMVC拦截器实现登录认证" class="headerlink" title="实例1：SpringMVC拦截器实现登录认证"></a>实例1：SpringMVC拦截器实现登录认证</h2>控制器<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"> * 登录认证的控制器 </div><div class="line"> */  </div><div class="line"><span class="meta">@Controller</span>  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginControl</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 登录 </div><div class="line">     * <span class="doctag">@param</span> session </div><div class="line">     *          HttpSession </div><div class="line">     * <span class="doctag">@param</span> username </div><div class="line">     *          用户名 </div><div class="line">     * <span class="doctag">@param</span> password </div><div class="line">     *          密码 </div><div class="line">     * <span class="doctag">@return</span> </div><div class="line">     */  </div><div class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/login"</span>)  </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(HttpSession session,String username,String password)</span> <span class="keyword">throws</span> Exception</span>&#123;        </div><div class="line">        <span class="comment">//在Session里保存信息  </span></div><div class="line">        session.setAttribute(<span class="string">"username"</span>, username);  </div><div class="line">        <span class="comment">//重定向  </span></div><div class="line">        <span class="keyword">return</span> <span class="string">"redirect:hello.action"</span>;   </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 退出系统 </div><div class="line">     * <span class="doctag">@param</span> session </div><div class="line">     *          Session </div><div class="line">     * <span class="doctag">@return</span> </div><div class="line">     * <span class="doctag">@throws</span> Exception </div><div class="line">     */  </div><div class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/logout"</span>)  </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">logout</span><span class="params">(HttpSession session)</span> <span class="keyword">throws</span> Exception</span>&#123;  </div><div class="line">        <span class="comment">//清除Session  </span></div><div class="line">        session.invalidate();  </div><div class="line">          </div><div class="line">        <span class="keyword">return</span> <span class="string">"redirect:hello.action"</span>;  </div><div class="line">    &#125;       </div><div class="line">&#125; </div><div class="line">```   </div><div class="line">拦截器：</div><div class="line">```java</div><div class="line"><span class="comment">/** </span></div><div class="line"> * 登录认证的拦截器 </div><div class="line"> */  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span></span>&#123;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * Handler执行完成之后调用这个方法 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request,  </span></span></div><div class="line">            HttpServletResponse response, Object handler, Exception exc)  </div><div class="line">            <span class="keyword">throws</span> Exception &#123;  </div><div class="line">          </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * Handler执行之后，ModelAndView返回之前调用这个方法 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response,  </span></span></div><div class="line">            Object handler, ModelAndView modelAndView) <span class="keyword">throws</span> Exception &#123;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * Handler执行之前调用这个方法 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response,  </span></span></div><div class="line">            Object handler) <span class="keyword">throws</span> Exception &#123;  </div><div class="line">        <span class="comment">//获取请求的URL  </span></div><div class="line">        String url = request.getRequestURI();  </div><div class="line">        <span class="comment">//URL:login.jsp是公开的;这个demo是除了login.jsp是可以公开访问的，其它的URL都进行拦截控制  </span></div><div class="line">        <span class="keyword">if</span>(url.indexOf(<span class="string">"login.action"</span>)&gt;=<span class="number">0</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="comment">//获取Session  </span></div><div class="line">        HttpSession session = request.getSession();  </div><div class="line">        String username = (String)session.getAttribute(<span class="string">"username"</span>);  </div><div class="line">          </div><div class="line">        <span class="keyword">if</span>(username != <span class="keyword">null</span>)&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="comment">//不符合条件的，跳转到登录界面  </span></div><div class="line">        request.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/login.jsp"</span>).forward(request, response);  </div><div class="line">          </div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在spring的配置文件中配置这个拦截器</p>
+<pre><code class="xml"><span class="comment">&lt;!-- 拦截器 --&gt;</span>  
+        <span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span>  
+            <span class="comment">&lt;!-- 多个拦截器，顺序执行 --&gt;</span>  
+            <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span>  
+                <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span>/&gt;</span>  
+                <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.mvc.interceptor.LoginInterceptor"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  
+            <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span>  
+        <span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span>
+</code></pre>
+<p>此外，也可在postHandle和afterCompletion中定义拦截逻辑，其中postHandle处理尚未渲染的ModelAndView数据，afterCompletion中处理后置的一些验证等操作.</p>
+<h2 id="实例2-性能监控"><a href="#实例2-性能监控" class="headerlink" title="实例2 性能监控"></a>实例2 性能监控</h2><p>如记录一下请求的处理时间，得到一些慢请求（如处理时间超过500毫秒），从而进行性能改进，一般的反向代理服务器如apache都具有这个功能，但此处我们演示一下使用拦截器怎么实现。<br>实现分析：<br>1、在进入处理器之前记录开始时间，即在拦截器的preHandle记录开始时间；<br>2、在结束请求处理之后记录结束时间，即在拦截器的afterCompletion记录结束实现，并用结束时间-开始时间得到这次请求的处理时间。<br>问题：<br>我们的拦截器是单例，因此不管用户请求多少次都只有一个拦截器实现，即线程不安全，那我们应该怎么记录时间呢？<br>解决方案是使用ThreadLocal，它是线程绑定的变量，提供线程局部变量（一个线程一个ThreadLocal，A线程的ThreadLocal只能看到A线程的ThreadLocal，不能看到B线程的ThreadLocal）。</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopWatchHandlerInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>{  
+    <span class="keyword">private</span> NamedThreadLocal&lt;Long&gt;  startTimeThreadLocal =   
+<span class="keyword">new</span> NamedThreadLocal&lt;Long&gt;(<span class="string">"StopWatch-StartTime"</span>);  
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response,   
+Object handler)</span> <span class="keyword">throws</span> Exception </span>{  
+        <span class="keyword">long</span> beginTime = System.currentTimeMillis();<span class="comment">//1、开始时间  </span>
+        startTimeThreadLocal.set(beginTime);<span class="comment">//线程绑定变量（该数据只有当前请求的线程可见）  </span>
+        <span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//继续流程  </span>
+    }  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response,   
+Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>{  
+        <span class="keyword">long</span> endTime = System.currentTimeMillis();<span class="comment">//2、结束时间  </span>
+        <span class="keyword">long</span> beginTime = startTimeThreadLocal.get();<span class="comment">//得到线程绑定的局部变量（开始时间）  </span>
+        <span class="keyword">long</span> consumeTime = endTime - beginTime;<span class="comment">//3、消耗的时间  </span>
+        <span class="keyword">if</span>(consumeTime &gt; <span class="number">500</span>) {<span class="comment">//此处认为处理时间超过500毫秒的请求为慢请求  </span>
+            <span class="comment">//TODO 记录到日志文件  </span>
+            System.out.println(  
+String.format(<span class="string">"%s consume %d millis"</span>, request.getRequestURI(), consumeTime));  
+        }          
+    }  
+}
+</code></pre>
+<p>NamedThreadLocal：Spring提供的一个命名的ThreadLocal实现。<br>在测试时需要把stopWatchHandlerInterceptor放在拦截器链的第一个，这样得到的时间才是比较准确的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+            <a href="/tags/拦截器/" rel="tag"># 拦截器</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/14/java源码-ArrayDeque/" rel="next" title="java源码--ArrayDeque">
+                <i class="fa fa-chevron-left"></i> java源码--ArrayDeque
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTUxNS82MDgz"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="A Happy Boy" />
+          <p class="site-author-name" itemprop="name">A Happy Boy</p>
+           
+              <p class="site-description motion-element" itemprop="description">两耳不闻窗外事</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaoybboy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/xiaoxiangzi222" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=27202681&auto=0&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=5276811&auto=0&height=66"></iframe>
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://moonmoonmoon.github.io/" title="Moon's Blog" target="_blank">Moon's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://theme-next.iissnan.com/getting-started.html" title="NexT" target="_blank">NexT</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+		
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringMVC-拦截器的原理图"><span class="nav-number">1.</span> <span class="nav-text">SpringMVC 拦截器的原理图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#springMVC拦截器的实现一般有两种方式"><span class="nav-number">2.</span> <span class="nav-text">springMVC拦截器的实现一般有两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例1：SpringMVC拦截器实现登录认证"><span class="nav-number">2.1.</span> <span class="nav-text">实例1：SpringMVC拦截器实现登录认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例2-性能监控"><span class="nav-number">2.2.</span> <span class="nav-text">实例2 性能监控</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+	 
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">A Happy Boy</span>
+</div>
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span>
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("afn4hnpX8n57aiCwli0VLiFR-gzGzoHsz", "sG7pfhLYAsSkH4rqtvlWOgWF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
