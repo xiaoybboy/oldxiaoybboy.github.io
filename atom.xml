@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-08-17T06:56:48.465Z</updated>
+  <updated>2017-08-17T08:22:25.164Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://xiaoybboy.github.io/2017/08/15/SpringMVC%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91%E5%99%A8/"/>
     <id>https://xiaoybboy.github.io/2017/08/15/SpringMVC自定义属性编辑器/</id>
     <published>2017-08-15T06:51:42.000Z</published>
-    <updated>2017-08-17T06:56:48.465Z</updated>
+    <updated>2017-08-17T08:22:25.164Z</updated>
     
     <content type="html"><![CDATA[<h1 id="参数绑定流程"><a href="#参数绑定流程" class="headerlink" title="参数绑定流程"></a>参数绑定流程</h1><p>参数绑定：把请求中的数据，转化成指定类型的对象，交给处理请求的方法<br> <img src="http://i.imgur.com/Pw0rmxB.jpg" alt=""></p>
 <ol>
@@ -33,37 +33,44 @@
 <li>TypeConverter将装配好的bean返回给DataBinder</li>
 <li>DataBinder将装配bean交给处理请求的方法<br>在参数绑定的过程TypeConverter和PropertyEditor是最核心的数据转化成对象（非序列化）的过程。TypeConverter负责将数据转化成一个bean。PropertyEditor负责将数据转化成一个成员字段<a id="more"></a>
 <h1 id="属性编辑器"><a href="#属性编辑器" class="headerlink" title="属性编辑器"></a>属性编辑器</h1>PropertiesEditor负责转化简单对象，因为http请求都是以字符串的形式，所以一般都是根据String来转换springmvc提供了很多默认的属性编辑器，在org.springframework.beans.propertyeditors包中，比如</li>
-<li>CustomBooleanEditor.class，String 转换 Boolean</li>
-<li>CustomCollectionEditor.class，String 转换 Collection</li>
-<li>CustomDateEditor.class，String 转换 Date</li>
-<li>CustomMapEditor.class，String 转换 Map</li>
-<li>CustomNumberEditor.class，String 转换  int、floot、double..<br>所有的属性编辑器都是继承PropertiesEditorSupport接口，默认的属性编辑器，Spring在启动的时候会自动加载。<br>除此之外，如果要装配的属性没有合适的编辑器，还可以自定义属性编辑器注册了自定义的属性编辑器之后，在CustomEditorConfigurer中注册，应用全局都可以使用这个属性编辑器，因为属性编辑器的工厂是全局作用域的</li>
 </ol>
+<blockquote>
+<p>CustomBooleanEditor.class，String 转换 Boolean<br>CustomCollectionEditor.class，String 转换 Collection<br>CustomDateEditor.class，String 转换 Date<br>CustomMapEditor.class，String 转换 Map<br>CustomNumberEditor.class，String 转换  int、floot、double..</p>
+</blockquote>
+<p>所有的属性编辑器都是继承PropertiesEditorSupport接口，默认的属性编辑器，Spring在启动的时候会自动加载。<br>除此之外，如果要装配的属性没有合适的编辑器，还可以自定义属性编辑器注册了自定义的属性编辑器之后，在CustomEditorConfigurer中注册，应用全局都可以使用这个属性编辑器，因为属性编辑器的工厂是全局作用域的</p>
 <h1 id="自定义springMVC的属性编辑器主要有两种方式，"><a href="#自定义springMVC的属性编辑器主要有两种方式，" class="headerlink" title="自定义springMVC的属性编辑器主要有两种方式，"></a>自定义springMVC的属性编辑器主要有两种方式，</h1><ol>
 <li>一种是使用@InitBinder标签在运行期注册一个属性编辑器，这种编辑器只在当前Controller里面有效；</li>
-<li><p>还有一种是实现自己的WebBindingInitializer，然后定义一个AnnotationMethodHandlerAdapter的bean，在此bean里面进行注册，这种属性编辑器是全局的。</p>
-<h2 id="第一种方式："><a href="#第一种方式：" class="headerlink" title="第一种方式："></a>第一种方式：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span>  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalController</span> </span>&#123;       </div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"test/&#123;date&#125;"</span>)  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(@PathVariable Date date, HttpServletResponse response)</span> <span class="keyword">throws</span> IOException  </span></div><div class="line">        response.<span class="title">getWriter</span><span class="params">()</span>.<span class="title">write</span><span class="params">( date)</span>;  </div><div class="line">  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@InitBinder</span><span class="comment">//必须有一个参数WebDataBinder  </span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initBinder</span><span class="params">(WebDataBinder binder)</span> </span>&#123;  </div><div class="line">        binder.registerCustomEditor(Date.class, <span class="keyword">new</span> CustomDateEditor(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>), <span class="keyword">false</span>));  </div><div class="line">  </div><div class="line">                binder.registerCustomEditor(<span class="keyword">int</span>.class, <span class="keyword">new</span> PropertyEditorSupport() &#123;  </div><div class="line">  </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">getAsText</span><span class="params">()</span> </span>&#123;  </div><div class="line">                <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">                <span class="keyword">return</span> getValue().toString();  </div><div class="line">            &#125;  </div><div class="line">  </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAsText</span><span class="params">(String text)</span> <span class="keyword">throws</span> IllegalArgumentException </span>&#123;  </div><div class="line">                <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">                System.out.println(text + <span class="string">"..........................................."</span>);  </div><div class="line">                setValue(Integer.parseInt(text));  </div><div class="line">            &#125;  </div><div class="line">              </div><div class="line">        &#125;);  </div><div class="line">    &#125;     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种方式这样写了就可以了</p>
-<h2 id="第二种："><a href="#第二种：" class="headerlink" title="第二种："></a>第二种：</h2><p>1.定义自己的WebBindingInitializer<br>```java<br>import java.util.Date;<br>import java.text.SimpleDateFormat;  </p>
-</li>
+<li>还有一种是实现自己的WebBindingInitializer，然后定义一个AnnotationMethodHandlerAdapter的bean，在此bean里面进行注册，这种属性编辑器是全局的。<h2 id="第一种方式："><a href="#第一种方式：" class="headerlink" title="第一种方式："></a>第一种方式：</h2></li>
 </ol>
-<p>import org.springframework.beans.propertyeditors.CustomDateEditor;<br>import org.springframework.web.bind.WebDataBinder;<br>import org.springframework.web.bind.support.WebBindingInitializer;<br>import org.springframework.web.context.request.WebRequest;  </p>
-<p>public class MyWebBindingInitializer implements WebBindingInitializer {  </p>
-<pre><code>@Override  
-public void initBinder(WebDataBinder binder, WebRequest request) {  
-    // TODO Auto-generated method stub  
-    binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat(&quot;yyyy-MM-dd&quot;), false));  
-}  
-</code></pre><p>} </p>
-<pre><code>2.在springMVC的配置文件里面定义一个AnnotationMethodHandlerAdapter，并设置其WebBindingInitializer属性为我们自己定义的WebBindingInitializer对象
-```xml
-&lt;bean class=&quot;org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter&quot;&gt;    
-            &lt;property name=&quot;cacheSeconds&quot; value=&quot;0&quot;/&gt;    
-            &lt;property name=&quot;webBindingInitializer&quot;&gt;    
-                &lt;bean class=&quot;com.xxx.blog.util.MyWebBindingInitializer&quot;/&gt;    
-            &lt;/property&gt;    
-        &lt;/bean&gt;
-</code></pre><p> 第二种方式经过上面两步就可以定义一个全局的属性编辑器了。<br>注意：当使用了<mvc:annotation-driven>的时候，它 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean。这时候第二种方式指定的全局属性编辑器就不会起作用了，解决办法就是手动的添加上述bean，并把它们加在<mvc:annotation-driven>的前面。如果不生效，则将手动注册AnnotationMethodHandlerAdapter改为手动<br>参考：<a href="http://www.cnblogs.com/wewill/p/5676920.html" target="_blank" rel="external">http://www.cnblogs.com/wewill/p/5676920.html</a><br>     <a href="http://jiji87432.iteye.com/blog/1781857" target="_blank" rel="external">http://jiji87432.iteye.com/blog/1781857</a></mvc:annotation-driven></mvc:annotation-driven></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span>  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalController</span> </span>&#123;       </div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"test/&#123;date&#125;"</span>)  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(@PathVariable Date date, HttpServletResponse response)</span> <span class="keyword">throws</span> IOException  </span></div><div class="line">        response.<span class="title">getWriter</span><span class="params">()</span>.<span class="title">write</span><span class="params">( date)</span>;  </div><div class="line">  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@InitBinder</span><span class="comment">//必须有一个参数WebDataBinder  </span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initBinder</span><span class="params">(WebDataBinder binder)</span> </span>&#123;  </div><div class="line">        binder.registerCustomEditor(Date.class, <span class="keyword">new</span> CustomDateEditor(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>), <span class="keyword">false</span>));  </div><div class="line">  </div><div class="line">                binder.registerCustomEditor(<span class="keyword">int</span>.class, <span class="keyword">new</span> PropertyEditorSupport() &#123;  </div><div class="line">  </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">getAsText</span><span class="params">()</span> </span>&#123;  </div><div class="line">                <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">                <span class="keyword">return</span> getValue().toString();  </div><div class="line">            &#125;  </div><div class="line">  </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAsText</span><span class="params">(String text)</span> <span class="keyword">throws</span> IllegalArgumentException </span>&#123;  </div><div class="line">                <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">                System.out.println(text + <span class="string">"..........................................."</span>);  </div><div class="line">                setValue(Integer.parseInt(text));  </div><div class="line">            &#125;  </div><div class="line">              </div><div class="line">        &#125;);  </div><div class="line">    &#125;     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  这种方式这样写了就可以了</p>
+<h2 id="第二种："><a href="#第二种：" class="headerlink" title="第二种："></a>第二种：</h2><p>1.定义自己的WebBindingInitializer</p>
+<pre><code class="java"><span class="keyword">import</span> java.util.Date;  
+<span class="keyword">import</span> java.text.SimpleDateFormat;  
+
+<span class="keyword">import</span> org.springframework.beans.propertyeditors.CustomDateEditor;  
+<span class="keyword">import</span> org.springframework.web.bind.WebDataBinder;  
+<span class="keyword">import</span> org.springframework.web.bind.support.WebBindingInitializer;  
+<span class="keyword">import</span> org.springframework.web.context.request.WebRequest;  
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebBindingInitializer</span> <span class="keyword">implements</span> <span class="title">WebBindingInitializer</span> </span>{  
+
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initBinder</span><span class="params">(WebDataBinder binder, WebRequest request)</span> </span>{  
+        <span class="comment">// TODO Auto-generated method stub  </span>
+        binder.registerCustomEditor(Date.class, <span class="keyword">new</span> CustomDateEditor(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>), <span class="keyword">false</span>));  
+    }  
+}
+</code></pre>
+<p>2.在springMVC的配置文件里面定义一个AnnotationMethodHandlerAdapter，并设置其WebBindingInitializer属性为我们自己定义的WebBindingInitializer对象</p>
+<pre><code class="xml"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"</span>&gt;</span>    
+            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cacheSeconds"</span> <span class="attr">value</span>=<span class="string">"0"</span>/&gt;</span>    
+            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"webBindingInitializer"</span>&gt;</span>    
+                <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.xxx.blog.util.MyWebBindingInitializer"</span>/&gt;</span>    
+            <span class="tag">&lt;/<span class="name">property</span>&gt;</span>    
+        <span class="tag">&lt;/<span class="name">bean</span>&gt;</span>
+</code></pre>
+<p> 第二种方式经过上面两步就可以定义一个全局的属性编辑器了。<br>注意：当使用了<mvc:annotation-driven>的时候，它 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean。这时候第二种方式指定的全局属性编辑器就不会起作用了，解决办法就是手动的添加上述bean，并把它们加在<mvc:annotation-driven>的前面。如果不生效，则将手动注册AnnotationMethodHandlerAdapter改为手动<br>参考：<a href="http://www.cnblogs.com/wewill/p/5676920.html" target="_blank" rel="external">http://www.cnblogs.com/wewill/p/5676920.html</a><br>     <a href="http://jiji87432.iteye.com/blog/1781857" target="_blank" rel="external">http://jiji87432.iteye.com/blog/1781857</a></mvc:annotation-driven></mvc:annotation-driven></p>
 ]]></content>
     
     <summary type="html">
