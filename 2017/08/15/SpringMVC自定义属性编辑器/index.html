@@ -83,7 +83,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="springmvc,自定义属性编辑器," />
 
 
 
@@ -118,7 +118,7 @@ DisptacherServlet将请求中的数据发送给Controller
 获取Controller需要接收的参数类型，将参数类型和请求数据发送给DataBinder
 DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
 <meta property="og:image" content="http://i.imgur.com/Pw0rmxB.jpg">
-<meta property="og:updated_time" content="2017-08-17T08:22:25.164Z">
+<meta property="og:updated_time" content="2017-08-17T08:24:28.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC自定义属性编辑器">
 <meta name="twitter:description" content="参数绑定流程参数绑定：把请求中的数据，转化成指定类型的对象，交给处理请求的方法 
@@ -357,7 +357,7 @@ DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
     <link itemprop="mainEntityOfPage" href="https://xiaoybboy.github.io/2017/08/15/SpringMVC自定义属性编辑器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="A Happy Boy">
+      <meta itemprop="name" content="Shaw">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -400,6 +400,28 @@ DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -447,8 +469,9 @@ DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
 <li>PropertyEditor将数据setter进bean中的成员</li>
 <li>TypeConverter将装配好的bean返回给DataBinder</li>
 <li>DataBinder将装配bean交给处理请求的方法<br>在参数绑定的过程TypeConverter和PropertyEditor是最核心的数据转化成对象（非序列化）的过程。TypeConverter负责将数据转化成一个bean。PropertyEditor负责将数据转化成一个成员字段<a id="more"></a>
-<h1 id="属性编辑器"><a href="#属性编辑器" class="headerlink" title="属性编辑器"></a>属性编辑器</h1>PropertiesEditor负责转化简单对象，因为http请求都是以字符串的形式，所以一般都是根据String来转换springmvc提供了很多默认的属性编辑器，在org.springframework.beans.propertyeditors包中，比如</li>
+</li>
 </ol>
+<h1 id="属性编辑器"><a href="#属性编辑器" class="headerlink" title="属性编辑器"></a>属性编辑器</h1><p>PropertiesEditor负责转化简单对象，因为http请求都是以字符串的形式，所以一般都是根据String来转换springmvc提供了很多默认的属性编辑器，在org.springframework.beans.propertyeditors包中，比如</p>
 <blockquote>
 <p>CustomBooleanEditor.class，String 转换 Boolean<br>CustomCollectionEditor.class，String 转换 Collection<br>CustomDateEditor.class，String 转换 Date<br>CustomMapEditor.class，String 转换 Map<br>CustomNumberEditor.class，String 转换  int、floot、double..</p>
 </blockquote>
@@ -512,6 +535,14 @@ DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/springmvc/" rel="tag"># springmvc</a>
+          
+            <a href="/tags/自定义属性编辑器/" rel="tag"># 自定义属性编辑器</a>
+          
+        </div>
       
 
       
@@ -593,8 +624,8 @@ DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
-               alt="A Happy Boy" />
-          <p class="site-author-name" itemprop="name">A Happy Boy</p>
+               alt="Shaw" />
+          <p class="site-author-name" itemprop="name">Shaw</p>
            
               <p class="site-description motion-element" itemprop="description">两耳不闻窗外事</p>
           
@@ -626,7 +657,7 @@ DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -738,7 +769,7 @@ DataBinder将参数类型和请求数据再发给TypeConverter，由Type">
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">A Happy Boy</span>
+  <span class="author" itemprop="copyrightHolder">Shaw</span>
 </div>
 <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span>
         

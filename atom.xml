@@ -5,11 +5,11 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaoybboy.github.io/"/>
-  <updated>2017-08-17T08:22:25.164Z</updated>
+  <updated>2017-08-17T08:24:28.304Z</updated>
   <id>https://xiaoybboy.github.io/</id>
   
   <author>
-    <name>A Happy Boy</name>
+    <name>Shaw</name>
     
   </author>
   
@@ -20,7 +20,7 @@
     <link href="https://xiaoybboy.github.io/2017/08/15/SpringMVC%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91%E5%99%A8/"/>
     <id>https://xiaoybboy.github.io/2017/08/15/SpringMVC自定义属性编辑器/</id>
     <published>2017-08-15T06:51:42.000Z</published>
-    <updated>2017-08-17T08:22:25.164Z</updated>
+    <updated>2017-08-17T08:24:28.304Z</updated>
     
     <content type="html"><![CDATA[<h1 id="参数绑定流程"><a href="#参数绑定流程" class="headerlink" title="参数绑定流程"></a>参数绑定流程</h1><p>参数绑定：把请求中的数据，转化成指定类型的对象，交给处理请求的方法<br> <img src="http://i.imgur.com/Pw0rmxB.jpg" alt=""></p>
 <ol>
@@ -32,8 +32,9 @@
 <li>PropertyEditor将数据setter进bean中的成员</li>
 <li>TypeConverter将装配好的bean返回给DataBinder</li>
 <li>DataBinder将装配bean交给处理请求的方法<br>在参数绑定的过程TypeConverter和PropertyEditor是最核心的数据转化成对象（非序列化）的过程。TypeConverter负责将数据转化成一个bean。PropertyEditor负责将数据转化成一个成员字段<a id="more"></a>
-<h1 id="属性编辑器"><a href="#属性编辑器" class="headerlink" title="属性编辑器"></a>属性编辑器</h1>PropertiesEditor负责转化简单对象，因为http请求都是以字符串的形式，所以一般都是根据String来转换springmvc提供了很多默认的属性编辑器，在org.springframework.beans.propertyeditors包中，比如</li>
+</li>
 </ol>
+<h1 id="属性编辑器"><a href="#属性编辑器" class="headerlink" title="属性编辑器"></a>属性编辑器</h1><p>PropertiesEditor负责转化简单对象，因为http请求都是以字符串的形式，所以一般都是根据String来转换springmvc提供了很多默认的属性编辑器，在org.springframework.beans.propertyeditors包中，比如</p>
 <blockquote>
 <p>CustomBooleanEditor.class，String 转换 Boolean<br>CustomCollectionEditor.class，String 转换 Collection<br>CustomDateEditor.class，String 转换 Date<br>CustomMapEditor.class，String 转换 Map<br>CustomNumberEditor.class，String 转换  int、floot、double..</p>
 </blockquote>
@@ -88,6 +89,12 @@
     
     </summary>
     
+      <category term="spring" scheme="https://xiaoybboy.github.io/categories/spring/"/>
+    
+    
+      <category term="springmvc" scheme="https://xiaoybboy.github.io/tags/springmvc/"/>
+    
+      <category term="自定义属性编辑器" scheme="https://xiaoybboy.github.io/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91%E5%99%A8/"/>
     
   </entry>
   
