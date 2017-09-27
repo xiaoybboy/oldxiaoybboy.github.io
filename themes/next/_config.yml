@@ -152,7 +152,6 @@ font:
 # Social links
 social:
   GitHub: https://github.com/xiaoybboy
-  CSDN: http://blog.csdn.net/xiaoxiangzi222
     
 social_icons:
   enable: true
