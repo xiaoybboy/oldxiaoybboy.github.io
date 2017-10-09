@@ -98,7 +98,7 @@ font:
     # external: true will load this font family from host.
     external: true
     #family: Lato
-    family: Lato
+    family: Monda
 
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
   # Fallback to `global` font settings.
@@ -118,7 +118,7 @@ font:
   # The `size` option use `px` as unit
   logo:
     external: true
-    family:
+    family: Lobster Two
     #size:
     size: 24
 
