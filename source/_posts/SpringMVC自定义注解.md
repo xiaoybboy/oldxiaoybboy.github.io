@@ -6,7 +6,7 @@ categories: spring
 ---
 最近在进行项目开发的时候需要对接口做Session验证
 
-# 自定义一个注解@AuthCheckAnnotation
+# 1.自定义一个注解@AuthCheckAnnotation
 ```java
 @Documented
 @Target(ElementType.METHOD)
@@ -17,10 +17,10 @@ public @interface AuthCheckAnnotation {
 }
 ```
 <!--more-->
-# 定义一个相应的拦截器，在springMVC配置文件中进行配置
+# 2.定义一个相应的拦截器，在springMVC配置文件中进行配置
 拦截器：
 &emsp;spring为我们提供了org.springframework.web.servlet.handler.HandlerInterceptorAdapter这个适配器，继承此类，可以非常方便的实现自己的拦截器。可以根据我们的需要重写preHandle、postHandle、afterCompletio方法。
-分别实现预处理、后处理（调用了Service并返回ModelAndView，但未进行页面渲染）、返回处理（已经渲染了页面）
+分别实现预处理、后处理（调用了Service并返回ModelAndView，但未进行页面渲染）、返回处理（已经渲染了页面)
 1. 在preHandle中，可以进行编码、安全控制等处理；
 2. 在postHandle中，有机会修改ModelAndView；
 3. 在afterCompletion中，可以根据ex是否为null判断是否发生了异常，进行日志记录。
@@ -47,7 +47,6 @@ public class AuthCheckInteceptor extends HandlerInterceptorAdapter {
             return false;
         }
     }
-
 }
 ```
 在springMVC.xml文件中添加拦截器
@@ -59,7 +58,7 @@ public class AuthCheckInteceptor extends HandlerInterceptorAdapter {
         </mvc:interceptor>
     </mvc:interceptors>
 ```
-# 在springMVC controller中使用实例
+# 3.在springMVC controller中使用实例
 ```java
     @AuthCheckAnnotation(check=true)
     @RequestMapping("doLogin")
